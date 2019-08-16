@@ -12,7 +12,7 @@ public class Mapper {
 	
 	public Object getObject(String key) {
 		for (SpecCell cell : specCells) {
-			if (cell.isVariable(key)) { return cell.getValue(); }
+			if (key.equals(cell.getVariable())) { return cell.getValue(); }
 		}
 		
 		return null;
@@ -22,13 +22,21 @@ public class Mapper {
 		Object obj = getObject(key);
 		if (obj == null) return null;
 		
-		return "\'"+(String)obj+"\'";
+		String rvalue = (String) obj;
+		return rvalue.replaceAll("\\'", "\\\\'");
 	}
 	
-	public String getNumber(String key) {
-		Object obj = getObject(key);
-		if (obj == null) return null;
+	public String getString(String key, String defaultVal) {
+		String rvalue = getString(key);
+		if (rvalue == null) return defaultVal;
+		if ("".equals(rvalue.trim())) return defaultVal;
 		
-		return (String) obj;
+		return rvalue;
+	}
+
+	public static void main(String[] args) {
+		String rvalue = "El'vi'no";
+		String hasil = rvalue.replaceAll("\\'", "\\\\'");
+		System.out.println("- "+hasil);
 	}
 }

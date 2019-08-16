@@ -18,7 +18,10 @@ public class Sheet {
 	public static final String Surat_Penawaran = "Surat Penawaran";
 	public static final String Order_Notaris = "Order Notaris";
 	
-	public static final String[] sheets = new String [] {Home, Informasi_Debitur, Order_Appraisal, Oder_BI_checking, Supplier_Checking, Buyer_Checking, Analisa_Rek_Koran, Spreading, Summary_Spreading, Fin_Needs_Analysis, RAC, MKK, Pelaporan_BI, Sandi_BI_Existing_Debitur, Surat_Penawaran, Order_Notaris};
+	// SMES
+	public static final String Analisa_Lap_Kue = "Analisa Lap Keu";
+	
+	public static final String[] sheets = new String [] {Home, Informasi_Debitur, Order_Appraisal, Oder_BI_checking, Supplier_Checking, Buyer_Checking, Analisa_Rek_Koran, Spreading, Summary_Spreading, Fin_Needs_Analysis, RAC, MKK, Pelaporan_BI, Sandi_BI_Existing_Debitur, Surat_Penawaran, Order_Notaris, Analisa_Lap_Kue};
 
 	public static boolean inSheet(String sheet) {
 		for(String s : sheets) {

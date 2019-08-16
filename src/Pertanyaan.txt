@@ -1,0 +1,7 @@
+1. Kalo dari app lobcode dan lobtype di ambil dari userlogin
+kalo lewat migrasi lewat mana data lobcode dan lobtype bisa di ambil ?
+A : Yg ada sheet Spreding itu SME (Large) yang artinya bisa di fix, nilai lobcode dan lobtype
+
+2. Dari data contoh 023. PT. Horas Bangun Persada dan 229. Lisa -Tambahan
+Kenapa sheetnya berbeda ? ini menyulitkan untuk migrasi
+A : Ini beda krn yang ada sheet Spreding itu SME (Large)

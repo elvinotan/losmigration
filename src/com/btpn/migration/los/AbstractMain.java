@@ -2,9 +2,11 @@ package com.btpn.migration.los;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -17,6 +19,7 @@ import com.btpn.migration.los.bean.SpecCell;
 import com.btpn.migration.los.bean.SpecRow;
 import com.btpn.migration.los.bean.Store;
 import com.btpn.migration.los.mapping.Mapping;
+import com.btpn.migration.los.tool.DateTool;
 
 public class AbstractMain {
 
@@ -52,12 +55,21 @@ public class AbstractMain {
 					} else if (cell.getCellType() == CellType.BLANK) {
 						value = "";
 					} else if (cell.getCellType() == CellType.NUMERIC) {
-						value = String.valueOf(cell.getNumericCellValue());
+						if (HSSFDateUtil.isCellDateFormatted(cell)) {
+							Date date = cell.getDateCellValue();
+							value = DateTool.format(date, "YYYY-MM-DD HH:mm:ss:SSS");
+						}else {
+							value = String.valueOf(cell.getNumericCellValue());
+						}
 					} else if (cell.getCellType() == CellType.STRING) {
 						value = String.valueOf(cell.getStringCellValue());
 					} else if (cell.getCellType() == CellType.FORMULA) {
 						if (cell.getCachedFormulaResultType() == CellType.NUMERIC) {
-							value = String.valueOf(cell.getNumericCellValue());
+							if (HSSFDateUtil.isCellDateFormatted(cell)) {
+								value = String.valueOf(cell.getDateCellValue());
+							}else {
+								value = String.valueOf(cell.getNumericCellValue());
+							}
 						}else if (cell.getCachedFormulaResultType() == CellType.STRING) {
 							value = String.valueOf(cell.getStringCellValue());
 						}
@@ -66,7 +78,7 @@ public class AbstractMain {
 						for (SpecRow specRow : m.getSpecRows()) {
 							for (SpecCell speCell : specRow.getSpecCells()) {
 								if (speCell.isFix()) continue;
-								if (speCell.isMatch(sheetname, address)) { speCell.value(value); }	
+								if (sheetname.equals(speCell.getSheet()) && address.equals(speCell.getAddress())) { speCell.setValue(value); }	
 							}
 						}
 					}					
@@ -80,7 +92,8 @@ public class AbstractMain {
 			for (SpecRow specRow : m.getSpecRows()) {
 				mapper.setSpecCells(specRow.getSpecCells());
 				String sql = specRow.getAction().insert(mapper, store);
-				System.out.println("- "+sql);
+				sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
+				System.out.println(sql);
 				
 				// Lakukan oprasional insert lalu jalankan SELECT LAST_INSERT_ID(); untuk mendapatkan primarykey
 				String primaryKey = String.valueOf(123456L);
