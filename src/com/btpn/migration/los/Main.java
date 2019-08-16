@@ -14,7 +14,13 @@ public class Main extends AbstractMain {
 		List<Mapping> mapping = new ArrayList<Mapping>();
 		mapping.add(new InformasiDebitur());
 		mapping.add(new AnalisaRekeningKoran());
-	
+		
+		for (Mapping map: mapping) {
+			String[] sqls = map.clearTable();
+			for (String sql : sqls) {
+				System.out.println("- "+sql);
+			}			
+		}
 		
 		String output = "C:\\Users\\19057559\\workspaces\\java\\losmigration\\input";
 		File folder = new File(output);

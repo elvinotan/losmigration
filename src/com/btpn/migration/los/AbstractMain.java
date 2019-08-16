@@ -12,7 +12,10 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.btpn.migration.los.bean.Mapper;
 import com.btpn.migration.los.bean.SpecCell;
+import com.btpn.migration.los.bean.SpecRow;
+import com.btpn.migration.los.bean.Store;
 import com.btpn.migration.los.mapping.Mapping;
 
 public class AbstractMain {
@@ -21,7 +24,10 @@ public class AbstractMain {
 		System.out.println("loadFile " + file.getName());
 		
 		// Initilize cell
-		for (Mapping m : mapping) { m.initMapping(); }
+		for (Mapping m : mapping) {
+			m.getSpecRows().clear();
+			m.initMapping(); 
+		}
 
 		FileInputStream xlsFile = new FileInputStream(file);
 		Workbook workbook = new HSSFWorkbook(xlsFile);
@@ -29,6 +35,7 @@ public class AbstractMain {
 		for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
 			Sheet sheet = workbook.getSheetAt(i);
 			String sheetname = sheet.getSheetName();
+			
 			Iterator<Row> iterator = sheet.iterator();
 
 			while (iterator.hasNext()) {
@@ -56,9 +63,10 @@ public class AbstractMain {
 						}
 					}
 					for (Mapping m : mapping) {
-						for(SpecCell c : m.getSpecTable().getSpecCells()) {
-							if (c.is(sheetname, address)) {
-								c.value(value);
+						for (SpecRow specRow : m.getSpecRows()) {
+							for (SpecCell speCell : specRow.getSpecCells()) {
+								if (speCell.isFix()) continue;
+								if (speCell.isMatch(sheetname, address)) { speCell.value(value); }	
 							}
 						}
 					}					
@@ -66,15 +74,24 @@ public class AbstractMain {
 			}
 		}
 		
+		Store store = new Store();
+		Mapper mapper = new Mapper();
 		for (Mapping m : mapping) {
-			for (SpecCell c : m.getSpecTable().getSpecCells()) {
-				System.out.println(c);
+			for (SpecRow specRow : m.getSpecRows()) {
+				mapper.setSpecCells(specRow.getSpecCells());
+				String sql = specRow.getAction().insert(mapper, store);
+				System.out.println("- "+sql);
+				
+				// Lakukan oprasional insert lalu jalankan SELECT LAST_INSERT_ID(); untuk mendapatkan primarykey
+				String primaryKey = String.valueOf(123456L);
+				specRow.getAction().afterInsert(mapper, store, primaryKey);
 			}
 		}
 		
 		for (Mapping m : mapping) {
-			m.clear();
+			for (SpecRow r : m.getSpecRows()) { r.clear(); }
 		}
+		
 		workbook.close();
 		xlsFile.close();
 		

@@ -1,13 +1,13 @@
 package com.btpn.migration.los.mapping;
 
-import com.btpn.migration.los.bean.SpecTable;
+import java.util.List;
+
+import com.btpn.migration.los.bean.SpecRow;
 
 public interface Mapping {
 	public void initMapping();
 	
-	public SpecTable getSpecTable();
+	public String[] clearTable();
 	
-	public String insert();
-	
-	public void clear();
+	public List<SpecRow> getSpecRows();
 }

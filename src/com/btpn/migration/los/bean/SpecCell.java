@@ -5,6 +5,7 @@ public class SpecCell {
 	private String address;
 	private String variable;
 	private Object value;
+	private boolean fix = false; // fix artinya kita sudah provide nilainya gax perlu ambil dari excel
 	
 	public static SpecCell get() {
 		return new SpecCell();
@@ -30,8 +31,25 @@ public class SpecCell {
 		return this;
 	}
 	
-	public boolean is(String sheet, String address) {
+	public SpecCell fix(boolean fix) {
+		this.fix = fix;
+		return this;
+	}
+	
+	public boolean isFix() {
+		return this.fix;
+	}
+	
+	public boolean isMatch(String sheet, String address) {
 		return (this.sheet.equals(sheet) && this.address.equals(address));
+	}
+	
+	public boolean isVariable(String variable) {
+		return this.variable.equals(variable);
+	}
+	
+	public Object getValue() {
+		return value;
 	}
 	
 	@Override
