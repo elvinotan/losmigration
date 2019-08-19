@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -29,29 +30,30 @@ import com.btpn.migration.los.mapping.Mapping;
 import com.btpn.migration.los.tool.DateTool;
 
 public class AbstractMain {
+	final static Logger log = Logger.getLogger(AbstractMain.class);
 	
 	private void clearTables(List<Mapping> mapping) {
-		System.out.println("- clearTables");
+		log.debug("clearTables");
 		
 		PreparedStatement preStmt = null;
 		try {
 			Connection conn = DbConnection.get().getConnection();
 			for (Mapping m : mapping) {
 				for (String sql : m.clearTable()) {
-					System.out.println(sql);
+					log.debug(sql);
 					preStmt = conn.prepareStatement(sql);
 					preStmt.execute();
 				}
 			}
 		}catch(Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);			
 		}finally {
 			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
 		}
 	}
 	
 	private void loadCommonService(Store store) {
-		System.out.println("- loadCommonService");
+		log.debug("loadCommonService");
 		
 		for (CommonService cs : CommonServices.get().getCommonServices()) {
 			store.add(cs);
@@ -59,7 +61,7 @@ public class AbstractMain {
 	}
 	
 	private void loadLookup(Store store) {
-		System.out.println("- loadLookup");
+		log.debug("loadLookup");
 		
 		PreparedStatement preStmt = null;
 		ResultSet rs = null;
@@ -67,7 +69,7 @@ public class AbstractMain {
 			String query = "select * from dlos_lookup_detail";
 			Connection connection = DbConnection.get().getConnection();
 			preStmt = connection.prepareStatement(query);
-			System.out.println(query);
+			log.debug(query);
 			rs = preStmt.executeQuery();
 			while (rs.next()) {
 				String lookupId = rs.getString("lookupId");
@@ -78,7 +80,7 @@ public class AbstractMain {
 				store.add(new Lookup(Long.valueOf(lookupId), key, group, description, isActive));
 			}
 		}catch(Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}finally {
 			if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
 			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
@@ -86,17 +88,17 @@ public class AbstractMain {
 	}
 	
 	private void execInsert(String insertStms, SpecRow specRow, Store store) {
-		System.out.println("- execInsert="+insertStms);
 		PreparedStatement preStmt = null;
 		ResultSet rs = null;
 		
 		try {
 			Connection connection = DbConnection.get().getConnection();
 			preStmt = connection.prepareStatement(insertStms);
+			log.debug(insertStms);
 			boolean execute = preStmt.execute();
 			preStmt.close();
 		}catch(Exception e) {
-			e.printStackTrace();
+			log.error(e.getMessage(), e);
 		}finally {
 			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
 		}
@@ -110,7 +112,6 @@ public class AbstractMain {
 				rs = preStmt.executeQuery();
 				if (rs.next()) {
 					String pk = rs.getString("pk");
-					System.out.println("- pk "+pk);
 					store.put(pkCell.getVariable(), pk);
 				}
 				
@@ -118,7 +119,7 @@ public class AbstractMain {
 				preStmt.close();
 				rs.close();
 			}catch(Exception e) {
-				e.printStackTrace();
+				log.error(e.getMessage(), e);
 			}finally {
 				if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
 			}
@@ -126,11 +127,9 @@ public class AbstractMain {
 	}
 
 	protected void loadFile(File file, List<Mapping> mapping) throws Exception {
-		System.out.println("loadFile " + file.getName());
+		log.debug("loadFile "+file.getName());
 		
-		DbConnection db = DbConnection.get();
 		Store store = new Store();
-		
 		clearTables(mapping);
 		loadCommonService(store);
 		loadLookup(store);
@@ -211,6 +210,7 @@ public class AbstractMain {
 			for (SpecRow r : m.getSpecRows()) { r.clear(); }
 		}
 		
+		DbConnection.get().close();
 		mapping = null;
 		workbook.close();
 		xlsFile.close();

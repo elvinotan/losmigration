@@ -270,6 +270,8 @@ public class LaporanKeuanganSMES implements Mapping {
 
 	@Override
 	public List<SpecRow> getSpecRows() {
+		//log.debug("getSpecRows");
+		
 		return this.specRows;
 	}
 

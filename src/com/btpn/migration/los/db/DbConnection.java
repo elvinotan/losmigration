@@ -9,9 +9,6 @@ import java.sql.Statement;
 
 public class DbConnection {
 	private Connection connection = null;
-    private Statement statement = null;
-    private PreparedStatement preparedStatement = null;
-    private ResultSet resultSet = null;
     private static DbConnection dbConnection;
     
     private DbConnection() {}
@@ -29,28 +26,10 @@ public class DbConnection {
 		return connection;
 	}
 	
-	private void close(Connection con) {
-		if (con != null) {
+	public void close() {
+		if (connection != null) {
 			try {
-				con.close();
-			}catch(Exception e) {}
-		}
-	}
-	
-	private void close(Connection con, PreparedStatement stmt) {
-		if (stmt != null) {
-			try {
-				close(con);
-				stmt.close();
-			}catch(Exception e) {}
-		}
-	}
-	
-	private void close(Connection con, PreparedStatement stmt, ResultSet rs) {
-		if (rs != null) {
-			try {
-				close(con, stmt);
-				rs.close();
+				connection.close();
 			}catch(Exception e) {}
 		}
 	}
