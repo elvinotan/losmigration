@@ -17,6 +17,14 @@ public class Mapper {
 		
 		return null;
 	}
+	
+	public String getAddress(String key) {
+		for (SpecCell cell : specCells) {
+			if (key.equals(cell.getVariable())) { return cell.getAddress(); }
+		}
+		
+		return null;
+	}	
 
 	public String getString(String key) {
 		Object obj = getObject(key);

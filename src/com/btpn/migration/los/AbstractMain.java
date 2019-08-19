@@ -2,6 +2,9 @@ package com.btpn.migration.los;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -14,17 +17,123 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.btpn.migration.los.bean.CommonService;
+import com.btpn.migration.los.bean.CommonServices;
+import com.btpn.migration.los.bean.Lookup;
 import com.btpn.migration.los.bean.Mapper;
 import com.btpn.migration.los.bean.SpecCell;
 import com.btpn.migration.los.bean.SpecRow;
 import com.btpn.migration.los.bean.Store;
+import com.btpn.migration.los.db.DbConnection;
 import com.btpn.migration.los.mapping.Mapping;
 import com.btpn.migration.los.tool.DateTool;
 
 public class AbstractMain {
+	
+	private void clearTables(List<Mapping> mapping) {
+		System.out.println("- clearTables");
+		
+		PreparedStatement preStmt = null;
+		try {
+			Connection conn = DbConnection.get().getConnection();
+			for (Mapping m : mapping) {
+				for (String sql : m.clearTable()) {
+					System.out.println(sql);
+					preStmt = conn.prepareStatement(sql);
+					preStmt.execute();
+				}
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
+		}
+	}
+	
+	private void loadCommonService(Store store) {
+		System.out.println("- loadCommonService");
+		
+		for (CommonService cs : CommonServices.get().getCommonServices()) {
+			store.add(cs);
+		}
+	}
+	
+	private void loadLookup(Store store) {
+		System.out.println("- loadLookup");
+		
+		PreparedStatement preStmt = null;
+		ResultSet rs = null;
+		try {
+			String query = "select * from dlos_lookup_detail";
+			Connection connection = DbConnection.get().getConnection();
+			preStmt = connection.prepareStatement(query);
+			System.out.println(query);
+			rs = preStmt.executeQuery();
+			while (rs.next()) {
+				String lookupId = rs.getString("lookupId");
+				String key = rs.getString("key");
+				String group = rs.getString("group");
+				String description = rs.getString("description");
+				Boolean isActive = rs.getBoolean("isActive");
+				store.add(new Lookup(Long.valueOf(lookupId), key, group, description, isActive));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
+			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
+		}
+	}
+	
+	private void execInsert(String insertStms, SpecRow specRow, Store store) {
+		System.out.println("- execInsert="+insertStms);
+		PreparedStatement preStmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Connection connection = DbConnection.get().getConnection();
+			preStmt = connection.prepareStatement(insertStms);
+			boolean execute = preStmt.execute();
+			preStmt.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
+		}
+		
+		SpecCell pkCell = specRow.getPk();
+		if (pkCell != null) {
+			
+			try {
+				Connection connection = DbConnection.get().getConnection();
+				preStmt = connection.prepareStatement("SELECT LAST_INSERT_ID() as pk");
+				rs = preStmt.executeQuery();
+				if (rs.next()) {
+					String pk = rs.getString("pk");
+					System.out.println("- pk "+pk);
+					store.put(pkCell.getVariable(), pk);
+				}
+				
+				boolean execute = preStmt.execute();
+				preStmt.close();
+				rs.close();
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
+			}
+		}
+	}
 
 	protected void loadFile(File file, List<Mapping> mapping) throws Exception {
 		System.out.println("loadFile " + file.getName());
+		
+		DbConnection db = DbConnection.get();
+		Store store = new Store();
+		
+		clearTables(mapping);
+		loadCommonService(store);
+		loadLookup(store);
 		
 		// Initilize cell
 		for (Mapping m : mapping) {
@@ -57,7 +166,7 @@ public class AbstractMain {
 					} else if (cell.getCellType() == CellType.NUMERIC) {
 						if (HSSFDateUtil.isCellDateFormatted(cell)) {
 							Date date = cell.getDateCellValue();
-							value = DateTool.format(date, "YYYY-MM-DD HH:mm:ss:SSS");
+							value = DateTool.format(date);
 						}else {
 							value = String.valueOf(cell.getNumericCellValue());
 						}
@@ -66,7 +175,8 @@ public class AbstractMain {
 					} else if (cell.getCellType() == CellType.FORMULA) {
 						if (cell.getCachedFormulaResultType() == CellType.NUMERIC) {
 							if (HSSFDateUtil.isCellDateFormatted(cell)) {
-								value = String.valueOf(cell.getDateCellValue());
+								Date date = cell.getDateCellValue();
+								value = DateTool.format(date);
 							}else {
 								value = String.valueOf(cell.getNumericCellValue());
 							}
@@ -86,18 +196,14 @@ public class AbstractMain {
 			}
 		}
 		
-		Store store = new Store();
 		Mapper mapper = new Mapper();
 		for (Mapping m : mapping) {
 			for (SpecRow specRow : m.getSpecRows()) {
 				mapper.setSpecCells(specRow.getSpecCells());
 				String sql = specRow.getAction().insert(mapper, store);
 				sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
-				System.out.println(sql);
 				
-				// Lakukan oprasional insert lalu jalankan SELECT LAST_INSERT_ID(); untuk mendapatkan primarykey
-				String primaryKey = String.valueOf(123456L);
-				specRow.getAction().afterInsert(mapper, store, primaryKey);
+				execInsert(sql, specRow, store);
 			}
 		}
 		
@@ -105,8 +211,8 @@ public class AbstractMain {
 			for (SpecRow r : m.getSpecRows()) { r.clear(); }
 		}
 		
+		mapping = null;
 		workbook.close();
 		xlsFile.close();
-		
 	}
 }

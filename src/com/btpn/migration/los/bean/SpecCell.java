@@ -6,6 +6,7 @@ public class SpecCell {
 	private String variable;
 	private Object value;
 	private boolean fix = false; // fix artinya kita sudah provide nilainya gax perlu ambil dari excel
+	private boolean pk = false; // ini artinya placeholder untuk primaryKey
 	
 	public String getSheet() { return sheet; }
 	public void setSheet(String sheet) { this.sheet = sheet; }
@@ -21,6 +22,9 @@ public class SpecCell {
 	
 	public boolean isFix() { return fix; }
 	public void setFix(boolean fix) { this.fix = fix; }
+	
+	public boolean isPk() { return pk; }
+	public void setPk(boolean pk) { this.pk = pk; }
 	
 	@Override
 	public String toString() {

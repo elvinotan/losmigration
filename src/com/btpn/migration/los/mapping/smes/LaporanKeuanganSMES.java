@@ -30,7 +30,7 @@ public class LaporanKeuanganSMES implements Mapping {
 		IActions insertAppPos = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store) {
+			public String insert(Mapper mapper, Store store) throws Exception{				
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -46,7 +46,21 @@ public class LaporanKeuanganSMES implements Mapping {
 				String status = mapper.getString("status");
 				String million = null;
 				
-				if ("tahun_laporan_keuangan".equals(pos)) { amount = DateTool.getYear(amount); }
+				// Menyimpan Tahun Laporan Keuangan layaknya pos
+				if ("tahun_laporan_keuangan".equals(pos)) {
+					amount = fyear;
+				}
+				
+				// Untuk post status_laporan_keuangan column amount di set jadi null
+				if ("status_laporan_keuangan".equals(pos)) {
+					amount = null;
+					status = store.getLookupByDescription(Store.LaporanKeuangan, status).getKey();
+				}
+				
+				// Untuk Senitize column fyear= -1, sedangakan untuk proyeksi column fyear=-2
+				String address = mapper.getAddress("fyear");
+				if ("I9".equals(address)) { fyear = "-1"; }
+				else if ("O9".equals(address)) { fyear = "-2"; }
 				
 				return String.format(
 						"INSERT INTO dlos_core.dlos_app_pos (dataId, fyear, lobCode, lobType, pos, amount, modifiedDate, modifiedBy, createdDate, createdBy, status, million) "+
@@ -54,15 +68,12 @@ public class LaporanKeuanganSMES implements Mapping {
 						dataId, fyear, lobCode, lobType, pos, amount, modifiedDate, modifiedBy, createdDate, createdBy, status, million 
 				);
 			}
-			
-			@Override
-			public void afterInsert(Mapper mapper, Store store, String primaryKey) {}
 		};
 		
 		IActions insertAppNeraca = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store) {
+			public String insert(Mapper mapper, Store store) throws Exception{
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -81,21 +92,23 @@ public class LaporanKeuanganSMES implements Mapping {
 				String createdDate = mapper.getString("createdDate"); ;
 				String createdBy = mapper.getString("createdBy"); ;
 				
+				// Untuk Senitize column fyear= -1, sedangakan untuk proyeksi column fyear=-2
+				String address = mapper.getAddress("fyear");
+				if ("I9".equals(address)) { fyear = "-1"; }
+				else if ("O9".equals(address)) { fyear = "-2"; }
+				
 				return String.format(
 						"INSERT INTO dlos_core.dlos_app_pos_neraca(dataId, fyear, lobCode, lobType, totAktivaLancar, totAktivaTetap, totAktiva, totHutangLancar, totHutangJangkaPanjang, totModal, totPassiva, modifiedDate, modifiedBy, createdDate, createdBy) "+
 						"VALUES(%s, %s, '%s', '%s', %s, %s, %s, %s, %s, %s, %s, '%s', '%s', %s, '%s');",
 						dataId, fyear, lobCode, lobType, totAktivaLancar, totAktivaTetap, totAktiva, totHutangLancar, totHutangJangkaPanjang, totModal, totPassiva, modifiedDate, modifiedBy, createdDate, createdBy
 				);
 			}
-			
-			@Override
-			public void afterInsert(Mapper mapper, Store store, String primaryKey) {}
 		};
 		
 		IActions insertAppLabaRugi = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store) {
+			public String insert(Mapper mapper, Store store) throws Exception{
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -110,8 +123,13 @@ public class LaporanKeuanganSMES implements Mapping {
 				
 				String modifiedDate = null;
 				String modifiedBy = mapper.getString("appId");
-				String createdDate = mapper.getString("createdDate"); ;
-				String createdBy = mapper.getString("createdBy"); ;
+				String createdDate = mapper.getString("createdDate");
+				String createdBy = mapper.getString("createdBy");
+				
+				// Untuk Senitize column fyear= -1, sedangakan untuk proyeksi column fyear=-2
+				String address = mapper.getAddress("fyear");
+				if ("I9".equals(address)) { fyear = "-1"; }
+				else if ("O9".equals(address)) { fyear = "-2"; }
 				
 				return String.format(
 						"INSERT INTO dlos_core.dlos_app_pos_labarugi (dataId, fyear, lobCode, lobType, labaKotor, totBiayaUsaha, labaRugiUsah, labaRugiSebelumPajak, labaBersih, reForPeriode, modifiedDate, modifiedBy, createdDate, createdBy) " + 
@@ -119,15 +137,12 @@ public class LaporanKeuanganSMES implements Mapping {
 						dataId, fyear, lobCode, lobType, labaKotor, totBiayaUsaha, labaRugiUsah, labaRugiSebelumPajak, labaBersih, reForPeriode, modifiedDate, modifiedBy, createdDate, createdBy
 				);
 			}
-			
-			@Override
-			public void afterInsert(Mapper mapper, Store store, String primaryKey) {}
 		};
 		
 		for (String column : columns) {
 			SpecRow header = SpecRow.get(null).setSheet(Sheet.Analisa_Lap_Kue).xls("appId", "B4").xls("fyear", column+"9").fix("lobCode", "01").fix("lobType", "SMES").fix("dataId", "-1").fix("createdDate", "CURRENT_TIMESTAMP").fix("createdBy", MIGRATION);
 	
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "tahun_laporan_keuangan").xls("amount", column+"9"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "tahun_laporan_keuangan").xls("amount", column+"9").pk("pk_tahun_laporan_keuangan"+column));
 			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "status_laporan_keuangan").xls("status", column+"7"));
 			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_lancar_kas").xls("amount", column+"25"));
 			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_lancar_piutang").xls("amount", column+"26"));
@@ -220,9 +235,6 @@ public class LaporanKeuanganSMES implements Mapping {
 						dataId, lobCode, lobType, grossUp, cpltd, kebutuhanInvestasi, penjelasanKebutuhanModalKerja, penjelasanKebutuhanInvestasi, debiturAjukanKreditTepat, informasiKeuanganHistoris, asumsiProyeksiKeuangan, modifiedDate, modifiedBy, createdDate, createdBy
 				);
 			}
-			
-			@Override
-			public void afterInsert(Mapper mapper, Store store, String primaryKey) {}
 		};
 		
 		SpecRow headerLaporan = SpecRow.get(null).setSheet(Sheet.Analisa_Lap_Kue).xls("appId", "B4").fix("lobCode", "01").fix("lobType", "SMES").fix("dataId", "-1").fix("createdDate", "CURRENT_TIMESTAMP").fix("createdBy", MIGRATION);

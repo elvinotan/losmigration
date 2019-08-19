@@ -70,6 +70,25 @@ public class SpecRow {
 		if (sheet == null) throw new NullPointerException("Sheet can not be null");
 		return fix(sheet, variable, value);
 	}
+	
+	public SpecRow pk(String variable) {
+		SpecCell cell = new SpecCell();
+		cell.setVariable(variable);
+		cell.setFix(true);
+		cell.setPk(true);
+		specCells.add(cell);
+		
+		return this;
+	}
+	
+	public SpecCell getPk() {
+		for (SpecCell cell: specCells) {
+			if (cell.isFix() && cell.isPk()) {
+				return cell;
+			}
+		}
+		return null;
+	}
 
 	public void clear() {
 		this.specCells.clear();
