@@ -1,14 +1,11 @@
 package com.btpn.migration.los.bean;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-
 
 public class Store {
 	
+	// Lookup
 	public static String BTPNRelationship = "BTPNRelationship";
 	public static String DebtorSource = "DebtorSource";
 	public static String DebiturType = "DebiturType";
@@ -62,6 +59,37 @@ public class Store {
 	public static String AdditionalInfo = "AdditionalInfo";
 	public static String ProductProgram = "ProductProgram";
 	
+	// Common Service
+	public static String TYPE_ACCOUNT_STATEMENT = "TYPE_ACCOUNT_STATEMENT";
+	public static String TYPE_ADDITIONAL_INCOME = "TYPE_ADDITIONAL_INCOME";
+	public static String TYPE_APPLICANT_TITLE = "TYPE_APPLICANT_TITLE";
+	public static String TYPE_APPLICANT = "TYPE_APPLICANT";
+	public static String TYPE_CITY = "TYPE_CITY";
+	public static String TYPE_CITY_BI = "TYPE_CITY_BI";
+	public static String TYPE_COMPANY_CHARACTERISTICS = "TYPE_COMPANY_CHARACTERISTICS";
+	public static String TYPE_COMPANY = "TYPE_COMPANY";
+	public static String TYPE_COMPANY_BI = "TYPE_COMPANY_BI";
+	public static String TYPE_COUNTRY = "TYPE_COUNTRY";
+	public static String TYPE_CI_IND_MONTHLY = "TYPE_CI_IND_MONTHLY";
+	public static String TYPE_CI_NONIND_YEARLY = "TYPE_CI_NONIND_YEARLY";
+	public static String TYPE_DISTRICT = "TYPE_DISTRICT";
+	public static String TYPE_EDUCATION = "TYPE_EDUCATION";
+	public static String TYPE_FORECAST_TRANSACTION = "TYPE_FORECAST_TRANSACTION";
+	public static String TYPE_GENDER = "TYPE_GENDER";
+	public static String TYPE_IDENTIFICATION = "TYPE_IDENTIFICATION";
+	public static String TYPE_INDUSTRIAL_SECTOR = "TYPE_INDUSTRIAL_SECTOR";
+	public static String TYPE_JOB_PROFESSION = "TYPE_JOB_PROFESSION";
+	public static String TYPE_JOB_TITLE = "TYPE_JOB_TITLE";
+	public static String TYPE_MARITAL_STATUS = "TYPE_MARITAL_STATUS";
+	public static String TYPE_PROVINCE_BI = "TYPE_PROVINCE_BI";
+	public static String TYPE_PROVINCE = "TYPE_PROVINCE";
+	public static String TYPE_PURPOSE_OF_ACCOUNT = "TYPE_PURPOSE_OF_ACCOUNT";
+	public static String TYPE_RELIGION = "TYPE_RELIGION";
+	public static String TYPE_RESIDENTIAL_STATUS = "TYPE_RESIDENTIAL_STATUS";
+	public static String TYPE_SUB_DISTRICT = "TYPE_SUB_DISTRICT";
+	public static String TYPE_ZIP_CODE = "TYPE_ZIP_CODE";
+	
+	
 	private Map<String, Object> map = new HashMap<String, Object>();
 	
 	private Map<String, Lookup> lookupMap = new HashMap<String, Lookup>();
@@ -74,7 +102,7 @@ public class Store {
 	}
 	
 	public void add(CommonService commonService) {
-		//TODO implements add
+		this.commonServiceMap.put(commonService.getGroup()+"_"+commonService.getDescription(), commonService);
 	}
 	
 	public Lookup getLookupByKey(String group, String key) {
@@ -83,6 +111,10 @@ public class Store {
 	
 	public Lookup getLookupByDescription(String group, String description) {
 		return this.lookupMap.get(group+"_"+description);
+	}
+	
+	public CommonService getCommonByDescription(String group, String description) {
+		return this.commonServiceMap.get(group+"_"+description);
 	}
 	
 	public void put(String key, Object object) {
@@ -98,7 +130,7 @@ public class Store {
 		if (obj == null) return null;
 		
 		String rvalue = (String) obj;
-		return rvalue.replaceAll("\\'", "\\\\'");
+		return rvalue.replaceAll("\\'", "\\\\'").trim();
 	}
 	
 	public String getString(String key, String defaultVal) {
@@ -107,5 +139,11 @@ public class Store {
 		if ("".equals(rvalue.trim())) return defaultVal;
 		
 		return rvalue;
+	}
+	
+	public void clear() {
+		lookupMap.clear();
+		commonServiceMap.clear();
+		map.clear();
 	}
 }

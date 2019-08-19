@@ -25,5 +25,6 @@
 	<classpathentry kind="lib" path="lib/poi-scratchpad-4.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/xmlbeans-2.3.0.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-8.0.16.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.8.5.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

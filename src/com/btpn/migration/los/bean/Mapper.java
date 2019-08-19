@@ -31,7 +31,7 @@ public class Mapper {
 		if (obj == null) return null;
 		
 		String rvalue = (String) obj;
-		return rvalue.replaceAll("\\'", "\\\\'");
+		return rvalue.replaceAll("\\'", "\\\\'").trim();
 	}
 	
 	public String getString(String key, String defaultVal) {

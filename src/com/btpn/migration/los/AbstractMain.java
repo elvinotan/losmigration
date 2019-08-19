@@ -2,9 +2,11 @@ package com.btpn.migration.los;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -19,7 +21,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import com.btpn.migration.los.bean.CommonService;
-import com.btpn.migration.los.bean.CommonServices;
+import com.btpn.migration.los.bean.CommonServiceGroup;
 import com.btpn.migration.los.bean.Lookup;
 import com.btpn.migration.los.bean.Mapper;
 import com.btpn.migration.los.bean.SpecCell;
@@ -28,9 +30,17 @@ import com.btpn.migration.los.bean.Store;
 import com.btpn.migration.los.db.DbConnection;
 import com.btpn.migration.los.mapping.Mapping;
 import com.btpn.migration.los.tool.DateTool;
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
+
 
 public class AbstractMain {
 	final static Logger log = Logger.getLogger(AbstractMain.class);
+	
+	private Gson gson = new Gson();
+	
+	private List<CommonService> cacheCommonService = new ArrayList<CommonService>();
+	private List<Lookup> cacheLookup = new ArrayList<Lookup>();
 	
 	private void clearTables(List<Mapping> mapping) {
 		log.debug("clearTables");
@@ -53,37 +63,66 @@ public class AbstractMain {
 	}
 	
 	private void loadCommonService(Store store) {
-		log.debug("loadCommonService");
-		
-		for (CommonService cs : CommonServices.get().getCommonServices()) {
-			store.add(cs);
+		if (!cacheCommonService.isEmpty()) {
+			log.debug("Fetching CommonService from cache");
+			
+			for (CommonService s : cacheCommonService) {
+				store.add(s);
+			}
+		}else {
+			log.debug("Fetching CommonService from file");
+			
+			File folder = new File("C:/Users/19057559/workspaces/java/losmigration/json");
+			for (File f : folder.listFiles()) {
+				try {
+					JsonReader reader = new JsonReader(new FileReader(f));
+					CommonServiceGroup group = gson.fromJson(reader, CommonServiceGroup.class);
+					if (group != null) {
+						for (CommonService s : group.getResult()) {
+							s.setGroup(f.getName().replaceAll(".json", ""));
+							store.add(s);
+							cacheCommonService.add(s);
+						}
+					}
+				}catch(Exception e) {
+					log.error(e.getMessage(), e);
+				}
+			}
 		}
 	}
 	
 	private void loadLookup(Store store) {
-		log.debug("loadLookup");
-		
-		PreparedStatement preStmt = null;
-		ResultSet rs = null;
-		try {
-			String query = "select * from dlos_lookup_detail";
-			Connection connection = DbConnection.get().getConnection();
-			preStmt = connection.prepareStatement(query);
-			log.debug(query);
-			rs = preStmt.executeQuery();
-			while (rs.next()) {
-				String lookupId = rs.getString("lookupId");
-				String key = rs.getString("key");
-				String group = rs.getString("group");
-				String description = rs.getString("description");
-				Boolean isActive = rs.getBoolean("isActive");
-				store.add(new Lookup(Long.valueOf(lookupId), key, group, description, isActive));
+		if (!cacheLookup.isEmpty()) {
+			log.debug("Fetching lookup from cache");
+			
+			for (Lookup l : cacheLookup) {
+				store.add(l);
 			}
-		}catch(Exception e) {
-			log.error(e.getMessage(), e);
-		}finally {
-			if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
-			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
+		}else {
+			log.debug("Fetching lookup from database");
+			
+			PreparedStatement preStmt = null;
+			ResultSet rs = null;
+			try {
+				String query = "select * from dlos_lookup_detail";
+				Connection connection = DbConnection.get().getConnection();
+				preStmt = connection.prepareStatement(query);
+				log.debug(query);
+				rs = preStmt.executeQuery();
+				while (rs.next()) {
+					String lookupId = rs.getString("lookupId");
+					String key = rs.getString("key");
+					String group = rs.getString("group");
+					String description = rs.getString("description");
+					Boolean isActive = rs.getBoolean("isActive");
+					store.add(new Lookup(Long.valueOf(lookupId), key, group, description, isActive));
+				}
+			}catch(Exception e) {
+				log.error(e.getMessage(), e);
+			}finally {
+				if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
+				if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
+			}
 		}
 	}
 	

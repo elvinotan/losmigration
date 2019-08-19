@@ -1,0 +1,58 @@
+branchCode > C9
+salesSquadName >
+areaName >
+regionName > C8
+debiturName > J5
+aliasName >
+KTPNumber >
+KTPExpDate >
+NPWPNumber >
+placeOfBirth >
+dateOfBirth >
+religionCode >
+nationalityCode >
+residenceStatus >
+educationStatus >
+mobileNumber >
+email >
+KTPAddress >
+KTPPostalCode >
+KTPCityCode >
+KTPSubDistrict >
+KTPDistrict >
+currentAddress >
+currentAddressPostalCode >
+currentAddressSubDistrict >
+currentAddressDistrict >
+motherMaidenName >
+btpnRelationCode >
+sourceOfDebtor >
+debiturType >
+gender >
+maritalStatus >
+spouseName >
+customerType >
+isActive >
+modifiedDate >
+modifiedBy >
+createdDate > J4
+createdBy >
+dataId >
+businessAddress >
+businessCityCode >
+businessProvinceCode >
+businessPostalCode >
+businessPhoneCode >
+currentAddressCityCode >
+cif > J6
+rmName > C4
+rmCode > C5
+acmName > C6
+acmNik > C7
+btpnRelationDate > J8
+programProduct > J9
+information >
+managementRelation >
+managementChange >
+KTPRTRWCode >
+currentAddressRTRWCode >

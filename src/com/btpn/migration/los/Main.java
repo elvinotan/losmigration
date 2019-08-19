@@ -7,15 +7,16 @@ import java.util.List;
 import org.apache.log4j.BasicConfigurator;
 
 import com.btpn.migration.los.mapping.Mapping;
+import com.btpn.migration.los.mapping.smes.InformasiDebiturSMES;
 import com.btpn.migration.los.mapping.smes.LaporanKeuanganSMES;
 
 public class Main extends AbstractMain {
 	
 	public void run() throws Exception {
 		List<Mapping> mapping = new ArrayList<Mapping>();
-		mapping.add(new LaporanKeuanganSMES());
+		mapping.add(new InformasiDebiturSMES());
 		
-		String output = "C:\\Users\\19057559\\workspaces\\java\\losmigration\\input\\smes";
+		String output = "C:/Users/19057559/workspaces/java/losmigration/input/smes";
 		File folder = new File(output);
 		for (File file: folder.listFiles()) {
 			if (file.isFile() && !file.getName().contains("lock")) {
