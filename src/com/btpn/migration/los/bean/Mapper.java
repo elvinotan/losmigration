@@ -28,10 +28,14 @@ public class Mapper {
 
 	public String getString(String key) {
 		Object obj = getObject(key);
-		if (obj == null) return null;
+		if (obj == null || "".equals(obj)) return null;
 		
 		String rvalue = (String) obj;
 		return rvalue.replaceAll("\\'", "\\\\'").trim();
+	}
+	
+	public String clearDecimal(String data) {
+		return data.split("\\.")[0];
 	}
 	
 	public String getString(String key, String defaultVal) {

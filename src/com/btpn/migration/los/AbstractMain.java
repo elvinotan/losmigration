@@ -20,6 +20,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.btpn.migration.los.bean.Branch;
 import com.btpn.migration.los.bean.CommonService;
 import com.btpn.migration.los.bean.CommonServiceGroup;
 import com.btpn.migration.los.bean.Lookup;
@@ -41,6 +42,7 @@ public class AbstractMain {
 	
 	private List<CommonService> cacheCommonService = new ArrayList<CommonService>();
 	private List<Lookup> cacheLookup = new ArrayList<Lookup>();
+	private List<Branch> cacheBranch = new ArrayList<Branch>();
 	
 	private void clearTables(List<Mapping> mapping) {
 		log.debug("clearTables");
@@ -126,6 +128,43 @@ public class AbstractMain {
 		}
 	}
 	
+	private void loadBranch(Store store) {
+		if (!cacheBranch.isEmpty()) {
+			log.debug("Fetching Branch from cache");
+			
+			for (Branch l : cacheBranch) {
+				store.add(l);
+			}
+		}else {
+			log.debug("Fetching Branch from database");
+			
+			PreparedStatement preStmt = null;
+			ResultSet rs = null;
+			try {
+				String query = "select * from dlos_branch";
+				Connection connection = DbConnection.get().getConnection();
+				preStmt = connection.prepareStatement(query);
+				log.debug(query);
+				rs = preStmt.executeQuery();
+				while (rs.next()) {
+					Long branchId = rs.getLong("branchId");
+					String branchCode = rs.getString("branchCode");
+					String branchName = rs.getString("branchName");
+					Long lobId = rs.getLong("LOBId");
+					Long areaId = rs.getLong("areaId");
+					Long appIdSequence = rs.getLong("appIdSequence");
+					Boolean isActive = rs.getBoolean("isActive");
+					store.add(new Branch(branchId, branchCode, branchName, lobId, areaId, appIdSequence, isActive));
+				}
+			}catch(Exception e) {
+				log.error(e.getMessage(), e);
+			}finally {
+				if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
+				if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
+			}
+		}
+	}
+	
 	private void execInsert(String insertStms, SpecRow specRow, Store store) {
 		PreparedStatement preStmt = null;
 		ResultSet rs = null;
@@ -172,6 +211,7 @@ public class AbstractMain {
 		clearTables(mapping);
 		loadCommonService(store);
 		loadLookup(store);
+		loadBranch(store);
 		
 		// Initilize cell
 		for (Mapping m : mapping) {
@@ -239,9 +279,10 @@ public class AbstractMain {
 			for (SpecRow specRow : m.getSpecRows()) {
 				mapper.setSpecCells(specRow.getSpecCells());
 				String sql = specRow.getAction().insert(mapper, store);
-				sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
-				
-				execInsert(sql, specRow, store);
+				if (sql != null) {
+					sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
+					execInsert(sql, specRow, store);
+				}
 			}
 		}
 		

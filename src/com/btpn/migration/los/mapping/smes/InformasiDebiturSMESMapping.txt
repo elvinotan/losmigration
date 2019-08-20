@@ -1,8 +1,8 @@
-branchCode > C9
+branchCode > C9 > OK
 salesSquadName >
 areaName >
-regionName > C8
-debiturName > J5
+regionName > C8 > OK
+debiturName > J5 > OK
 aliasName >
 KTPNumber >
 KTPExpDate >
@@ -26,33 +26,33 @@ currentAddressSubDistrict >
 currentAddressDistrict >
 motherMaidenName >
 btpnRelationCode >
-sourceOfDebtor >
-debiturType >
+sourceOfDebtor > C77 > OK
+debiturType > D26 > OK
 gender >
 maritalStatus >
-spouseName >
+spouseName > D36 > OK
 customerType >
 isActive >
 modifiedDate >
 modifiedBy >
-createdDate > J4
+createdDate > J4 > OK
 createdBy >
 dataId >
-businessAddress >
-businessCityCode >
-businessProvinceCode >
-businessPostalCode >
-businessPhoneCode >
+businessAddress > D20, D21 > OK
+businessCityCode > D22 > OK
+businessProvinceCode > D23 > OK
+businessPostalCode > D24 > OK
+businessPhoneCode > D25 > OK
 currentAddressCityCode >
-cif > J6
-rmName > C4
-rmCode > C5
-acmName > C6
-acmNik > C7
-btpnRelationDate > J8
-programProduct > J9
-information >
-managementRelation >
-managementChange >
+cif > J6 > OK
+rmName > C4 > OK
+rmCode > C5 > OK
+acmName > C6 > OK
+acmNik > C7 > OK
+btpnRelationDate > J8 > OK
+programProduct > J9 > OK
+information > A81 > OK
+managementRelation > A134 - A135 > OK
+managementChange > D34	> OK
 KTPRTRWCode >
 currentAddressRTRWCode >

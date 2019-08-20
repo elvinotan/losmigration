@@ -20,4 +20,9 @@ public class DateTool {
 		cal.setTime(date);
 		return String.valueOf(cal.get(Calendar.YEAR));
 	}
+	
+	public static String getYMD(String data) throws ParseException {
+		return data.trim().split(" ")[0];
+	}
+	
 }
