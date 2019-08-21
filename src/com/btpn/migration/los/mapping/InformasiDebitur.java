@@ -54,6 +54,7 @@ public class InformasiDebitur implements Mapping {
 		migrasiDlosAppGroupDebitur(lobType);
 		migrasiDlosAppVerificationDebitur(lobType);
 		migrasiDlosAppLegal(lobType);
+		migrasiDlosAppManagement(lobType);
 	}
 
 	private void migrasiDlosAppDetail(String lobType) {
@@ -250,7 +251,9 @@ public class InformasiDebitur implements Mapping {
 				if (groupDebiturName == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
 				
 				String groupOwnershipPercentage = mapper.getString("groupOwnershipPercentage"); // data yang masukan berupa range 0 s/d 1, sehingga harus di kali 100
-				groupOwnershipPercentage = NumberTool.format(Double.valueOf(groupOwnershipPercentage) * 100);
+				if (!StringTool.isEmpty(groupOwnershipPercentage)) {
+					groupOwnershipPercentage = NumberTool.format(Double.valueOf(groupOwnershipPercentage) * 100);
+				}
 				 
 				String industrySectorCode = mapper.getString("industrySectorCode"); // data di ambil dari lookup.IndustrialSector
 				Lookup lindustrySectorCode = store.getLookupByDescription(Lookup.IndustrialSector, industrySectorCode);
@@ -440,6 +443,97 @@ public class InformasiDebitur implements Mapping {
 				.xls("TDPNIBYear", "K94")
 				.xls("TDPNIBName", "G94")
 				.xls("TDPNIBNumber", "C94"));
+	}
+	
+	public void migrasiDlosAppManagement(String lobType) {
+		
+		IActions insertDlosAppManagement = new IActions() {
+
+			@Override
+			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+				
+				String managementName = mapper.getString("managementName");
+				if (managementName == null) return null; // ini artinya  datanya kosong dan jgn di process querynya
+				
+				String managementPosition = mapper.getString("managementPosition");
+				Lookup lmanagementPosition = store.getLookupByDescription(Lookup.Position, managementPosition);
+				managementPosition = (lmanagementPosition == null) ? null : lmanagementPosition.getKey();
+				
+				String idCode = mapper.getString("idCode");
+				Lookup lIdCode = store.getLookupByDescription(Lookup.IDCard, idCode); 
+				idCode = (lIdCode == null) ? null : lIdCode.getKey(); 
+						
+				String idNumber =  mapper.getString("idNumber");
+				String sharePercentage = mapper.getString("sharePercentage");
+				if (sharePercentage != null && "-".equalsIgnoreCase(sharePercentage.trim())) sharePercentage = null;
+				if (!StringTool.isEmpty(sharePercentage)) {
+					sharePercentage = NumberTool.format(Double.valueOf(sharePercentage) * 100);
+				}
+				
+				String managementAddress = mapper.getString("managementAddress");
+				String datiII = mapper.getString("datiII"); 
+				CommonService csDati2 = store.getCommonByDescription(CommonService.TYPE_CITY, datiII);
+				datiII = (csDati2 == null) ? null : csDati2.getCode();
+				
+				String NPWPNumber = mapper.getString("NPWPNumber");
+				String age = mapper.getString("age");
+				String experienceInYears = mapper.getString("experienceInYears");
+				String joinedSinceYears = mapper.getString("joinedSinceYears");
+				String dataId = store.getString("dataId");
+				String isActive = "1";
+				String modifiedDate = null;
+				String modifiedBy = mapper.getString("appId");
+				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
+				String createdBy = MIGRATION;
+				
+				return String.format( 
+						"INSERT INTO dlos_core.dlos_app_management (managementName, managementPosition, idCode, idNumber, sharePercentage, managementAddress, datiII, NPWPNumber, age, experienceInYears, joinedSinceYears, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy) " + 
+						"VALUES(                                    '%s',           '%s',               '%s',   '%s',     '%s',            '%s',              '%s',   '%s',       '%s','%s',              '%s',             '%s',   %s,     '%s',         '%s',       '%s',        '%s');", 
+						managementName, managementPosition, idCode, idNumber, sharePercentage, managementAddress, datiII, NPWPNumber, age, experienceInYears, joinedSinceYears, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy);
+			}			
+		};
+		
+		if (LobType.isSmes(lobType)) {
+			for (int i = 0; i < 11; i++) {
+				int inc = 122 + i;
+				
+				specRows.add(SpecRow.get(insertDlosAppManagement).setSheet(Sheet.InformasiDebitur)
+						.xls("appId", "J7")
+						.xls("createdDate", "J4")
+						.xls("age", "L"+inc)
+						.xls("datiII", "H"+inc)
+						.xls("experienceInYears", "M"+inc)
+						.xls("idCode", "B"+inc)
+						.xls("idNumber", "C"+inc)
+						.xls("joinedSinceYears", "N"+inc)
+						.xls("managementAddress", "F"+inc)
+						.xls("managementName", "A"+inc)
+						.xls("managementPosition", "J"+inc)
+						.xls("NPWPNumber", "K"+inc)
+						.xls("sharePercentage", "E"+inc));
+			}
+		}
+		
+		if (LobType.isSmel(lobType)) {
+			for (int i = 0; i < 11; i++) {
+				int inc = 120 + i;
+				
+				specRows.add(SpecRow.get(insertDlosAppManagement).setSheet(Sheet.InformasiDebitur)
+						.xls("appId", "J7")
+						.xls("createdDate", "J4")
+						.xls("age", "L"+inc)
+						.xls("datiII", "H"+inc)
+						.xls("experienceInYears", "M"+inc)
+						.xls("idCode", "B"+inc)
+						.xls("idNumber", "C"+inc)
+						.xls("joinedSinceYears", "N"+inc)
+						.xls("managementAddress", "E"+inc)
+						.xls("managementName", "A"+inc)
+						.xls("managementPosition", "J"+inc)
+						.xls("NPWPNumber", "K"+inc)
+						.xls("sharePercentage", "D"+inc));
+			}
+		}
 	}
 
 	@Override
