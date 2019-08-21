@@ -38,9 +38,9 @@ public class Store {
 		Lookup lookup = this.lookupMap.get(group+"~"+key);		
 	
 		if (lookup == null) {
-			log.error("[MAPPING PROBLEM] Data Lookup Not found for "+group+" with key "+key);
+			log.error("[MAPPING PROBLEM] Data Lookup Not found for ("+group+") with key ("+key+")");
 			
-			if (throwErr) throw new NullPointerException("Data Lookup Not found for "+group+" with key "+key);
+			if (throwErr) throw new NullPointerException("Data Lookup Not found for ("+group+") with key ("+key+")");
 			return null;
 		}else {
 			return lookup;
@@ -55,9 +55,9 @@ public class Store {
 		Lookup lookup = this.lookupMap.get(group+"~"+description);
 		
 		if (lookup == null) {
-			log.error("[MAPPING PROBLEM] Data Lookup Not found for "+group+" with description "+description);
+			log.error("[MAPPING PROBLEM] Data Lookup Not found for ("+group+") with description ("+description+")");
 			
-			if (throwErr) throw new NullPointerException("Data Lookup Not found for "+group+" with description "+description);
+			if (throwErr) throw new NullPointerException("Data Lookup Not found for ("+group+") with description ("+description+")");
 			return null;
 		}else {
 			return lookup;
@@ -72,9 +72,9 @@ public class Store {
 		CommonService cs = this.commonServiceMap.get(group+"~"+description);
 		
 		if (cs == null) {
-			log.error("[MAPPING PROBLEM] Data CommonService Not found for "+group+" with description "+description);
+			log.error("[MAPPING PROBLEM] Data CommonService Not found for ("+group+") with description ("+description+")");
 			
-			if (throwErr) throw new NullPointerException("Data CommonService Not found for "+group+" with description "+description);
+			if (throwErr) throw new NullPointerException("Data CommonService Not found for ("+group+") with description ("+description+")");
 			return null;
 		}else {
 			return cs;
@@ -89,9 +89,9 @@ public class Store {
 		Region region = this.regionMap.get(description);
 		
 		if (region == null) {
-			log.error("[MAPPING PROBLEM] Data Region Not found for description "+description);
+			log.error("[MAPPING PROBLEM] Data Region Not found for description ("+description+")");
 			
-			if (throwErr) throw new NullPointerException("Data Region Not found for description "+description);
+			if (throwErr) throw new NullPointerException("Data Region Not found for description ("+description+")");
 			return null;
 		}else {
 			return region;
@@ -106,9 +106,9 @@ public class Store {
 		Region branch = this.branchMap.get(description);
 		
 		if (branch == null) {
-			log.error("[MAPPING PROBLEM] Data Branch Not found for description "+description);
+			log.error("[MAPPING PROBLEM] Data Branch Not found for description ("+description+")");
 			
-			if (throwErr) throw new NullPointerException("Data Branch Not found for  description "+description);
+			if (throwErr) throw new NullPointerException("Data Branch Not found for  description ("+description+")");
 			return null;
 		}else {
 			return branch;

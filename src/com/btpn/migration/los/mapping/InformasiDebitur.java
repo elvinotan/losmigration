@@ -55,6 +55,7 @@ public class InformasiDebitur implements Mapping {
 		migrasiDlosAppVerificationDebitur(lobType);
 		migrasiDlosAppLegal(lobType);
 		migrasiDlosAppManagement(lobType);
+		migrasiDlosAppProperty(lobType);
 	}
 
 	private void migrasiDlosAppDetail(String lobType) {
@@ -445,7 +446,7 @@ public class InformasiDebitur implements Mapping {
 				.xls("TDPNIBNumber", "C94"));
 	}
 	
-	public void migrasiDlosAppManagement(String lobType) {
+	private void migrasiDlosAppManagement(String lobType) {
 		
 		IActions insertDlosAppManagement = new IActions() {
 
@@ -534,6 +535,45 @@ public class InformasiDebitur implements Mapping {
 						.xls("sharePercentage", "D"+inc));
 			}
 		}
+	}
+	
+	private void migrasiDlosAppProperty(String lobType) {
+		
+		IActions insertDlosAppProperty = new IActions() {
+
+			@Override
+			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+				String homeOwnershipStatus = mapper.getString("homeOwnershipStatus");
+				Lookup lhomeOwnershipStatus = store.getLookupByDescription(Lookup.HomeOwnership, homeOwnershipStatus);
+				homeOwnershipStatus = (lhomeOwnershipStatus == null) ? null : lhomeOwnershipStatus.getKey();
+				
+				String businessOwnershipStatus = null;
+				String ownershipDate = DateTool.getYMD(mapper.getString("ownershipDate"));
+				String leaseDate = DateTool.getYMD(mapper.getString("leaseDate"));
+				String businessEntityType = null;
+				String businessName = null;
+				String dataId = store.getString("dataId");
+				String isActive = "1";
+				String modifiedDate = null;
+				String modifiedBy = mapper.getString("appId");;
+				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));;
+				String createdBy = MIGRATION;
+				
+				return String.format(
+						"INSERT INTO dlos_core.dlos_app_property (homeOwnershipStatus, businessOwnershipStatus, ownershipDate, leaseDate, businessEntityType, businessName, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy) " + 
+						"VALUES(                                  '%s',                '%s',                    '%s',          '%s',      '%s',               '%s',         '%s',   %s,       '%s',         '%s',       '%s',        '%s'); ", 
+						homeOwnershipStatus, businessOwnershipStatus, ownershipDate, leaseDate, businessEntityType, businessName, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy
+					);
+			}
+			
+		};
+		specRows.add(SpecRow.get(insertDlosAppProperty).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4")
+				.xls("homeOwnershipStatus", "D27")
+				.xls("leaseDate", "H29")
+				.xls("ownershipDate", "H28"));
+				
 	}
 
 	@Override
