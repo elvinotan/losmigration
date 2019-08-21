@@ -1,0 +1,59 @@
+{
+  "totalRecord": 9,
+  "result": [
+    {
+      "id": 30,
+      "code": "05",
+      "description": "Test Edit",
+      "modifiedDateAndTime": "2019-08-16 11:10:12"
+    },
+    {
+      "id": 31,
+      "code": "06",
+      "description": "TQ ALBERt",
+      "modifiedDateAndTime": "2019-08-16 09:00:32"
+    },
+    {
+      "id": 1,
+      "code": "1",
+      "description": "0 - 2 Juta",
+      "modifiedDateAndTime": "2019-05-24 14:24:46"
+    },
+    {
+      "id": 2,
+      "code": "2",
+      "description": ">2 - 5 Juta",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 3,
+      "code": "3",
+      "description": ">5 - 10 Juta",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 4,
+      "code": "4",
+      "description": ">10 - 50 Juta",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 5,
+      "code": "5",
+      "description": ">50 - 100 Juta",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 6,
+      "code": "6",
+      "description": "> 100 Juta",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 32,
+      "code": "TESTSHOW",
+      "description": "TESTSHOWEDIT",
+      "modifiedDateAndTime": "2019-08-16 11:12:27"
+    }
+  ]
+}

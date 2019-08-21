@@ -1,0 +1,53 @@
+{
+  "totalRecord": 8,
+  "result": [
+    {
+      "id": 1,
+      "code": "1",
+      "description": "BUMN",
+      "modifiedDateAndTime": "2018-12-07 19:09:10"
+    },
+    {
+      "id": 2,
+      "code": "2",
+      "description": "Perusahaan Keluarga",
+      "modifiedDateAndTime": "2018-12-07 19:09:10"
+    },
+    {
+      "id": 3,
+      "code": "3",
+      "description": "PMDN",
+      "modifiedDateAndTime": "2018-12-07 19:09:10"
+    },
+    {
+      "id": 4,
+      "code": "4",
+      "description": "PMA",
+      "modifiedDateAndTime": "2018-12-07 19:09:10"
+    },
+    {
+      "id": 5,
+      "code": "5",
+      "description": "Joint Venture",
+      "modifiedDateAndTime": "2018-12-07 19:09:10"
+    },
+    {
+      "id": 6,
+      "code": "6",
+      "description": "Sosial",
+      "modifiedDateAndTime": "2018-12-07 19:09:10"
+    },
+    {
+      "id": 7,
+      "code": "7",
+      "description": "Afiliasi",
+      "modifiedDateAndTime": "2018-12-07 19:09:10"
+    },
+    {
+      "id": 8,
+      "code": "8",
+      "description": "Lainnya",
+      "modifiedDateAndTime": "2018-12-07 19:09:10"
+    }
+  ]
+}

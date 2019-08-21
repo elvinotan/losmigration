@@ -1,0 +1,209 @@
+{
+  "totalRecord": 34,
+  "result": [
+    {
+      "id": 24,
+      "code": "0000",
+      "description": "KALIMANTAN UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 12,
+      "code": "0100",
+      "description": "JAWA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 16,
+      "code": "0200",
+      "description": "BANTEN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 11,
+      "code": "0300",
+      "description": "DKI JAKARTA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 14,
+      "code": "0500",
+      "description": "DAERAH ISTIMEWA YOGYAKARTA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 13,
+      "code": "0900",
+      "description": "JAWA TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 15,
+      "code": "1200",
+      "description": "JAWA TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 7,
+      "code": "2300",
+      "description": "BENGKULU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 5,
+      "code": "3100",
+      "description": "JAMBI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 1,
+      "code": "3200",
+      "description": "ACEH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 2,
+      "code": "3300",
+      "description": "SUMATERA UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 3,
+      "code": "3400",
+      "description": "SUMATERA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 4,
+      "code": "3500",
+      "description": "RIAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 6,
+      "code": "3600",
+      "description": "SUMATERA SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 9,
+      "code": "3700",
+      "description": "KEPULAUAN BANGKA BELITUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 10,
+      "code": "3800",
+      "description": "KEPULAUAN RIAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 8,
+      "code": "3900",
+      "description": "LAMPUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 22,
+      "code": "5100",
+      "description": "KALIMANTAN SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 20,
+      "code": "5300",
+      "description": "KALIMANTAN BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 23,
+      "code": "5400",
+      "description": "KALIMANTAN TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 21,
+      "code": "5800",
+      "description": "KALIMANTAN TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 26,
+      "code": "6000",
+      "description": "SULAWESI TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 27,
+      "code": "6100",
+      "description": "SULAWESI SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 25,
+      "code": "6200",
+      "description": "SULAWESI UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 29,
+      "code": "6300",
+      "description": "GORONTALO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 30,
+      "code": "6400",
+      "description": "SULAWESI BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 28,
+      "code": "6900",
+      "description": "SULAWESI TENGGARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 18,
+      "code": "7100",
+      "description": "NUSA TENGGARA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 17,
+      "code": "7200",
+      "description": "BALI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 19,
+      "code": "7400",
+      "description": "NUSA TENGGARA TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 31,
+      "code": "8100",
+      "description": "MALUKU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 33,
+      "code": "8200",
+      "description": "PAPUA  ",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 32,
+      "code": "8300",
+      "description": "MALUKU UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 34,
+      "code": "8400",
+      "description": "PAPUA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    }
+  ]
+}

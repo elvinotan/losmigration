@@ -1,0 +1,425 @@
+{
+  "totalRecord": 70,
+  "result": [
+    {
+      "id": 1,
+      "code": "01",
+      "description": "Pertanian",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 2,
+      "code": "02",
+      "description": "Perikanan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 3,
+      "code": "03",
+      "description": "Perkebunan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 4,
+      "code": "04",
+      "description": "Peternakan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 5,
+      "code": "05",
+      "description": "Kehutanan/Pemotongan Kayu",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 6,
+      "code": "06",
+      "description": "Pertambangan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 7,
+      "code": "07",
+      "description": "Industri Makanan/Minuman",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 8,
+      "code": "08",
+      "description": "Industri Tekstil/Pakaian",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 9,
+      "code": "09",
+      "description": "Industri Kayu/Barang Kayu",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 10,
+      "code": "10",
+      "description": "Industri Kulit/Bahan Kulit",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 11,
+      "code": "11",
+      "description": "Industri Kimia/Bahan Kimia",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 12,
+      "code": "12",
+      "description": "Industri Lainnya",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 13,
+      "code": "13",
+      "description": "Listrik",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 14,
+      "code": "14",
+      "description": "Gas",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 15,
+      "code": "15",
+      "description": "Air",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 16,
+      "code": "16",
+      "description": "Konstruksi",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 17,
+      "code": "17",
+      "description": "Ekspor/Impor",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 18,
+      "code": "18",
+      "description": "Distribusi",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 19,
+      "code": "19",
+      "description": "Perdagangan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 20,
+      "code": "20",
+      "description": "Perhotelan/Pariwisata",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 21,
+      "code": "21",
+      "description": "Kasino/Eksekutif Club",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 22,
+      "code": "22",
+      "description": "Jasa Surveyor",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 23,
+      "code": "23",
+      "description": "Kantor Notaris",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 24,
+      "code": "24",
+      "description": "Kantor Pengacara",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 25,
+      "code": "25",
+      "description": "Kantor Akuntan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 26,
+      "code": "26",
+      "description": "Minimarket/Supermarket",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 27,
+      "code": "27",
+      "description": "SPBU",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 28,
+      "code": "28",
+      "description": "Pedagang Isi Pulsa",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 29,
+      "code": "29",
+      "description": "Jasa Parkir",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 30,
+      "code": "30",
+      "description": "Usaha Barang Antik",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 31,
+      "code": "31",
+      "description": "Pedagang Logam Mulia",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 32,
+      "code": "32",
+      "description": "Restoran/Rumah Makan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 33,
+      "code": "33",
+      "description": "Kuliner",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 34,
+      "code": "34",
+      "description": "Transportasi/Angkutan umum",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 35,
+      "code": "35",
+      "description": "Biro Perjalanan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 36,
+      "code": "36",
+      "description": "Developer/Real Estate",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 37,
+      "code": "37",
+      "description": "Dealer Motor/Mobil",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 38,
+      "code": "38",
+      "description": "Konsultan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 39,
+      "code": "39",
+      "description": "Hiburan/Kebudayaan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 40,
+      "code": "40",
+      "description": "Rumah Sakit/Layanan Keseha",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 41,
+      "code": "41",
+      "description": "Farmasi",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 42,
+      "code": "42",
+      "description": "Pendidikan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 43,
+      "code": "43",
+      "description": "Yayasan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 44,
+      "code": "44",
+      "description": "Perbankan/Asuransi/Keu",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 45,
+      "code": "45",
+      "description": "Kecantikan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 46,
+      "code": "46",
+      "description": "Otomotif",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 47,
+      "code": "47",
+      "description": "Informasi dan Teknologi",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 48,
+      "code": "48",
+      "description": "Media",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 49,
+      "code": "49",
+      "description": "Penerbitan/Pencetakan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 50,
+      "code": "50",
+      "description": "Telekomunikasi",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 51,
+      "code": "51",
+      "description": "Pulp and Paper",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 52,
+      "code": "52",
+      "description": "Kelautan dan Perikanan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 53,
+      "code": "53",
+      "description": "Seni dan Budaya",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 54,
+      "code": "54",
+      "description": "Lainnya",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 55,
+      "code": "55",
+      "description": "Industri",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 56,
+      "code": "56",
+      "description": "Jasa Dunia Usaha",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 57,
+      "code": "57",
+      "description": "Jasa Sosial",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 58,
+      "code": "58",
+      "description": "Pemerintah",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 59,
+      "code": "59",
+      "description": "Indst Pengolahan Tembakau",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 60,
+      "code": "60",
+      "description": "Karaoke",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 61,
+      "code": "61",
+      "description": "PPAT",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 62,
+      "code": "62",
+      "description": "Konsultan keuangan",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 63,
+      "code": "63",
+      "description": "Dealer/Agen Properti",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 64,
+      "code": "64",
+      "description": "Dealer Kapal",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 65,
+      "code": "65",
+      "description": "Money Changer",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 66,
+      "code": "66",
+      "description": "Money Remittance",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 67,
+      "code": "67",
+      "description": "Perbankan/Asuransi/Keu/BPR",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 68,
+      "code": "68",
+      "description": "Prshn dmiliki/dkelola PEP",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 69,
+      "code": "69",
+      "description": "Usha Invest Emas/Lgm Mulia",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    },
+    {
+      "id": 70,
+      "code": "70",
+      "description": "Koprasi Simpan Pinjam > 1M",
+      "modifiedDateAndTime": "2019-08-05 18:43:12"
+    }
+  ]
+}

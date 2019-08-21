@@ -1,0 +1,35 @@
+{
+  "totalRecord": 5,
+  "result": [
+    {
+      "id": 1,
+      "code": "1",
+      "description": "Surat",
+      "modifiedDateAndTime": "2019-05-24 14:22:36"
+    },
+    {
+      "id": 2,
+      "code": "2",
+      "description": "Ambil di Cabang",
+      "modifiedDateAndTime": "2019-05-15 13:49:30"
+    },
+    {
+      "id": 3,
+      "code": "3",
+      "description": "Email",
+      "modifiedDateAndTime": "2019-05-16 16:21:56"
+    },
+    {
+      "id": 95,
+      "code": "4",
+      "description": "Testing",
+      "modifiedDateAndTime": "2019-08-15 18:01:44"
+    },
+    {
+      "id": 96,
+      "code": "5",
+      "description": "gigimuadacheetos",
+      "modifiedDateAndTime": "2019-08-16 10:25:53"
+    }
+  ]
+}

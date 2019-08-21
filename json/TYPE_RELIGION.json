@@ -1,0 +1,47 @@
+{
+  "totalRecord": 7,
+  "result": [
+    {
+      "id": 1,
+      "code": "1",
+      "description": "Islam",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 2,
+      "code": "2",
+      "description": "Kristen",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 3,
+      "code": "3",
+      "description": "Katolik",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 4,
+      "code": "4",
+      "description": "Hindu",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 5,
+      "code": "5",
+      "description": "Budha",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 6,
+      "code": "6",
+      "description": "Kong Hu Cu",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 7,
+      "code": "7",
+      "description": "Others",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    }
+  ]
+}

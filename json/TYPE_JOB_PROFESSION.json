@@ -1,0 +1,191 @@
+{
+  "totalRecord": 31,
+  "result": [
+    {
+      "id": 1,
+      "code": "01",
+      "description": "Pejabat Lembaga Eksekutif",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 2,
+      "code": "02",
+      "description": "PNS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 3,
+      "code": "03",
+      "description": "TNI/POLRI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 4,
+      "code": "04",
+      "description": "Pegawai BI/BUMN/BUMD",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 5,
+      "code": "05",
+      "description": "Pengurus Parpol",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 6,
+      "code": "06",
+      "description": "Pegawai Penyedia Jasa Keu",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 7,
+      "code": "07",
+      "description": "Pegawai Swasta Non Pen.Keu",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 8,
+      "code": "08",
+      "description": "Profesional/Konsultan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 9,
+      "code": "09",
+      "description": "Pengajar/Dosen",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 10,
+      "code": "10",
+      "description": "Pengusaha/Wiraswasta",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 11,
+      "code": "11",
+      "description": "Pedagang",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 12,
+      "code": "12",
+      "description": "Petani/Nelayan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 13,
+      "code": "13",
+      "description": "Pengrajin",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 14,
+      "code": "14",
+      "description": "Buruh/PRT/Tenaga Keamanan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 15,
+      "code": "15",
+      "description": "Non Formal Lainnya",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 16,
+      "code": "16",
+      "description": "Ibu Rumah Tangga",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 17,
+      "code": "17",
+      "description": "Pelajar/Mahasiswa",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 18,
+      "code": "18",
+      "description": "Pengurus/Pegawai Yayasan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 19,
+      "code": "19",
+      "description": "Pegawai LSM/Non Badan HKM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 20,
+      "code": "20",
+      "description": "Ulama/Pendeta/Pem.Agama",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 21,
+      "code": "21",
+      "description": "Pensiunan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 22,
+      "code": "22",
+      "description": "Lainnya",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 23,
+      "code": "23",
+      "description": "Karyawan BTPN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 24,
+      "code": "24",
+      "description": "Pegawai Swasta",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 25,
+      "code": "25",
+      "description": "Pejabat Jasa Keu Non Bank",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 26,
+      "code": "26",
+      "description": "Pejabat Lembaga Legislatif",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 27,
+      "code": "27",
+      "description": "Pejabat Lembaga Yudikatif",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 28,
+      "code": "28",
+      "description": "Pejabat/Kepala Unit Masyarakat",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 29,
+      "code": "29",
+      "description": "Pensiunan Swasta",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 30,
+      "code": "30",
+      "description": "Bidang Pelayanan Publik",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 31,
+      "code": "31",
+      "description": "Pegawai KPK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    }
+  ]
+}

@@ -1,0 +1,341 @@
+{
+  "totalRecord": 56,
+  "result": [
+    {
+      "id": 1,
+      "code": "01",
+      "description": "Non Staff",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 2,
+      "code": "02",
+      "description": "Staff",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 3,
+      "code": "03",
+      "description": "Senior Staff",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 4,
+      "code": "04",
+      "description": "Supervisor",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 5,
+      "code": "05",
+      "description": "Assistant Manager",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 6,
+      "code": "06",
+      "description": "Manager",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 7,
+      "code": "07",
+      "description": "Senior Manager",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 8,
+      "code": "08",
+      "description": "Wakil Direktur",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 9,
+      "code": "09",
+      "description": "Direktur",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 10,
+      "code": "10",
+      "description": "Pemegang Saham",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 11,
+      "code": "11",
+      "description": "Lainnya",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 12,
+      "code": "12",
+      "description": "Pemilik / Owner",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 13,
+      "code": "13",
+      "description": "Presiden & Wakil Presiden",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 14,
+      "code": "14",
+      "description": "Pej Lmg MPR,DPR,DPD,BPK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 15,
+      "code": "15",
+      "description": "Menteri,wk mntri,Pej Tk Mntri",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 16,
+      "code": "16",
+      "description": "Gubernur & Wakil Gubernur",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 17,
+      "code": "17",
+      "description": "Walikota & Wakil Walikota",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 18,
+      "code": "18",
+      "description": "Bupati & Wakil Bupati",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 19,
+      "code": "19",
+      "description": "Direktur/Komisaris",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 20,
+      "code": "20",
+      "description": "Pejabat Struktural BUMN/BUMD",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 21,
+      "code": "21",
+      "description": "Pimpinan BI, Gubernur BI & OJK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 22,
+      "code": "22",
+      "description": "Pimpinan PTN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 23,
+      "code": "23",
+      "description": "Anggota DPRD Tk 1 & 2/sejenis",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 24,
+      "code": "24",
+      "description": "Kepala Kantor di Dep Keu",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 25,
+      "code": "25",
+      "description": "Pemeriksa/Pengawas Bea Cukai",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 26,
+      "code": "26",
+      "description": "Auditor",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 27,
+      "code": "27",
+      "description": "Pej yg mngluarkn Perijinan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 28,
+      "code": "28",
+      "description": "Camat, Lurah, Kepala Desa",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 29,
+      "code": "29",
+      "description": "Pejabat Pembuat Regulasi",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 30,
+      "code": "30",
+      "description": "Hakim,Jaksa,Penyidik Pgdln",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 31,
+      "code": "31",
+      "description": "Panitera Pengadilan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 32,
+      "code": "32",
+      "description": "Pemimpin & Bendahara Proyek",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 33,
+      "code": "33",
+      "description": "Ketua dan Eksekutif Parpol",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 34,
+      "code": "34",
+      "description": "Pej Eselon 1 & 2 Inst Sipil",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 35,
+      "code": "35",
+      "description": "Pejabat TNI/POLRI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 36,
+      "code": "36",
+      "description": "Pejabat yg diangkat sesuai Kepres",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 37,
+      "code": "37",
+      "description": "Pensiunan Pejabat Pemerintah",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 38,
+      "code": "38",
+      "description": "Pensiunan Gol IVD keatas",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 39,
+      "code": "39",
+      "description": "Pensiunan TNI Polri pangkat tkhr Brigjend",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 40,
+      "code": "40",
+      "description": "Hakim Agung MA & Anggota MA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 41,
+      "code": "41",
+      "description": "Hakim Konstitusi & Komisi Yudisial",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 42,
+      "code": "42",
+      "description": "Auditor Pajak",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 43,
+      "code": "43",
+      "description": "Pengurus dan/atau Anggota Parpol",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 44,
+      "code": "44",
+      "description": "Pej Eselon 1 & 2 Inst Polisi",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 45,
+      "code": "45",
+      "description": "Pej Eselon 1 & 2 Inst Militer",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 46,
+      "code": "46",
+      "description": "Direktur/Komisaris BUMN/BUMD",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 47,
+      "code": "47",
+      "description": "Pimpinan & Anggota KPK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 48,
+      "code": "48",
+      "description": "Duta Besar/Konjen",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 49,
+      "code": "49",
+      "description": "Pejabat Sektor Minyak & Gas",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 50,
+      "code": "50",
+      "description": "Pej Sektor Mineral & Batu Bara",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 51,
+      "code": "51",
+      "description": "Pimpinan Komisi sesuai Perpu",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 52,
+      "code": "52",
+      "description": "Pej bdsr Kpmen bid aptr negara",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 53,
+      "code": "53",
+      "description": "Pej bdsr Kpmen bid Ref Birokrs",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 54,
+      "code": "54",
+      "description": "Pej Wjb Lapor Harta ke KPN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 55,
+      "code": "55",
+      "description": "Peg Pengadaan Brng & Jasa",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 56,
+      "code": "56",
+      "description": "Peg Pnrimaan Negara/Daerah",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    }
+  ]
+}

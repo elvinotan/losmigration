@@ -1,0 +1,35 @@
+{
+  "totalRecord": 5,
+  "result": [
+    {
+      "id": 1,
+      "code": "A",
+      "description": "< 3 M",
+      "modifiedDateAndTime": "2019-08-05 18:43:11"
+    },
+    {
+      "id": 2,
+      "code": "B",
+      "description": ">3 - 6 M",
+      "modifiedDateAndTime": "2019-08-05 18:43:11"
+    },
+    {
+      "id": 3,
+      "code": "C",
+      "description": ">6 - 15 M",
+      "modifiedDateAndTime": "2019-08-05 18:43:11"
+    },
+    {
+      "id": 4,
+      "code": "D",
+      "description": ">15 - 30 M",
+      "modifiedDateAndTime": "2019-08-05 18:43:11"
+    },
+    {
+      "id": 5,
+      "code": "E",
+      "description": "> 30 M",
+      "modifiedDateAndTime": "2019-08-05 18:43:11"
+    }
+  ]
+}

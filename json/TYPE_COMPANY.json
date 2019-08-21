@@ -1,0 +1,149 @@
+{
+  "totalRecord": 24,
+  "result": [
+    {
+      "id": 1,
+      "code": "1",
+      "description": "Badan Usaha Unit Desa (BUUD)",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 2,
+      "code": "2",
+      "description": "Commanditer Venotschap (CV)",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 3,
+      "code": "3",
+      "description": "Debitur Kelompok",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 4,
+      "code": "4",
+      "description": "Ekspedisi Muatan Kapal Laut (EMKL)",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 5,
+      "code": "5",
+      "description": "FIRMA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 6,
+      "code": "6",
+      "description": "Gabungan Koperasi",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 7,
+      "code": "7",
+      "description": "Induk Koperasi",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 8,
+      "code": "8",
+      "description": "Koperasi",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 9,
+      "code": "9",
+      "description": "Koperasi Unit Desa",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 10,
+      "code": "A",
+      "description": "Limited",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 11,
+      "code": "B",
+      "description": "Maskapai Andil Indonesia",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 12,
+      "code": "C",
+      "description": "Namloose Venotschaap",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 13,
+      "code": "D",
+      "description": "Perusahaan Daerah",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 14,
+      "code": "E",
+      "description": "Persero",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 15,
+      "code": "F",
+      "description": "Persekutuan Perdata",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 16,
+      "code": "G",
+      "description": "Perusahaan Umum",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 17,
+      "code": "H",
+      "description": "Primer Koperasi ",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 18,
+      "code": "I",
+      "description": "Perseroan Terbatas",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 19,
+      "code": "J",
+      "description": "Pusat Koperasi",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 20,
+      "code": "K",
+      "description": "Pusat Koperasi Unit Desa",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 21,
+      "code": "L",
+      "description": "Usaha Dagang",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 22,
+      "code": "M",
+      "description": "Unit Dagang Kredit Pedesaan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 23,
+      "code": "N",
+      "description": "Yayasan",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 24,
+      "code": "O",
+      "description": "Lainnya Badan Usaha",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    }
+  ]
+}

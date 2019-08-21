@@ -1,0 +1,59 @@
+{
+  "totalRecord": 9,
+  "result": [
+    {
+      "id": 1,
+      "code": "1",
+      "description": "SD",
+      "modifiedDateAndTime": "2019-05-27 15:08:01"
+    },
+    {
+      "id": 2,
+      "code": "2",
+      "description": "SLTP",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 3,
+      "code": "3",
+      "description": "SLTA",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 4,
+      "code": "4",
+      "description": "D3/Akademi",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 5,
+      "code": "5",
+      "description": "Strata 1",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 6,
+      "code": "6",
+      "description": "Strata 2",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 7,
+      "code": "7",
+      "description": "Strata 3",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 8,
+      "code": "8",
+      "description": "Lainnya",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 9,
+      "code": "9",
+      "description": "Test Length Code",
+      "modifiedDateAndTime": "2019-05-29 15:02:15"
+    }
+  ]
+}

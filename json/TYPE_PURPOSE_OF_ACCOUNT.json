@@ -1,0 +1,35 @@
+{
+  "totalRecord": 5,
+  "result": [
+    {
+      "id": 1,
+      "code": "1",
+      "description": "Tabungan/Investasi",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 2,
+      "code": "2",
+      "description": "Transaksi Usaha",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 3,
+      "code": "3",
+      "description": "Transaksi Pribadi",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 4,
+      "code": "4",
+      "description": "Gaji",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    },
+    {
+      "id": 5,
+      "code": "5",
+      "description": "Lainnya",
+      "modifiedDateAndTime": "2018-12-07 19:09:20"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-package com.btpn.migration.los.mapping.smes;
+package com.btpn.migration.los.mapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +11,6 @@ import com.btpn.migration.los.bean.Mapper;
 import com.btpn.migration.los.bean.SpecRow;
 import com.btpn.migration.los.bean.Store;
 import com.btpn.migration.los.constant.Sheet;
-import com.btpn.migration.los.mapping.Mapping;
 import com.btpn.migration.los.tool.DateTool;
 
 public class InformasiDebiturSMES implements Mapping{
@@ -88,7 +87,7 @@ public class InformasiDebiturSMES implements Mapping{
 				String sourceOfDebtor = mapper.getString("sourceOfDebtor");
 				String debiturType = mapper.getString("debiturType");
 				String debiturTypeDescription = debiturType.split("_")[1].trim();
-				Lookup lookup = store.getLookupByDescription(Store.DebiturType, debiturTypeDescription);
+				Lookup lookup = store.getLookupByDescription(Lookup.DebiturType, debiturTypeDescription);
 				debiturType = lookup.getKey();				
 				String gender = null; // Belum
 				String maritalStatus = null; // Belum
@@ -101,10 +100,10 @@ public class InformasiDebiturSMES implements Mapping{
 				String createdBy = MIGRATION; 
 				String businessAddress = (mapper.getString("businessAddress0", "") +" "+ mapper.getString("businessAddress1", "")).trim();
 				String businessCityCode = mapper.getString("businessCityCode");
-				CommonService csbusinessCityCode = store.getCommonByDescription(Store.TYPE_CITY, businessCityCode);
+				CommonService csbusinessCityCode = store.getCommonByDescription(CommonService.TYPE_CITY, businessCityCode);
 				businessCityCode = csbusinessCityCode.getCode();
 				String businessProvinceCode = mapper.getString("businessProvinceCode");;
-				CommonService csbusinessProvinceCode = store.getCommonByDescription(Store.TYPE_PROVINCE, businessProvinceCode);
+				CommonService csbusinessProvinceCode = store.getCommonByDescription(CommonService.TYPE_PROVINCE, businessProvinceCode);
 				businessProvinceCode = csbusinessProvinceCode.getCode();				
 				String businessPostalCode = mapper.clearDecimal(mapper.getString("businessPostalCode"));
 				String businessPhoneCode = mapper.getString("businessPhoneCode");
@@ -129,7 +128,7 @@ public class InformasiDebiturSMES implements Mapping{
 				);
 			}
 		};
-		specRows.add(SpecRow.get(insertAppDetail).setSheet(Sheet.Informasi_Debitur).xls("appId","J7").xls("branchCode","C9").xls("salesSquadName","").xls("areaName","")
+		specRows.add(SpecRow.get(insertAppDetail).setSheet(Sheet.InformasiDebitur).xls("appId","J7").xls("branchCode","C9").xls("salesSquadName","").xls("areaName","")
 				.xls("regionName","C8").xls("debiturName","J5").xls("aliasName","").xls("KTPNumber","").xls("KTPExpDate","").xls("NPWPNumber","").xls("placeOfBirth","")
 				.xls("dateOfBirth","").xls("religionCode","").xls("nationalityCode","").xls("residenceStatus","").xls("educationStatus","").xls("mobileNumber","")
 				.xls("email","").xls("KTPAddress","").xls("KTPPostalCode","").xls("KTPCityCode","").xls("KTPSubDistrict","").xls("KTPDistrict","").xls("currentAddress","")
@@ -161,7 +160,7 @@ public class InformasiDebiturSMES implements Mapping{
 						, APPID, dataId, processStatus, processCode, stateCode, isActive, modifiedDate, modifiedBy, createdDate, createdBy);
 			}
 		};
-		specRows.add(SpecRow.get(insertAppLoanProcess).setSheet(Sheet.Informasi_Debitur).xls("appId", "J7").fix("processStatus", "1").fix("stateCode", "DRAFT").xls("createdDate", "J4"));
+		specRows.add(SpecRow.get(insertAppLoanProcess).setSheet(Sheet.InformasiDebitur).xls("appId", "J7").fix("processStatus", "1").fix("stateCode", "DRAFT").xls("createdDate", "J4"));
 
 		IActions insertAppContact = new IActions() {
 			@Override
@@ -170,7 +169,7 @@ public class InformasiDebiturSMES implements Mapping{
 				if (contactName == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
 				
 				String genderCode = mapper.getString("genderCode");
-				Lookup lookup = store.getLookupByDescription(Store.Gender, genderCode);
+				Lookup lookup = store.getLookupByDescription(Lookup.Gender, genderCode);
 				genderCode = lookup.getKey();
 				
 				String positionCode = null;
@@ -190,11 +189,11 @@ public class InformasiDebiturSMES implements Mapping{
 						contactName, genderCode, positionCode, fixedLineNumber, mobileNumber, email, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy);
 			}
 		};
-		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.Informasi_Debitur).xls("contactName", "A71").xls("genderCode", "K71").xls("positionCode", "C71").xls("fixedLineNumber", "E71").xls("mobileNumber", "G71").xls("email", "I71").xls("createdDate", "J4").xls("appId", "J7"));
-		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.Informasi_Debitur).xls("contactName", "A72").xls("genderCode", "K72").xls("positionCode", "C72").xls("fixedLineNumber", "E72").xls("mobileNumber", "G72").xls("email", "I72").xls("createdDate", "J4").xls("appId", "J7"));
-		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.Informasi_Debitur).xls("contactName", "A73").xls("genderCode", "K73").xls("positionCode", "C73").xls("fixedLineNumber", "E73").xls("mobileNumber", "G73").xls("email", "I73").xls("createdDate", "J4").xls("appId", "J7"));
-		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.Informasi_Debitur).xls("contactName", "A74").xls("genderCode", "K74").xls("positionCode", "C74").xls("fixedLineNumber", "E74").xls("mobileNumber", "G74").xls("email", "I74").xls("createdDate", "J4").xls("appId", "J7"));
-		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.Informasi_Debitur).xls("contactName", "A75").xls("genderCode", "K75").xls("positionCode", "C75").xls("fixedLineNumber", "E75").xls("mobileNumber", "G75").xls("email", "I75").xls("createdDate", "J4").xls("appId", "J7"));
+		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A71").xls("genderCode", "K71").xls("positionCode", "C71").xls("fixedLineNumber", "E71").xls("mobileNumber", "G71").xls("email", "I71").xls("createdDate", "J4").xls("appId", "J7"));
+		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A72").xls("genderCode", "K72").xls("positionCode", "C72").xls("fixedLineNumber", "E72").xls("mobileNumber", "G72").xls("email", "I72").xls("createdDate", "J4").xls("appId", "J7"));
+		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A73").xls("genderCode", "K73").xls("positionCode", "C73").xls("fixedLineNumber", "E73").xls("mobileNumber", "G73").xls("email", "I73").xls("createdDate", "J4").xls("appId", "J7"));
+		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A74").xls("genderCode", "K74").xls("positionCode", "C74").xls("fixedLineNumber", "E74").xls("mobileNumber", "G74").xls("email", "I74").xls("createdDate", "J4").xls("appId", "J7"));
+		specRows.add(SpecRow.get(insertAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A75").xls("genderCode", "K75").xls("positionCode", "C75").xls("fixedLineNumber", "E75").xls("mobileNumber", "G75").xls("email", "I75").xls("createdDate", "J4").xls("appId", "J7"));
 	
 	
 		IActions insertSocialMedia = new IActions() {
@@ -218,7 +217,7 @@ public class InformasiDebiturSMES implements Mapping{
 						facebookId, instagramId, twitterId, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy);
 			}
 		};
-		specRows.add(SpecRow.get(insertSocialMedia).setSheet(Sheet.Informasi_Debitur));
+		specRows.add(SpecRow.get(insertSocialMedia).setSheet(Sheet.InformasiDebitur));
 	}
 
 	@Override

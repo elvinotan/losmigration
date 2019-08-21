@@ -1,14 +1,14 @@
-package com.btpn.migration.los.mapping.smes;
+package com.btpn.migration.los.mapping;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.btpn.migration.los.bean.IActions;
+import com.btpn.migration.los.bean.Lookup;
 import com.btpn.migration.los.bean.Mapper;
 import com.btpn.migration.los.bean.SpecRow;
 import com.btpn.migration.los.bean.Store;
 import com.btpn.migration.los.constant.Sheet;
-import com.btpn.migration.los.mapping.Mapping;
 import com.btpn.migration.los.tool.DateTool;
 
 public class LaporanKeuanganSMES implements Mapping {
@@ -54,7 +54,7 @@ public class LaporanKeuanganSMES implements Mapping {
 				// Untuk post status_laporan_keuangan column amount di set jadi null
 				if ("status_laporan_keuangan".equals(pos)) {
 					amount = null;
-					status = store.getLookupByDescription(Store.LaporanKeuangan, status).getKey();
+					status = store.getLookupByDescription(Lookup.LaporanKeuangan, status).getKey();
 				}
 				
 				// Untuk Senitize column fyear= -1, sedangakan untuk proyeksi column fyear=-2
@@ -140,53 +140,53 @@ public class LaporanKeuanganSMES implements Mapping {
 		};
 		
 		for (String column : columns) {
-			SpecRow header = SpecRow.get(null).setSheet(Sheet.Analisa_Lap_Kue).xls("appId", "B4").xls("fyear", column+"9").fix("lobCode", "01").fix("lobType", "SMES").fix("dataId", "-1").fix("createdDate", "CURRENT_TIMESTAMP").fix("createdBy", MIGRATION);
+			SpecRow header = SpecRow.get(null).setSheet(Sheet.AnalisaLapKue).xls("appId", "B4").xls("fyear", column+"9").fix("lobCode", "01").fix("lobType", "SMES").fix("dataId", "-1").fix("createdDate", "CURRENT_TIMESTAMP").fix("createdBy", MIGRATION);
 	
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "tahun_laporan_keuangan").xls("amount", column+"9").pk("pk_tahun_laporan_keuangan"+column));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "status_laporan_keuangan").xls("status", column+"7"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_lancar_kas").xls("amount", column+"25"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_lancar_piutang").xls("amount", column+"26"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_lancar_persediaan").xls("amount", column+"27"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_lancar_biaya_dibayar_dimuka").xls("amount", column+"28"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_lancar_aktiva_lancar_lainnya").xls("amount", column+"29"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_tetap_tanah").xls("amount", column+"32"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_tetap_tanah_dan_bangunan").xls("amount", column+"33"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_tetap_akumulasi_penyusutan_tanah_dan_bangunan").xls("amount", column+"34"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_tetap_kendaraan").xls("amount", column+"35"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_tetap_akumulasi_penyusutan_kendaraan").xls("amount", column+"36"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_tetap_mesin_peralatan_inventaris").xls("amount", column+"37"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_tetap_akumulasi_penyusutan_mesin_peralatan_inventaris").xls("amount", column+"38"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_aktiva_tidak_berwujud").xls("amount", column+"40"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_aktiva_lainnya").xls("amount", column+"41"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_hutang_lancar_hutang_kurang_satu_tahun").xls("amount", column+"45"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_hutang_lancar_hutang_cpltd").xls("amount", column+"46"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_hutang_lancar_hutang_hutang_dagang").xls("amount", column+"47"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_hutang_lancar_hutang_biaya_yang_masih_harus_dibayar").xls("amount", column+"48"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_hutang_lancar_hutang_lainnya").xls("amount", column+"49"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_hutang_jangka_panjang_hutang_bank_lebih_satu_tahun").xls("amount", column+"52"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_hutang_jangka_panjang_hutang_jangka_panjang_bukan_bank").xls("amount", column+"53"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_hutang_jangka_panjang_lainnya").xls("amount", column+"54"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_modal_modal_disetor").xls("amount", column+"57"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_modal_saham").xls("amount", column+"58"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_modal_lainnya").xls("amount", column+"59"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_modal_laba_ditahan").xls("amount", column+"60"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "neraca_passiva_modal_laba_tahun_berjalan").xls("amount", column+"61"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_penjualan").xls("amount", column+"68"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_harga_pokok_penjualan").xls("amount", column+"69"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_biaya_depresiasi_dan_amortisasi_hpp").xls("amount", column+"70"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_biaya_oprasional").xls("amount", column+"72"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_biaya_penjulan_dan_administrasi").xls("amount", column+"73"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_biaya_depresiasi_dan_amortisasi").xls("amount", column+"74"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_biaya_tenaga_kerja_tidak_langsung").xls("amount", column+"75"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_biaya_lainnya_terkait_usaha").xls("amount", column+"76"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_bunga_seluruh_fasilitas").xls("amount", column+"79"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_pendapatan_lainnya").xls("amount", column+"80"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_beban_lainnya").xls("amount", column+"81"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_pajak").xls("amount", column+"83"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_dividen_yang_dibagikan").xls("amount", column+"84"));
-			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.Analisa_Lap_Kue).fix("pos", "labarugi_re_adjust").xls("amount", column+"86"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "tahun_laporan_keuangan").xls("amount", column+"9").pk("pk_tahun_laporan_keuangan"+column));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "status_laporan_keuangan").xls("status", column+"7"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_lancar_kas").xls("amount", column+"25"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_lancar_piutang").xls("amount", column+"26"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_lancar_persediaan").xls("amount", column+"27"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_lancar_biaya_dibayar_dimuka").xls("amount", column+"28"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_lancar_aktiva_lancar_lainnya").xls("amount", column+"29"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_tetap_tanah").xls("amount", column+"32"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_tetap_tanah_dan_bangunan").xls("amount", column+"33"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_tetap_akumulasi_penyusutan_tanah_dan_bangunan").xls("amount", column+"34"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_tetap_kendaraan").xls("amount", column+"35"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_tetap_akumulasi_penyusutan_kendaraan").xls("amount", column+"36"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_tetap_mesin_peralatan_inventaris").xls("amount", column+"37"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_tetap_akumulasi_penyusutan_mesin_peralatan_inventaris").xls("amount", column+"38"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_aktiva_tidak_berwujud").xls("amount", column+"40"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_aktiva_lainnya").xls("amount", column+"41"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_hutang_lancar_hutang_kurang_satu_tahun").xls("amount", column+"45"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_hutang_lancar_hutang_cpltd").xls("amount", column+"46"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_hutang_lancar_hutang_hutang_dagang").xls("amount", column+"47"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_hutang_lancar_hutang_biaya_yang_masih_harus_dibayar").xls("amount", column+"48"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_hutang_lancar_hutang_lainnya").xls("amount", column+"49"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_hutang_jangka_panjang_hutang_bank_lebih_satu_tahun").xls("amount", column+"52"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_hutang_jangka_panjang_hutang_jangka_panjang_bukan_bank").xls("amount", column+"53"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_hutang_jangka_panjang_lainnya").xls("amount", column+"54"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_modal_modal_disetor").xls("amount", column+"57"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_modal_saham").xls("amount", column+"58"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_modal_lainnya").xls("amount", column+"59"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_modal_laba_ditahan").xls("amount", column+"60"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "neraca_passiva_modal_laba_tahun_berjalan").xls("amount", column+"61"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_penjualan").xls("amount", column+"68"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_harga_pokok_penjualan").xls("amount", column+"69"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_biaya_depresiasi_dan_amortisasi_hpp").xls("amount", column+"70"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_biaya_oprasional").xls("amount", column+"72"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_biaya_penjulan_dan_administrasi").xls("amount", column+"73"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_biaya_depresiasi_dan_amortisasi").xls("amount", column+"74"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_biaya_tenaga_kerja_tidak_langsung").xls("amount", column+"75"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_biaya_lainnya_terkait_usaha").xls("amount", column+"76"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_bunga_seluruh_fasilitas").xls("amount", column+"79"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_pendapatan_lainnya").xls("amount", column+"80"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_beban_lainnya").xls("amount", column+"81"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_pajak").xls("amount", column+"83"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_dividen_yang_dibagikan").xls("amount", column+"84"));
+			specRows.add(SpecRow.get(insertAppPos,header).setSheet(Sheet.AnalisaLapKue).fix("pos", "labarugi_re_adjust").xls("amount", column+"86"));
 			
-			specRows.add(SpecRow.get(insertAppNeraca,header).setSheet(Sheet.Analisa_Lap_Kue)
+			specRows.add(SpecRow.get(insertAppNeraca,header).setSheet(Sheet.AnalisaLapKue)
 					.xls("totAktivaLancar", column+"30")
 					.xls("totAktivaTetap", column+"39")
 					.xls("totAktiva", column+"42")
@@ -197,7 +197,7 @@ public class LaporanKeuanganSMES implements Mapping {
 					
 			);
 			
-			specRows.add(SpecRow.get(insertAppLabaRugi,header).setSheet(Sheet.Analisa_Lap_Kue)
+			specRows.add(SpecRow.get(insertAppLabaRugi,header).setSheet(Sheet.AnalisaLapKue)
 					.xls("labaKotor", column+"71")
 					.xls("totBiayaUsaha", column+"77")
 					.xls("labaRugiUsah", column+"78")
@@ -237,9 +237,9 @@ public class LaporanKeuanganSMES implements Mapping {
 			}
 		};
 		
-		SpecRow headerLaporan = SpecRow.get(null).setSheet(Sheet.Analisa_Lap_Kue).xls("appId", "B4").fix("lobCode", "01").fix("lobType", "SMES").fix("dataId", "-1").fix("createdDate", "CURRENT_TIMESTAMP").fix("createdBy", MIGRATION);
+		SpecRow headerLaporan = SpecRow.get(null).setSheet(Sheet.AnalisaLapKue).xls("appId", "B4").fix("lobCode", "01").fix("lobType", "SMES").fix("dataId", "-1").fix("createdDate", "CURRENT_TIMESTAMP").fix("createdBy", MIGRATION);
 		
-		specRows.add(SpecRow.get(insertAppLaporan,headerLaporan).setSheet(Sheet.Analisa_Lap_Kue)
+		specRows.add(SpecRow.get(insertAppLaporan,headerLaporan).setSheet(Sheet.AnalisaLapKue)
 				.xls("grossUp", "I8")
 				.xls("cpltd", "C65")
 				.xls("kebutuhanInvestasi", "E113")

@@ -1,0 +1,3095 @@
+{
+  "totalRecord": 515,
+  "result": [
+    {
+      "id": 552,
+      "code": "1000",
+      "description": "BESUKI",
+      "modifiedDateAndTime": "2019-08-01 11:11:04"
+    },
+    {
+      "id": 1,
+      "code": "1101",
+      "description": "KAB. ACEH SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 2,
+      "code": "1102",
+      "description": "KAB. ACEH TENGGARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 3,
+      "code": "1103",
+      "description": "KAB. ACEH TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 4,
+      "code": "1104",
+      "description": "KAB. ACEH TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 5,
+      "code": "1105",
+      "description": "KAB. ACEH BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 6,
+      "code": "1106",
+      "description": "KAB. ACEH BESAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 7,
+      "code": "1107",
+      "description": "KAB. PIDIE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 8,
+      "code": "1108",
+      "description": "KAB. ACEH UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 9,
+      "code": "1109",
+      "description": "KAB. SIMEULUE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 10,
+      "code": "1110",
+      "description": "KAB. ACEH SINGKIL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 11,
+      "code": "1111",
+      "description": "KAB. BIREUEN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 12,
+      "code": "1112",
+      "description": "KAB. ACEH BARAT DAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 13,
+      "code": "1113",
+      "description": "KAB. GAYO LUES",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 14,
+      "code": "1114",
+      "description": "KAB. ACEH JAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 15,
+      "code": "1115",
+      "description": "KAB. NAGAN RAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 16,
+      "code": "1116",
+      "description": "KAB. ACEH TAMIANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 17,
+      "code": "1117",
+      "description": "KAB. BENER MERIAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 18,
+      "code": "1118",
+      "description": "KAB. PIDIE JAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 19,
+      "code": "1171",
+      "description": "KOTA BANDA ACEH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 20,
+      "code": "1172",
+      "description": "KOTA SABANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 21,
+      "code": "1173",
+      "description": "KOTA LHOKSEUMAWE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 22,
+      "code": "1174",
+      "description": "KOTA LANGSA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 23,
+      "code": "1175",
+      "description": "KOTA SUBULUSSALAM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 24,
+      "code": "1201",
+      "description": "KAB. TAPANULI TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 25,
+      "code": "1202",
+      "description": "KAB. TAPANULI UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 26,
+      "code": "1203",
+      "description": "KAB. TAPANULI SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 27,
+      "code": "1204",
+      "description": "KAB. NIAS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 28,
+      "code": "1205",
+      "description": "KAB. LANGKAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 29,
+      "code": "1206",
+      "description": "KAB. KARO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 30,
+      "code": "1207",
+      "description": "KAB. DELI SERDANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 31,
+      "code": "1208",
+      "description": "KAB. SIMALUNGUN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 32,
+      "code": "1209",
+      "description": "KAB. ASAHAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 33,
+      "code": "1210",
+      "description": "KAB. LABUHANBATU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 34,
+      "code": "1211",
+      "description": "KAB. DAIRI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 35,
+      "code": "1212",
+      "description": "KAB. TOBA SAMOSIR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 36,
+      "code": "1213",
+      "description": "KAB. MANDAILING NATAL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 37,
+      "code": "1214",
+      "description": "KAB. NIAS SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 38,
+      "code": "1215",
+      "description": "KAB. PAKPAK BHARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 39,
+      "code": "1216",
+      "description": "KAB. HUMBANG HASUNDUTAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 40,
+      "code": "1217",
+      "description": "KAB. SAMOSIR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 41,
+      "code": "1218",
+      "description": "KAB. SERDANG BEDAGAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 42,
+      "code": "1219",
+      "description": "KAB. BATU BARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 43,
+      "code": "1220",
+      "description": "KAB. PADANG LAWAS UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 44,
+      "code": "1221",
+      "description": "KAB. PADANG LAWAS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 45,
+      "code": "1222",
+      "description": "KAB. LABUHANBATU SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 46,
+      "code": "1223",
+      "description": "KAB. LABUHANBATU UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 47,
+      "code": "1224",
+      "description": "KAB. NIAS UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 48,
+      "code": "1225",
+      "description": "KAB. NIAS BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 49,
+      "code": "1271",
+      "description": "KOTA MEDAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 50,
+      "code": "1272",
+      "description": "KOTA PEMATANG SIANTAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 51,
+      "code": "1273",
+      "description": "KOTA SIBOLGA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 52,
+      "code": "1274",
+      "description": "KOTA TANJUNG BALAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 53,
+      "code": "1275",
+      "description": "KOTA BINJAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 54,
+      "code": "1276",
+      "description": "KOTA TEBING TINGGI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 55,
+      "code": "1277",
+      "description": "KOTA PADANGSIDIMPUAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 56,
+      "code": "1278",
+      "description": "KOTA GUNUNGSITOLI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 57,
+      "code": "1301",
+      "description": "KAB. PESISIR SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 58,
+      "code": "1302",
+      "description": "KAB. SOLOK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 59,
+      "code": "1303",
+      "description": "KAB. SIJUNJUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 60,
+      "code": "1304",
+      "description": "KAB. TANAH DATAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 61,
+      "code": "1305",
+      "description": "KAB. PADANG PARIAMAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 62,
+      "code": "1306",
+      "description": "KAB. AGAM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 63,
+      "code": "1307",
+      "description": "KAB. LIMA PULUH KOTA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 64,
+      "code": "1308",
+      "description": "KAB. PASAMAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 65,
+      "code": "1309",
+      "description": "KAB. KEPULAUAN MENTAWAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 66,
+      "code": "1310",
+      "description": "KAB. DHARMASRAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 67,
+      "code": "1311",
+      "description": "KAB. SOLOK SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 68,
+      "code": "1312",
+      "description": "KAB. PASAMAN BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 69,
+      "code": "1371",
+      "description": "KOTA PADANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 70,
+      "code": "1372",
+      "description": "KOTA SOLOK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 71,
+      "code": "1373",
+      "description": "KOTA SAWAHLUNTO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 72,
+      "code": "1374",
+      "description": "KOTA PADANG PANJANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 73,
+      "code": "1375",
+      "description": "KOTA BUKITTINGGI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 74,
+      "code": "1376",
+      "description": "KOTA PAYAKUMBUH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 75,
+      "code": "1377",
+      "description": "KOTA PARIAMAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 76,
+      "code": "1401",
+      "description": "KAB. KAMPAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 77,
+      "code": "1402",
+      "description": "KAB. INDRAGIRI HULU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 78,
+      "code": "1403",
+      "description": "KAB. BENGKALIS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 79,
+      "code": "1404",
+      "description": "KAB. INDRAGIRI HILIR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 80,
+      "code": "1405",
+      "description": "KAB. PELALAWAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 81,
+      "code": "1406",
+      "description": "KAB. ROKAN HULU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 82,
+      "code": "1407",
+      "description": "KAB. ROKAN HILIR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 83,
+      "code": "1408",
+      "description": "KAB. SIAK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 84,
+      "code": "1409",
+      "description": "KAB. KUANTAN SINGINGI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 85,
+      "code": "1410",
+      "description": "KAB. KEPULAUAN MERANTI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 86,
+      "code": "1471",
+      "description": "KOTA PEKANBARU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 87,
+      "code": "1472",
+      "description": "KOTA DUMAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 88,
+      "code": "1501",
+      "description": "KAB. KERINCI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 89,
+      "code": "1502",
+      "description": "KAB. MERANGIN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 90,
+      "code": "1503",
+      "description": "KAB. SAROLANGUN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 91,
+      "code": "1504",
+      "description": "KAB. BATANGHARI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 92,
+      "code": "1505",
+      "description": "KAB. MUARO JAMBI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 93,
+      "code": "1506",
+      "description": "KAB. TANJUNG JABUNG BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 94,
+      "code": "1507",
+      "description": "KAB. TANJUNG JABUNG TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 95,
+      "code": "1508",
+      "description": "KAB. BUNGO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 96,
+      "code": "1509",
+      "description": "KAB. TEBO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 97,
+      "code": "1571",
+      "description": "KOTA JAMBI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 98,
+      "code": "1572",
+      "description": "KOTA SUNGAI PENUH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 99,
+      "code": "1601",
+      "description": "KAB. OGAN KOMERING ULU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 100,
+      "code": "1602",
+      "description": "KAB. OGAN KOMERING ILIR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 101,
+      "code": "1603",
+      "description": "KAB. MUARA ENIM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 102,
+      "code": "1604",
+      "description": "KAB. LAHAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 103,
+      "code": "1605",
+      "description": "KAB. MUSI RAWAS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 104,
+      "code": "1606",
+      "description": "KAB. MUSI BANYUASIN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 105,
+      "code": "1607",
+      "description": "KAB. BANYUASIN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 106,
+      "code": "1608",
+      "description": "KAB. OGAN KOMERING ULU TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 107,
+      "code": "1609",
+      "description": "KAB. OGAN KOMERING ULU SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 108,
+      "code": "1610",
+      "description": "KAB. OGAN ILIR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 109,
+      "code": "1611",
+      "description": "KAB. EMPAT LAWANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 110,
+      "code": "1612",
+      "description": "KAB. PENUKAL ABAB LEMATANG ILIR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 111,
+      "code": "1613",
+      "description": "KAB. MUSI RAWAS UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 112,
+      "code": "1671",
+      "description": "KOTA PALEMBANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 113,
+      "code": "1672",
+      "description": "KOTA PAGAR ALAM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 114,
+      "code": "1673",
+      "description": "KOTA LUBUK LINGGAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 115,
+      "code": "1674",
+      "description": "KOTA PRABUMULIH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 116,
+      "code": "1701",
+      "description": "KAB. BENGKULU SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 117,
+      "code": "1702",
+      "description": "KAB. REJANG LEBONG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 118,
+      "code": "1703",
+      "description": "KAB. BENGKULU UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 119,
+      "code": "1704",
+      "description": "KAB. KAUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 120,
+      "code": "1705",
+      "description": "KAB. SELUMA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 121,
+      "code": "1706",
+      "description": "KAB. MUKOMUKO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 122,
+      "code": "1707",
+      "description": "KAB. LEBONG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 123,
+      "code": "1708",
+      "description": "KAB. KEPAHIANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 124,
+      "code": "1709",
+      "description": "KAB. BENGKULU TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 125,
+      "code": "1771",
+      "description": "KOTA BENGKULU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 126,
+      "code": "1801",
+      "description": "KAB. LAMPUNG SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 127,
+      "code": "1802",
+      "description": "KAB. LAMPUNG TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 128,
+      "code": "1803",
+      "description": "KAB. LAMPUNG UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 129,
+      "code": "1804",
+      "description": "KAB. LAMPUNG BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 130,
+      "code": "1805",
+      "description": "KAB. TULANG BAWANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 131,
+      "code": "1806",
+      "description": "KAB. TANGGAMUS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 132,
+      "code": "1807",
+      "description": "KAB. LAMPUNG TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 133,
+      "code": "1808",
+      "description": "KAB. WAY KANAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 134,
+      "code": "1809",
+      "description": "KAB. PESAWARAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 135,
+      "code": "1810",
+      "description": "KAB. PRINGSEWU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 136,
+      "code": "1811",
+      "description": "KAB. MESUJI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 137,
+      "code": "1812",
+      "description": "KAB. TULANG BAWANG BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 138,
+      "code": "1813",
+      "description": "KAB. PESISIR BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 139,
+      "code": "1871",
+      "description": "KOTA BANDAR LAMPUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 140,
+      "code": "1872",
+      "description": "KOTA METRO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 141,
+      "code": "1901",
+      "description": "KAB. BANGKA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 142,
+      "code": "1902",
+      "description": "KAB. BELITUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 143,
+      "code": "1903",
+      "description": "KAB. BANGKA SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 144,
+      "code": "1904",
+      "description": "KAB. BANGKA TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 145,
+      "code": "1905",
+      "description": "KAB. BANGKA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 146,
+      "code": "1906",
+      "description": "KAB. BELITUNG TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 147,
+      "code": "1971",
+      "description": "KOTA PANGKAL PINANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 148,
+      "code": "2101",
+      "description": "KAB. BINTAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 149,
+      "code": "2102",
+      "description": "KAB. KARIMUN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 150,
+      "code": "2103",
+      "description": "KAB. NATUNA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 151,
+      "code": "2104",
+      "description": "KAB. LINGGA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 152,
+      "code": "2105",
+      "description": "KAB. KEPULAUAN ANAMBAS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 153,
+      "code": "2171",
+      "description": "KOTA BATAM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 154,
+      "code": "2172",
+      "description": "KOTA TANJUNG PINANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 155,
+      "code": "3101",
+      "description": "KAB. ADM. KEP. SERIBU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 156,
+      "code": "3171",
+      "description": "KOTA ADM. JAKARTA PUSAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 157,
+      "code": "3172",
+      "description": "KOTA ADM. JAKARTA UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 158,
+      "code": "3173",
+      "description": "KOTA ADM. JAKARTA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 159,
+      "code": "3174",
+      "description": "KOTA ADM. JAKARTA SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 160,
+      "code": "3175",
+      "description": "KOTA ADM. JAKARTA TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 161,
+      "code": "3201",
+      "description": "KAB. BOGOR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 162,
+      "code": "3202",
+      "description": "KAB. SUKABUMI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 163,
+      "code": "3203",
+      "description": "KAB. CIANJUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 164,
+      "code": "3204",
+      "description": "KAB. BANDUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 165,
+      "code": "3205",
+      "description": "KAB. GARUT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 166,
+      "code": "3206",
+      "description": "KAB. TASIKMALAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 167,
+      "code": "3207",
+      "description": "KAB. CIAMIS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 168,
+      "code": "3208",
+      "description": "KAB. KUNINGAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 169,
+      "code": "3209",
+      "description": "KAB. CIREBON",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 170,
+      "code": "3210",
+      "description": "KAB. MAJALENGKA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 171,
+      "code": "3211",
+      "description": "KAB. SUMEDANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 172,
+      "code": "3212",
+      "description": "KAB. INDRAMAYU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 173,
+      "code": "3213",
+      "description": "KAB. SUBANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 174,
+      "code": "3214",
+      "description": "KAB. PURWAKARTA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 175,
+      "code": "3215",
+      "description": "KAB. KARAWANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 176,
+      "code": "3216",
+      "description": "KAB. BEKASI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 177,
+      "code": "3217",
+      "description": "KAB. BANDUNG BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 178,
+      "code": "3218",
+      "description": "KAB. PANGANDARAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 179,
+      "code": "3271",
+      "description": "KOTA BOGOR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 180,
+      "code": "3272",
+      "description": "KOTA SUKABUMI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 181,
+      "code": "3273",
+      "description": "KOTA BANDUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 182,
+      "code": "3274",
+      "description": "KOTA CIREBON",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 183,
+      "code": "3275",
+      "description": "KOTA BEKASI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 184,
+      "code": "3276",
+      "description": "KOTA DEPOK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 185,
+      "code": "3277",
+      "description": "KOTA CIMAHI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 186,
+      "code": "3278",
+      "description": "KOTA TASIKMALAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 187,
+      "code": "3279",
+      "description": "KOTA BANJAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 188,
+      "code": "3301",
+      "description": "KAB. CILACAP",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 189,
+      "code": "3302",
+      "description": "KAB. BANYUMAS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 190,
+      "code": "3303",
+      "description": "KAB. PURBALINGGA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 191,
+      "code": "3304",
+      "description": "KAB. BANJARNEGARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 192,
+      "code": "3305",
+      "description": "KAB. KEBUMEN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 193,
+      "code": "3306",
+      "description": "KAB. PURWOREJO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 194,
+      "code": "3307",
+      "description": "KAB. WONOSOBO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 195,
+      "code": "3308",
+      "description": "KAB. MAGELANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 196,
+      "code": "3309",
+      "description": "KAB. BOYOLALI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 197,
+      "code": "3310",
+      "description": "KAB. KLATEN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 198,
+      "code": "3311",
+      "description": "KAB. SUKOHARJO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 199,
+      "code": "3312",
+      "description": "KAB. WONOGIRI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 200,
+      "code": "3313",
+      "description": "KAB. KARANGANYAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 201,
+      "code": "3314",
+      "description": "KAB. SRAGEN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 202,
+      "code": "3315",
+      "description": "KAB. GROBOGAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 203,
+      "code": "3316",
+      "description": "KAB. BLORA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 204,
+      "code": "3317",
+      "description": "KAB. REMBANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 205,
+      "code": "3318",
+      "description": "KAB. PATI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 206,
+      "code": "3319",
+      "description": "KAB. KUDUS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 207,
+      "code": "3320",
+      "description": "KAB. JEPARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 208,
+      "code": "3321",
+      "description": "KAB. DEMAK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 209,
+      "code": "3322",
+      "description": "KAB. SEMARANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 210,
+      "code": "3323",
+      "description": "KAB. TEMANGGUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 211,
+      "code": "3324",
+      "description": "KAB. KENDAL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 212,
+      "code": "3325",
+      "description": "KAB. BATANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 213,
+      "code": "3326",
+      "description": "KAB. PEKALONGAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 214,
+      "code": "3327",
+      "description": "KAB. PEMALANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 215,
+      "code": "3328",
+      "description": "KAB. TEGAL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 216,
+      "code": "3329",
+      "description": "KAB. BREBES",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 217,
+      "code": "3371",
+      "description": "KOTA MAGELANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 218,
+      "code": "3372",
+      "description": "KOTA SURAKARTA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 219,
+      "code": "3373",
+      "description": "KOTA SALATIGA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 220,
+      "code": "3374",
+      "description": "KOTA SEMARANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 221,
+      "code": "3375",
+      "description": "KOTA PEKALONGAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 222,
+      "code": "3376",
+      "description": "KOTA TEGAL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 223,
+      "code": "3401",
+      "description": "KAB. KULON PROGO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 224,
+      "code": "3402",
+      "description": "KAB. BANTUL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 225,
+      "code": "3403",
+      "description": "KAB. GUNUNG KIDUL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 226,
+      "code": "3404",
+      "description": "KAB. SLEMAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 227,
+      "code": "3471",
+      "description": "KOTA YOGYAKARTA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 228,
+      "code": "3501",
+      "description": "KAB. PACITAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 229,
+      "code": "3502",
+      "description": "KAB. PONOROGO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 230,
+      "code": "3503",
+      "description": "KAB. TRENGGALEK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 231,
+      "code": "3504",
+      "description": "KAB. TULUNGAGUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 232,
+      "code": "3505",
+      "description": "KAB. BLITAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 233,
+      "code": "3506",
+      "description": "KAB. KEDIRI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 234,
+      "code": "3507",
+      "description": "KAB. MALANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 235,
+      "code": "3508",
+      "description": "KAB. LUMAJANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 236,
+      "code": "3509",
+      "description": "KAB. JEMBER",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 237,
+      "code": "3510",
+      "description": "KAB. BANYUWANGI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 238,
+      "code": "3511",
+      "description": "KAB. BONDOWOSO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 239,
+      "code": "3512",
+      "description": "KAB. SITUBONDO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 240,
+      "code": "3513",
+      "description": "KAB. PROBOLINGGO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 241,
+      "code": "3514",
+      "description": "KAB. PASURUAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 242,
+      "code": "3515",
+      "description": "KAB. SIDOARJO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 243,
+      "code": "3516",
+      "description": "KAB. MOJOKERTO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 244,
+      "code": "3517",
+      "description": "KAB. JOMBANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 245,
+      "code": "3518",
+      "description": "KAB. NGANJUK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 246,
+      "code": "3519",
+      "description": "KAB. MADIUN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 247,
+      "code": "3520",
+      "description": "KAB. MAGETAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 248,
+      "code": "3521",
+      "description": "KAB. NGAWI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 249,
+      "code": "3522",
+      "description": "KAB. BOJONEGORO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 250,
+      "code": "3523",
+      "description": "KAB. TUBAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 251,
+      "code": "3524",
+      "description": "KAB. LAMONGAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 252,
+      "code": "3525",
+      "description": "KAB. GRESIK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 253,
+      "code": "3526",
+      "description": "KAB. BANGKALAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 254,
+      "code": "3527",
+      "description": "KAB. SAMPANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 255,
+      "code": "3528",
+      "description": "KAB. PAMEKASAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 256,
+      "code": "3529",
+      "description": "KAB. SUMENEP",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 257,
+      "code": "3571",
+      "description": "KOTA KEDIRI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 258,
+      "code": "3572",
+      "description": "KOTA BLITAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 259,
+      "code": "3573",
+      "description": "KOTA MALANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 260,
+      "code": "3574",
+      "description": "KOTA PROBOLINGGO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 261,
+      "code": "3575",
+      "description": "KOTA PASURUAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 262,
+      "code": "3576",
+      "description": "KOTA MOJOKERTO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 263,
+      "code": "3577",
+      "description": "KOTA MADIUN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 264,
+      "code": "3578",
+      "description": "KOTA SURABAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 265,
+      "code": "3579",
+      "description": "KOTA BATU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 266,
+      "code": "3601",
+      "description": "KAB. PANDEGLANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 267,
+      "code": "3602",
+      "description": "KAB. LEBAK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 268,
+      "code": "3603",
+      "description": "KAB. TANGERANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 269,
+      "code": "3604",
+      "description": "KAB. SERANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 270,
+      "code": "3671",
+      "description": "KOTA TANGERANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 271,
+      "code": "3672",
+      "description": "KOTA CILEGON",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 272,
+      "code": "3673",
+      "description": "KOTA SERANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 273,
+      "code": "3674",
+      "description": "KOTA TANGERANG SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 274,
+      "code": "5101",
+      "description": "KAB. JEMBRANA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 275,
+      "code": "5102",
+      "description": "KAB. TABANAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 276,
+      "code": "5103",
+      "description": "KAB. BADUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 277,
+      "code": "5104",
+      "description": "KAB. GIANYAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 278,
+      "code": "5105",
+      "description": "KAB. KLUNGKUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 279,
+      "code": "5106",
+      "description": "KAB. BANGLI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 280,
+      "code": "5107",
+      "description": "KAB. KARANGASEM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 281,
+      "code": "5108",
+      "description": "KAB. BULELENG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 282,
+      "code": "5171",
+      "description": "KOTA DENPASAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 283,
+      "code": "5201",
+      "description": "KAB. LOMBOK BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 284,
+      "code": "5202",
+      "description": "KAB. LOMBOK TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 285,
+      "code": "5203",
+      "description": "KAB. LOMBOK TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 286,
+      "code": "5204",
+      "description": "KAB. SUMBAWA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 287,
+      "code": "5205",
+      "description": "KAB. DOMPU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 288,
+      "code": "5206",
+      "description": "KAB. BIMA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 289,
+      "code": "5207",
+      "description": "KAB. SUMBAWA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 290,
+      "code": "5208",
+      "description": "KAB. LOMBOK UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 291,
+      "code": "5271",
+      "description": "KOTA MATARAM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 292,
+      "code": "5272",
+      "description": "KOTA BIMA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 293,
+      "code": "5301",
+      "description": "KAB. KUPANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 294,
+      "code": "5302",
+      "description": "KAB. TIMOR TENGAH SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 295,
+      "code": "5303",
+      "description": "KAB. TIMOR TENGAH UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 296,
+      "code": "5304",
+      "description": "KAB. BELU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 297,
+      "code": "5305",
+      "description": "KAB. ALOR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 298,
+      "code": "5306",
+      "description": "KAB. FLORES TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 299,
+      "code": "5307",
+      "description": "KAB. SIKKA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 300,
+      "code": "5308",
+      "description": "KAB. ENDE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 301,
+      "code": "5309",
+      "description": "KAB. NGADA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 302,
+      "code": "5310",
+      "description": "KAB. MANGGARAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 303,
+      "code": "5311",
+      "description": "KAB. SUMBA TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 304,
+      "code": "5312",
+      "description": "KAB. SUMBA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 305,
+      "code": "5313",
+      "description": "KAB. LEMBATA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 306,
+      "code": "5314",
+      "description": "KAB. ROTE NDAO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 307,
+      "code": "5315",
+      "description": "KAB. MANGGARAI BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 308,
+      "code": "5316",
+      "description": "KAB. NAGEKEO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 309,
+      "code": "5317",
+      "description": "KAB. SUMBA TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 310,
+      "code": "5318",
+      "description": "KAB. SUMBA BARAT DAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 311,
+      "code": "5319",
+      "description": "KAB. MANGGARAI TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 312,
+      "code": "5320",
+      "description": "KAB. SABU RAIJUA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 313,
+      "code": "5321",
+      "description": "KAB. MALAKA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 314,
+      "code": "5371",
+      "description": "KOTA KUPANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 315,
+      "code": "6101",
+      "description": "KAB. SAMBAS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 316,
+      "code": "6102",
+      "description": "KAB. MEMPAWAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 317,
+      "code": "6103",
+      "description": "KAB. SANGGAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 318,
+      "code": "6104",
+      "description": "KAB. KETAPANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 319,
+      "code": "6105",
+      "description": "KAB. SINTANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 320,
+      "code": "6106",
+      "description": "KAB. KAPUAS HULU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 321,
+      "code": "6107",
+      "description": "KAB. BENGKAYANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 322,
+      "code": "6108",
+      "description": "KAB. LANDAK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 323,
+      "code": "6109",
+      "description": "KAB. SEKADAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 324,
+      "code": "6110",
+      "description": "KAB. MELAWI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 325,
+      "code": "6111",
+      "description": "KAB. KAYONG UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 326,
+      "code": "6112",
+      "description": "KAB. KUBU RAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 327,
+      "code": "6171",
+      "description": "KOTA PONTIANAK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 328,
+      "code": "6172",
+      "description": "KOTA SINGKAWANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 329,
+      "code": "6201",
+      "description": "KAB. KOTAWARINGIN BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 330,
+      "code": "6202",
+      "description": "KAB. KOTAWARINGIN TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 331,
+      "code": "6203",
+      "description": "KAB. KAPUAS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 332,
+      "code": "6204",
+      "description": "KAB. BARITO SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 333,
+      "code": "6205",
+      "description": "KAB. BARITO UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 334,
+      "code": "6206",
+      "description": "KAB. KATINGAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 335,
+      "code": "6207",
+      "description": "KAB. SERUYAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 336,
+      "code": "6208",
+      "description": "KAB. SUKAMARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 337,
+      "code": "6209",
+      "description": "KAB. LAMANDAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 338,
+      "code": "6210",
+      "description": "KAB. GUNUNG MAS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 339,
+      "code": "6211",
+      "description": "KAB. PULANG PISAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 340,
+      "code": "6212",
+      "description": "KAB. MURUNG RAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 341,
+      "code": "6213",
+      "description": "KAB. BARITO TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 342,
+      "code": "6271",
+      "description": "KOTA PALANGKARAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 343,
+      "code": "6301",
+      "description": "KAB. TANAH LAUT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 344,
+      "code": "6302",
+      "description": "KAB. KOTABARU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 345,
+      "code": "6303",
+      "description": "KAB. BANJAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 346,
+      "code": "6304",
+      "description": "KAB. BARITO KUALA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 347,
+      "code": "6305",
+      "description": "KAB. TAPIN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 348,
+      "code": "6306",
+      "description": "KAB. HULU SUNGAI SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 349,
+      "code": "6307",
+      "description": "KAB. HULU SUNGAI TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 350,
+      "code": "6308",
+      "description": "KAB. HULU SUNGAI UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 351,
+      "code": "6309",
+      "description": "KAB. TABALONG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 352,
+      "code": "6310",
+      "description": "KAB. TANAH BUMBU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 353,
+      "code": "6311",
+      "description": "KAB. BALANGAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 354,
+      "code": "6371",
+      "description": "KOTA BANJARMASIN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 355,
+      "code": "6372",
+      "description": "KOTA BANJARBARU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 356,
+      "code": "6401",
+      "description": "KAB. PASER",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 357,
+      "code": "6402",
+      "description": "KAB. KUTAI KARTANEGARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 358,
+      "code": "6403",
+      "description": "KAB. BERAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 359,
+      "code": "6407",
+      "description": "KAB. KUTAI BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 360,
+      "code": "6408",
+      "description": "KAB. KUTAI TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 361,
+      "code": "6409",
+      "description": "KAB. PENAJAM PASER UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 362,
+      "code": "6411",
+      "description": "KAB. MAHAKAM ULU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 363,
+      "code": "6471",
+      "description": "KOTA BALIKPAPAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 364,
+      "code": "6472",
+      "description": "KOTA SAMARINDA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 365,
+      "code": "6474",
+      "description": "KOTA BONTANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 366,
+      "code": "6501",
+      "description": "KAB. BULUNGAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 367,
+      "code": "6502",
+      "description": "KAB. MALINAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 368,
+      "code": "6503",
+      "description": "KAB. NUNUKAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 369,
+      "code": "6504",
+      "description": "KAB. TANA TIDUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 370,
+      "code": "6571",
+      "description": "KOTA TARAKAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 371,
+      "code": "7101",
+      "description": "KAB. BOLAANG MONGONDOW",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 372,
+      "code": "7102",
+      "description": "KAB. MINAHASA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 373,
+      "code": "7103",
+      "description": "KAB. KEPULAUAN SANGIHE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 374,
+      "code": "7104",
+      "description": "KAB. KEPULAUAN TALAUD",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 375,
+      "code": "7105",
+      "description": "KAB. MINAHASA SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 376,
+      "code": "7106",
+      "description": "KAB. MINAHASA UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 377,
+      "code": "7107",
+      "description": "KAB. MINAHASA TENGGARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 378,
+      "code": "7108",
+      "description": "KAB. BOLAANG MONGONDOW UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 379,
+      "code": "7109",
+      "description": "KAB. KEP. SIAU TAGULANDANG BIARO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 380,
+      "code": "7110",
+      "description": "KAB. BOLAANG MONGONDOW TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 381,
+      "code": "7111",
+      "description": "KAB. BOLAANG MONGONDOW SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 382,
+      "code": "7171",
+      "description": "KOTA MANADO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 383,
+      "code": "7172",
+      "description": "KOTA BITUNG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 384,
+      "code": "7173",
+      "description": "KOTA TOMOHON",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 385,
+      "code": "7174",
+      "description": "KOTA KOTAMOBAGU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 386,
+      "code": "7201",
+      "description": "KAB. BANGGAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 387,
+      "code": "7202",
+      "description": "KAB. POSO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 388,
+      "code": "7203",
+      "description": "KAB. DONGGALA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 389,
+      "code": "7204",
+      "description": "KAB. TOLITOLI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 390,
+      "code": "7205",
+      "description": "KAB. BUOL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 391,
+      "code": "7206",
+      "description": "KAB. MOROWALI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 392,
+      "code": "7207",
+      "description": "KAB. BANGGAI KEPULAUAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 393,
+      "code": "7208",
+      "description": "KAB. PARIGI MOUTONG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 394,
+      "code": "7209",
+      "description": "KAB. TOJO UNA-UNA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 395,
+      "code": "7210",
+      "description": "KAB. SIGI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 396,
+      "code": "7211",
+      "description": "KAB. BANGGAI LAUT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 397,
+      "code": "7212",
+      "description": "KAB. MOROWALI UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 398,
+      "code": "7271",
+      "description": "KOTA PALU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 399,
+      "code": "7301",
+      "description": "KAB. KEPULAUAN SELAYAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 400,
+      "code": "7302",
+      "description": "KAB. BULUKUMBA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 401,
+      "code": "7303",
+      "description": "KAB. BANTAENG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 402,
+      "code": "7304",
+      "description": "KAB. JENEPONTO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 403,
+      "code": "7305",
+      "description": "KAB. TAKALAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 404,
+      "code": "7306",
+      "description": "KAB. GOWA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 405,
+      "code": "7307",
+      "description": "KAB. SINJAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 406,
+      "code": "7308",
+      "description": "KAB. BONE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 407,
+      "code": "7309",
+      "description": "KAB. MAROS",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 408,
+      "code": "7310",
+      "description": "KAB. PANGKAJENE KEPULAUAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 409,
+      "code": "7311",
+      "description": "KAB. BARRU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 410,
+      "code": "7312",
+      "description": "KAB. SOPPENG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 411,
+      "code": "7313",
+      "description": "KAB. WAJO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 412,
+      "code": "7314",
+      "description": "KAB. SIDENRENG RAPPANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 413,
+      "code": "7315",
+      "description": "KAB. PINRANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 414,
+      "code": "7316",
+      "description": "KAB. ENREKANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 415,
+      "code": "7317",
+      "description": "KAB. LUWU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 416,
+      "code": "7318",
+      "description": "KAB. TANA TORAJA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 417,
+      "code": "7322",
+      "description": "KAB. LUWU UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 418,
+      "code": "7324",
+      "description": "KAB. LUWU TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 419,
+      "code": "7326",
+      "description": "KAB. TORAJA UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 420,
+      "code": "7371",
+      "description": "KOTA MAKASSAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 421,
+      "code": "7372",
+      "description": "KOTA PAREPARE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 422,
+      "code": "7373",
+      "description": "KOTA PALOPO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 423,
+      "code": "7401",
+      "description": "KAB. KOLAKA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 424,
+      "code": "7402",
+      "description": "KAB. KONAWE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 425,
+      "code": "7403",
+      "description": "KAB. MUNA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 426,
+      "code": "7404",
+      "description": "KAB. BUTON",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 427,
+      "code": "7405",
+      "description": "KAB. KONAWE SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 428,
+      "code": "7406",
+      "description": "KAB. BOMBANA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 429,
+      "code": "7407",
+      "description": "KAB. WAKATOBI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 430,
+      "code": "7408",
+      "description": "KAB. KOLAKA UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 431,
+      "code": "7409",
+      "description": "KAB. KONAWE UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 432,
+      "code": "7410",
+      "description": "KAB. BUTON UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 433,
+      "code": "7411",
+      "description": "KAB. KOLAKA TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 434,
+      "code": "7412",
+      "description": "KAB. KONAWE KEPULAUAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 435,
+      "code": "7413",
+      "description": "KAB. MUNA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 436,
+      "code": "7414",
+      "description": "KAB. BUTON TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 437,
+      "code": "7415",
+      "description": "KAB. BUTON SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 438,
+      "code": "7471",
+      "description": "KOTA KENDARI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 439,
+      "code": "7472",
+      "description": "KOTA BAUBAU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 440,
+      "code": "7501",
+      "description": "KAB. GORONTALO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 441,
+      "code": "7502",
+      "description": "KAB. BOALEMO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 442,
+      "code": "7503",
+      "description": "KAB. BONE BOLANGO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 443,
+      "code": "7504",
+      "description": "KAB. PAHUWATO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 444,
+      "code": "7505",
+      "description": "KAB. GORONTALO UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 445,
+      "code": "7571",
+      "description": "KOTA GORONTALO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 446,
+      "code": "7601",
+      "description": "KAB. MAMUJU UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 447,
+      "code": "7602",
+      "description": "KAB. MAMUJU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 448,
+      "code": "7603",
+      "description": "KAB. MAMASA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 449,
+      "code": "7604",
+      "description": "KAB. POLEWALI MANDAR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 450,
+      "code": "7605",
+      "description": "KAB. MAJENE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 451,
+      "code": "7606",
+      "description": "KAB. MAMUJU TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 452,
+      "code": "8101",
+      "description": "KAB. MALUKU TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 453,
+      "code": "8102",
+      "description": "KAB. MALUKU TENGGARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 454,
+      "code": "8103",
+      "description": "KAB. MALUKU TENGGARA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 455,
+      "code": "8104",
+      "description": "KAB. BURU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 456,
+      "code": "8105",
+      "description": "KAB. SERAM BAGIAN TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 457,
+      "code": "8106",
+      "description": "KAB. SERAM BAGIAN BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 458,
+      "code": "8107",
+      "description": "KAB. KEPULAUAN ARU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 459,
+      "code": "8108",
+      "description": "KAB. MALUKU BARAT DAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 460,
+      "code": "8109",
+      "description": "KAB. BURU SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 461,
+      "code": "8171",
+      "description": "KOTA AMBON",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 462,
+      "code": "8172",
+      "description": "KOTA TUAL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 463,
+      "code": "8201",
+      "description": "KAB. HALMAHERA BARAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 464,
+      "code": "8202",
+      "description": "KAB. HALMAHERA TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 465,
+      "code": "8203",
+      "description": "KAB. HALMAHERA UTARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 466,
+      "code": "8204",
+      "description": "KAB. HALMAHERA SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 467,
+      "code": "8205",
+      "description": "KAB. KEPULAUAN SULA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 468,
+      "code": "8206",
+      "description": "KAB. HALMAHERA TIMUR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 469,
+      "code": "8207",
+      "description": "KAB. PULAU MOROTAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 470,
+      "code": "8208",
+      "description": "KAB. PULAU TALIABU",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 471,
+      "code": "8271",
+      "description": "KOTA TERNATE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 472,
+      "code": "8272",
+      "description": "KOTA TIDORE KEPULAUAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 473,
+      "code": "9101",
+      "description": "KAB. MERAUKE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 474,
+      "code": "9102",
+      "description": "KAB. JAYAWIJAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 475,
+      "code": "9103",
+      "description": "KAB. JAYAPURA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 476,
+      "code": "9104",
+      "description": "KAB. NABIRE",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 477,
+      "code": "9105",
+      "description": "KAB. KEPULAUAN YAPEN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 478,
+      "code": "9106",
+      "description": "KAB. BIAK NUMFOR",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 479,
+      "code": "9107",
+      "description": "KAB. PUNCAK JAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 480,
+      "code": "9108",
+      "description": "KAB. PANIAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 481,
+      "code": "9109",
+      "description": "KAB. MIMIKA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 482,
+      "code": "9110",
+      "description": "KAB. SARMI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 483,
+      "code": "9111",
+      "description": "KAB. KEEROM",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 484,
+      "code": "9112",
+      "description": "KAB. PEGUNUNGAN BINTANG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 485,
+      "code": "9113",
+      "description": "KAB. YAHUKIMO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 486,
+      "code": "9114",
+      "description": "KAB. TOLIKARA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 487,
+      "code": "9115",
+      "description": "KAB. WAROPEN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 488,
+      "code": "9116",
+      "description": "KAB. BOVEN DIGOEL",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 489,
+      "code": "9117",
+      "description": "KAB. MAPPI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 490,
+      "code": "9118",
+      "description": "KAB. ASMAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 491,
+      "code": "9119",
+      "description": "KAB. SUPIORI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 492,
+      "code": "9120",
+      "description": "KAB. MAMBERAMO RAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 493,
+      "code": "9121",
+      "description": "KAB. MAMBERAMO TENGAH",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 494,
+      "code": "9122",
+      "description": "KAB. YALIMO",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 495,
+      "code": "9123",
+      "description": "KAB. LANNY JAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 496,
+      "code": "9124",
+      "description": "KAB. NDUGA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 497,
+      "code": "9125",
+      "description": "KAB. PUNCAK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 498,
+      "code": "9126",
+      "description": "KAB. DOGIYAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 499,
+      "code": "9127",
+      "description": "KAB. INTAN JAYA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 500,
+      "code": "9128",
+      "description": "KAB. DEIYAI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 501,
+      "code": "9171",
+      "description": "KOTA JAYAPURA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 502,
+      "code": "9201",
+      "description": "KAB. SORONG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 503,
+      "code": "9202",
+      "description": "KAB. MANOKWARI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 504,
+      "code": "9203",
+      "description": "KAB. FAK FAK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 505,
+      "code": "9204",
+      "description": "KAB. SORONG SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 506,
+      "code": "9205",
+      "description": "KAB. RAJA AMPAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 507,
+      "code": "9206",
+      "description": "KAB. TELUK BINTUNI",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 508,
+      "code": "9207",
+      "description": "KAB. TELUK WONDAMA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 509,
+      "code": "9208",
+      "description": "KAB. KAIMANA",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 510,
+      "code": "9209",
+      "description": "KAB. TAMBRAUW",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 511,
+      "code": "9210",
+      "description": "KAB. MAYBRAT",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 512,
+      "code": "9211",
+      "description": "KAB. MANOKWARI SELATAN",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 513,
+      "code": "9212",
+      "description": "KAB. PEGUNUNGAN ARFAK",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    },
+    {
+      "id": 514,
+      "code": "9271",
+      "description": "KOTA SORONG",
+      "modifiedDateAndTime": "2018-12-07 19:09:11"
+    }
+  ]
+}
