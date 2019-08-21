@@ -2,10 +2,7 @@ package com.btpn.migration.los.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DbConnection {
 	private Connection connection = null;
@@ -19,7 +16,7 @@ public class DbConnection {
     }
     
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
-		if (connection != null) return connection;
+		if (connection != null && !connection.isClosed()) return connection;
 		
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dlos_core?user=dlos_sme&password=dlos_sme");

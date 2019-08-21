@@ -3,12 +3,23 @@ package com.btpn.migration.los.bean;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
+
+import com.btpn.migration.los.AbstractMain;
+
 public class Store {
-	private Map<String, Object> map = new HashMap<String, Object>();
+	final static Logger log = Logger.getLogger(Store.class);
 	
+	private Map<String, Object> generalMap = new HashMap<String, Object>();
 	private Map<String, Lookup> lookupMap = new HashMap<String, Lookup>();
 	private Map<String, CommonService> commonServiceMap =  new HashMap<String, CommonService>();
-	private Map<String, Branch> branchMap =  new HashMap<String, Branch>();
+	private Map<String, Region> regionMap = new HashMap<String, Region>();
+	private Map<String, Region> branchMap = new HashMap<String, Region>();
+	
+	public void add(Region region) {
+		this.regionMap.put(region.getRegion(), region);
+		this.branchMap.put(region.getBranch(), region);
+	}
 	
 	public void add(Lookup lookup) {
 		this.lookupMap.put(lookup.getGroup()+"~"+lookup.getKey(), lookup);
@@ -19,33 +30,18 @@ public class Store {
 		this.commonServiceMap.put(commonService.getGroup()+"~"+commonService.getDescription(), commonService);
 	}
 	
-	public void add(Branch branch) {
-		String newBranchName = branch.getBranchName().toUpperCase().replaceAll(" ", "");
-		this.branchMap.put(newBranchName+"~"+branch.getLobId(), branch);	
-	}
-	
-	public Branch getBranchByDescription(String branchName, int lobId) {
-		return getBranchByDescription(branchName, lobId, false);
-	}
-	
-	public Branch getBranchByDescription(String branchName, int lobId, boolean throwErr) {
-		String newBranchName = branchName.toUpperCase().replaceAll(" ", "");
-		Branch branch = this.branchMap.get(newBranchName+"~"+lobId);
-		if (branch == null && throwErr) {
-			throw new NullPointerException("Data Branch Not found for "+branchName+" and lobId "+lobId);
-		}else {
-			return branch;
-		}
-	}
-	
 	public Lookup getLookupByKey(String group, String key) {
 		return getLookupByKey(group, key, false);
 	}
 	
 	public Lookup getLookupByKey(String group, String key, boolean throwErr) {
-		Lookup lookup = this.lookupMap.get(group+"~"+key);
-		if (lookup == null && throwErr) {
-			throw new NullPointerException("Data Lookup Not found for "+group+" with key "+key);	
+		Lookup lookup = this.lookupMap.get(group+"~"+key);		
+	
+		if (lookup == null) {
+			log.error("[MAPPING PROBLEM] Data Lookup Not found for "+group+" with key "+key);
+			
+			if (throwErr) throw new NullPointerException("Data Lookup Not found for "+group+" with key "+key);
+			return null;
 		}else {
 			return lookup;
 		}
@@ -57,8 +53,12 @@ public class Store {
 	
 	public Lookup getLookupByDescription(String group, String description, boolean throwErr) {
 		Lookup lookup = this.lookupMap.get(group+"~"+description);
-		if (lookup == null && throwErr) {
-			throw new NullPointerException("Data Lookup Not found for "+group+" with description "+description);	
+		
+		if (lookup == null) {
+			log.error("[MAPPING PROBLEM] Data Lookup Not found for "+group+" with description "+description);
+			
+			if (throwErr) throw new NullPointerException("Data Lookup Not found for "+group+" with description "+description);
+			return null;
 		}else {
 			return lookup;
 		}
@@ -70,10 +70,48 @@ public class Store {
 	
 	public CommonService getCommonByDescription(String group, String description, boolean throwErr) {
 		CommonService cs = this.commonServiceMap.get(group+"~"+description);
-		if (cs == null && throwErr) {
-			throw new NullPointerException("Data CommonService Not found for "+group+" with description "+description);	
+		
+		if (cs == null) {
+			log.error("[MAPPING PROBLEM] Data CommonService Not found for "+group+" with description "+description);
+			
+			if (throwErr) throw new NullPointerException("Data CommonService Not found for "+group+" with description "+description);
+			return null;
 		}else {
 			return cs;
+		}
+	}
+	
+	public Region getRegionByDescription(String description) {
+		return getRegionByDescription(description, false);
+	}
+	
+	public Region getRegionByDescription(String description, boolean throwErr) {
+		Region region = this.regionMap.get(description);
+		
+		if (region == null) {
+			log.error("[MAPPING PROBLEM] Data Region Not found for description "+description);
+			
+			if (throwErr) throw new NullPointerException("Data Region Not found for description "+description);
+			return null;
+		}else {
+			return region;
+		}
+	}
+	
+	public Region getBranchByDescription(String description) {
+		return getBranchByDescription(description, false);
+	}
+	
+	public Region getBranchByDescription(String description, boolean throwErr) {
+		Region branch = this.branchMap.get(description);
+		
+		if (branch == null) {
+			log.error("[MAPPING PROBLEM] Data Branch Not found for description "+description);
+			
+			if (throwErr) throw new NullPointerException("Data Branch Not found for  description "+description);
+			return null;
+		}else {
+			return branch;
 		}
 	}
 	
@@ -92,11 +130,11 @@ public class Store {
 //	}
 	
 	public void put(String key, Object object) {
-		map.put(key, object);
+		generalMap.put(key, object);
 	}
 	
 	public Object getObject(String key) {
-		return map.get(key);
+		return generalMap.get(key);
 	}
 
 	public String getString(String key) {
@@ -116,8 +154,10 @@ public class Store {
 	}
 	
 	public void clear() {
+		generalMap.clear();
 		lookupMap.clear();
 		commonServiceMap.clear();
-		map.clear();
+		regionMap.clear();
+		branchMap.clear();
 	}
 }

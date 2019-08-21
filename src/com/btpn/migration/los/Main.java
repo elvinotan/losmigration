@@ -6,15 +6,20 @@ import java.util.List;
 
 import org.apache.log4j.BasicConfigurator;
 
-import com.btpn.migration.los.mapping.InformasiDebiturSMES;
+import com.btpn.migration.los.mapping.InformasiDebitur;
 import com.btpn.migration.los.mapping.Mapping;
 
 public class Main extends AbstractMain {
 	
 	public void run() throws Exception {
+		// Define all mapping
 		List<Mapping> mapping = new ArrayList<Mapping>();
-		mapping.add(new InformasiDebiturSMES());
+		mapping.add(new InformasiDebitur());
 		
+		// Clear All Data with createdBy = 'MIGRATION' and load data refrence		
+		initilize(mapping);
+		
+		// Process migration
 		String output = "C:/Users/19057559/workspaces/java/losmigration/input";
 		File folder = new File(output);
 		for (File file: folder.listFiles()) {

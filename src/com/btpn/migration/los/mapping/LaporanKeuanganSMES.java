@@ -24,13 +24,13 @@ public class LaporanKeuanganSMES implements Mapping {
 	}
 	
 	@Override
-	public void initMapping() {
+	public void initMapping(String lobType) {
 		String[] columns = new String[] {"C", "E", "G", "I", "O"};
 		
 		IActions insertAppPos = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store) throws Exception{				
+			public String insert(Mapper mapper, Store store, String plobType) throws Exception{				
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -73,7 +73,7 @@ public class LaporanKeuanganSMES implements Mapping {
 		IActions insertAppNeraca = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store) throws Exception{
+			public String insert(Mapper mapper, Store store, String plobType) throws Exception{
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -108,7 +108,7 @@ public class LaporanKeuanganSMES implements Mapping {
 		IActions insertAppLabaRugi = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store) throws Exception{
+			public String insert(Mapper mapper, Store store, String pLobType) throws Exception{
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -210,7 +210,7 @@ public class LaporanKeuanganSMES implements Mapping {
 		IActions insertAppLaporan = new IActions() {
 
 			@Override
-			public String insert(Mapper mapper, Store store) {
+			public String insert(Mapper mapper, Store store, String pLobType) {
 				String dataId = mapper.getString("dataId");
 				String lobCode = mapper.getString("lobCode");
 				String lobType = mapper.getString("lobType");
@@ -269,7 +269,7 @@ public class LaporanKeuanganSMES implements Mapping {
 	}
 
 	@Override
-	public List<SpecRow> getSpecRows() {
+	public List<SpecRow> getSpecRows(String lobType) {
 		//log.debug("getSpecRows");
 		
 		return this.specRows;

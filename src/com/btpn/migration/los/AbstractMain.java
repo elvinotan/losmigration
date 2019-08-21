@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -20,14 +19,15 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
-import com.btpn.migration.los.bean.Branch;
 import com.btpn.migration.los.bean.CommonService;
 import com.btpn.migration.los.bean.CommonServiceGroup;
 import com.btpn.migration.los.bean.Lookup;
 import com.btpn.migration.los.bean.Mapper;
+import com.btpn.migration.los.bean.Region;
 import com.btpn.migration.los.bean.SpecCell;
 import com.btpn.migration.los.bean.SpecRow;
 import com.btpn.migration.los.bean.Store;
+import com.btpn.migration.los.constant.LobType;
 import com.btpn.migration.los.db.DbConnection;
 import com.btpn.migration.los.mapping.Mapping;
 import com.btpn.migration.los.tool.DateTool;
@@ -39,10 +39,7 @@ public class AbstractMain {
 	final static Logger log = Logger.getLogger(AbstractMain.class);
 	
 	private Gson gson = new Gson();
-	
-	private List<CommonService> cacheCommonService = new ArrayList<CommonService>();
-	private List<Lookup> cacheLookup = new ArrayList<Lookup>();
-	private List<Branch> cacheBranch = new ArrayList<Branch>();
+	private Store store = new Store();
 	
 	private void clearTables(List<Mapping> mapping) {
 		log.debug("clearTables");
@@ -65,105 +62,67 @@ public class AbstractMain {
 	}
 	
 	private void loadCommonService(Store store) {
-		if (!cacheCommonService.isEmpty()) {
-			log.debug("Fetching CommonService from cache");
-			
-			for (CommonService s : cacheCommonService) {
-				store.add(s);
-			}
-		}else {
-			log.debug("Fetching CommonService from file");
-			
-			File folder = new File("C:/Users/19057559/workspaces/java/losmigration/json");
-			for (File f : folder.listFiles()) {
-				try {
-					JsonReader reader = new JsonReader(new FileReader(f));
-					CommonServiceGroup group = gson.fromJson(reader, CommonServiceGroup.class);
-					if (group != null) {
-						for (CommonService s : group.getResult()) {
-							s.setGroup(f.getName().replaceAll(".json", ""));
-							store.add(s);
-							cacheCommonService.add(s);
-						}
+		log.debug("Fetching CommonService from file");
+		
+		File folder = new File("C:/Users/19057559/workspaces/java/losmigration/json");
+		for (File f : folder.listFiles()) {
+			try {
+				JsonReader reader = new JsonReader(new FileReader(f));
+				CommonServiceGroup group = gson.fromJson(reader, CommonServiceGroup.class);
+				if (group != null) {
+					for (CommonService s : group.getResult()) {
+						s.setGroup(f.getName().replaceAll(".json", ""));
+						store.add(s);
 					}
-				}catch(Exception e) {
-					log.error(e.getMessage(), e);
 				}
+			}catch(Exception e) {
+				log.error(e.getMessage(), e);
 			}
 		}
 	}
 	
 	private void loadLookup(Store store) {
-		if (!cacheLookup.isEmpty()) {
-			log.debug("Fetching lookup from cache");
-			
-			for (Lookup l : cacheLookup) {
-				store.add(l);
+		log.debug("Fetching lookup from database");
+		
+		PreparedStatement preStmt = null;
+		ResultSet rs = null;
+		try {
+			String query = "select * from dlos_lookup_detail";
+			Connection connection = DbConnection.get().getConnection();
+			preStmt = connection.prepareStatement(query);
+			log.debug(query);
+			rs = preStmt.executeQuery();
+			while (rs.next()) {
+				String lookupId = rs.getString("lookupId");
+				String key = rs.getString("key");
+				String group = rs.getString("group");
+				String description = rs.getString("description");
+				Boolean isActive = rs.getBoolean("isActive");
+				store.add(new Lookup(Long.valueOf(lookupId), key, group, description, isActive));
 			}
-		}else {
-			log.debug("Fetching lookup from database");
-			
-			PreparedStatement preStmt = null;
-			ResultSet rs = null;
-			try {
-				String query = "select * from dlos_lookup_detail";
-				Connection connection = DbConnection.get().getConnection();
-				preStmt = connection.prepareStatement(query);
-				log.debug(query);
-				rs = preStmt.executeQuery();
-				while (rs.next()) {
-					String lookupId = rs.getString("lookupId");
-					String key = rs.getString("key");
-					String group = rs.getString("group");
-					String description = rs.getString("description");
-					Boolean isActive = rs.getBoolean("isActive");
-					store.add(new Lookup(Long.valueOf(lookupId), key, group, description, isActive));
-				}
-			}catch(Exception e) {
-				log.error(e.getMessage(), e);
-			}finally {
-				if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
-				if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
-			}
+		}catch(Exception e) {
+			log.error(e.getMessage(), e);
+		}finally {
+			if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
+			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
 		}
 	}
 	
-	private void loadBranch(Store store) {
-		if (!cacheBranch.isEmpty()) {
-			log.debug("Fetching Branch from cache");
-			
-			for (Branch l : cacheBranch) {
-				store.add(l);
-			}
-		}else {
-			log.debug("Fetching Branch from database");
-			
-			PreparedStatement preStmt = null;
-			ResultSet rs = null;
-			try {
-				String query = "select * from dlos_branch";
-				Connection connection = DbConnection.get().getConnection();
-				preStmt = connection.prepareStatement(query);
-				log.debug(query);
-				rs = preStmt.executeQuery();
-				while (rs.next()) {
-					Long branchId = rs.getLong("branchId");
-					String branchCode = rs.getString("branchCode");
-					String branchName = rs.getString("branchName");
-					Long lobId = rs.getLong("LOBId");
-					Long areaId = rs.getLong("areaId");
-					Long appIdSequence = rs.getLong("appIdSequence");
-					Boolean isActive = rs.getBoolean("isActive");
-					store.add(new Branch(branchId, branchCode, branchName, lobId, areaId, appIdSequence, isActive));
-				}
-			}catch(Exception e) {
-				log.error(e.getMessage(), e);
-			}finally {
-				if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
-				if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
-			}
+	private void loadRegion(Store store) {
+		log.debug("Fetching Region from cache");
+		
+		for (Region r : Region.getRegions()) {
+			store.add(r);
 		}
 	}
+	
+	protected void initilize(List<Mapping> mapping) {
+		clearTables(mapping);
+		loadCommonService(store);
+		loadLookup(store);
+		loadRegion(store);
+	}
+	
 	
 	private void execInsert(String insertStms, SpecRow specRow, Store store) {
 		PreparedStatement preStmt = null;
@@ -203,24 +162,28 @@ public class AbstractMain {
 			}
 		}
 	}
-
+	
 	protected void loadFile(File file, List<Mapping> mapping) throws Exception {
 		log.debug("loadFile "+file.getName());
 		
-		Store store = new Store();
-		clearTables(mapping);
-		loadCommonService(store);
-		loadLookup(store);
-		loadBranch(store);
+		FileInputStream xlsFile = new FileInputStream(file);
+		Workbook workbook = new HSSFWorkbook(xlsFile);
+
+		// So far masih cuma bedakan SMEL dan Other, untuk MUR masih blm bisa bedakan
+		String lobType = LobType.SMES;
+		for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
+			String sheetname = workbook.getSheetAt(i).getSheetName();
+			if (com.btpn.migration.los.constant.Sheet.Spreading.equals(sheetname)) {
+				lobType = LobType.SMEL;
+				break;
+			}
+		}
 		
 		// Initilize cell
 		for (Mapping m : mapping) {
-			m.getSpecRows().clear();
-			m.initMapping(); 
+			m.getSpecRows(lobType).clear();
+			m.initMapping(lobType); 
 		}
-
-		FileInputStream xlsFile = new FileInputStream(file);
-		Workbook workbook = new HSSFWorkbook(xlsFile);
 
 		for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
 			Sheet sheet = workbook.getSheetAt(i);
@@ -262,8 +225,9 @@ public class AbstractMain {
 							value = String.valueOf(cell.getStringCellValue());
 						}
 					}
+					
 					for (Mapping m : mapping) {
-						for (SpecRow specRow : m.getSpecRows()) {
+						for (SpecRow specRow : m.getSpecRows(lobType)) {
 							for (SpecCell speCell : specRow.getSpecCells()) {
 								if (speCell.isFix()) continue;
 								if (sheetname.equals(speCell.getSheet()) && address.equals(speCell.getAddress())) { speCell.setValue(value); }	
@@ -276,9 +240,9 @@ public class AbstractMain {
 		
 		Mapper mapper = new Mapper();
 		for (Mapping m : mapping) {
-			for (SpecRow specRow : m.getSpecRows()) {
+			for (SpecRow specRow : m.getSpecRows(lobType)) {
 				mapper.setSpecCells(specRow.getSpecCells());
-				String sql = specRow.getAction().insert(mapper, store);
+				String sql = specRow.getAction().insert(mapper, store, lobType);
 				if (sql != null) {
 					sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
 					execInsert(sql, specRow, store);
@@ -287,7 +251,7 @@ public class AbstractMain {
 		}
 		
 		for (Mapping m : mapping) {
-			for (SpecRow r : m.getSpecRows()) { r.clear(); }
+			for (SpecRow r : m.getSpecRows(lobType)) { r.clear(); }
 		}
 		
 		DbConnection.get().close();
