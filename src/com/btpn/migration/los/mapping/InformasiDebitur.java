@@ -52,6 +52,8 @@ public class InformasiDebitur implements Mapping {
 		migrasiDlosAppContact(lobType);
 		migrasiDlosAppSocialMedia(lobType);
 		migrasiDlosAppGroupDebitur(lobType);
+		migrasiDlosAppVerificationDebitur(lobType);
+		migrasiDlosAppLegal(lobType);
 	}
 
 	private void migrasiDlosAppDetail(String lobType) {
@@ -296,7 +298,148 @@ public class InformasiDebitur implements Mapping {
 					.xls("contactPersonName", "B258")
 					.xls("groupDebiturAddress", "H258"));
 		}
+	}
+	
+	private void migrasiDlosAppVerificationDebitur(String lobType) {
+		
+		IActions insertDlosAppVerificationDebitur = new IActions() {
+			
+			@Override
+			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+				String dataId = store.getString("dataId");
 				
+				String is_bi_list = mapper.getString("is_bi_list");
+				Lookup lis_bi_list = store.getLookupByDescription(Lookup.YesNo, is_bi_list);
+				is_bi_list = (lis_bi_list == null) ? null : lis_bi_list.getKey();
+						
+				String bi_check_last_3mos = mapper.getString("bi_check_last_3mos");
+				Lookup lbi_check_last_3mos = store.getLookupByDescription(Lookup.YesNo, bi_check_last_3mos);
+				bi_check_last_3mos = (lbi_check_last_3mos == null) ? null : lbi_check_last_3mos.getKey();
+				
+				String is_business_nonIndustry = mapper.getString("is_business_nonIndustry");
+				Lookup lis_business_nonIndustry = store.getLookupByDescription(Lookup.YesNo, is_business_nonIndustry);
+				is_business_nonIndustry = (lis_business_nonIndustry == null) ? null : lis_business_nonIndustry.getKey();
+				
+				String positive_check = mapper.getString("positive_check");
+				Lookup lpositive_check = store.getLookupByDescription(Lookup.YesNo, positive_check);
+				positive_check = (lpositive_check == null) ? null : lpositive_check.getKey();
+				
+				String is_business_min_2years = mapper.getString("is_business_min_2years");
+				Lookup lis_business_min_2years = store.getLookupByDescription(Lookup.YesNo, is_business_min_2years);
+				is_business_min_2years = (lis_business_min_2years == null) ? null : lis_business_min_2years.getKey();
+				
+				String notes = StringTool.combine(mapper.getString("notes0"), mapper.getString("notes1"), mapper.getString("notes2"), mapper.getString("notes3"));
+				notes = notes.replaceAll("<< Berikan penjelasan, jika terdapat informasi tambahan terkait kredibilitas debitur>>", "").trim();
+				
+				String is_active = "1";				
+				String created_date = DateTool.getYMD(mapper.getString("createdDate"));
+				String created_by = MIGRATION;
+				String modified_date = null;
+				String modified_by = mapper.getString("appId");
+				
+				return String.format(
+						"INSERT INTO dlos_core.dlos_app_verification_debitur (dataId, is_bi_list, bi_check_last_3mos, is_business_nonIndustry, positive_check, notes, is_active, created_date, created_by, modified_date, modified_by, is_business_min_2years) "+
+						"VALUES(                                             '%s',    '%s',       '%s',               '%s',                    '%s',           '%s',  %s,        '%s',         '%s',       '%s',          '%s',        '%s') ",
+						dataId, is_bi_list, bi_check_last_3mos, is_business_nonIndustry, positive_check, notes, is_active, created_date, created_by, modified_date, modified_by, is_business_min_2years);
+			}
+		};
+		
+		if (LobType.isSmes(lobType)) {
+			specRows.add(SpecRow.get(insertDlosAppVerificationDebitur).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("is_bi_list", "H138")
+					.xls("bi_check_last_3mos", "H139")
+					.xls("is_business_nonIndustry", "H141")
+					.xls("positive_check", "H142")
+					.xls("is_business_min_2years", "H140")
+					.xls("notes0", "A144")
+					.xls("notes1", "A145")
+					.xls("notes2", "A146")
+					.xls("notes3", "A147"));
+		}
+		
+		if (LobType.isSmel(lobType)) {
+			specRows.add(SpecRow.get(insertDlosAppVerificationDebitur).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("is_bi_list", "G136")
+					.xls("bi_check_last_3mos", "G137")
+					.xls("is_business_nonIndustry", "G139")
+					.xls("positive_check", "G140")
+					.xls("is_business_min_2years", "G138")
+					.xls("notes0", "A142")
+					.xls("notes1", "A143")
+					.xls("notes2", "A144")
+					.xls("notes3", "A145"));
+		}
+	}
+	
+	private void migrasiDlosAppLegal(String lobType) {
+		
+		IActions insertDlosAppLegal = new IActions() {
+			
+			@Override
+			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+				String legalEntityCode = mapper.getString("legalEntityCode");
+				Lookup lLegalEntityCode = store.getLookupByDescription(Lookup.LegalEntity, legalEntityCode);
+				legalEntityCode = (lLegalEntityCode == null) ? null : lLegalEntityCode.getKey();
+						
+				String PTSKNumber = null;
+				String PTSKDate = null;
+				String PTBNRINumber = null; 
+				String PTBNRIDate = null;
+				String CVRegistrationNumber = null; 
+				String CVRegistrationDate = null;
+				String lastDeedAmendmentNumber = null; 
+				String lastDeedAmendmentDate = null;
+				String ministryApprovalNumber = null; 
+				String ministryApprovalDate = null;
+				String lastDeedNumber = mapper.getString("lastDeedNumber");
+				String lastDeedDate = DateTool.getYMD(mapper.getString("lastDeedDate"));
+				String establishmentDeedDate = DateTool.getYMD(mapper.getString("establishmentDeedDate")); 
+				String NPWPNumber = mapper.getString("NPWPNumber");
+				String NPWPName = mapper.getString("NPWPName");
+				String SIUPNumber = mapper.getString("SIUPNumber"); 
+				String SIUPName =  mapper.getString("SIUPName");
+				String SIUPDate = null;
+				String SIUPYear = mapper.getString("SIUPYear");
+				String TDPNIBNumber = mapper.getString("TDPNIBNumber");
+				String TDPNIBName = mapper.getString("TDPNIBName"); 
+				String TDPNIBDate = null;
+				String TDPNIBYear = mapper.getString("TDPNIBYear");
+				String TDPExpiryDate = null; 
+				String SKDPNumber = null;
+				String SKDPDate = null;
+				String SKDPExpiryDate = null;
+				String dataId = store.getString("dataId");
+				String isActive = "1";
+				String modifiedDate = null; 
+				String modifiedBy = mapper.getString("appId");
+				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
+				String createdBy = MIGRATION;
+				
+				return String.format( 
+						"INSERT INTO dlos_core.dlos_app_legal (legalEntityCode, PTSKNumber, PTSKDate, PTBNRINumber, PTBNRIDate, CVRegistrationNumber, CVRegistrationDate, lastDeedAmendmentNumber, lastDeedAmendmentDate, ministryApprovalNumber, ministryApprovalDate, lastDeedNumber, lastDeedDate, establishmentDeedDate, NPWPNumber, NPWPName, SIUPNumber, SIUPName, SIUPDate, TDPNIBNumber, TDPNIBDate, TDPExpiryDate, SKDPNumber, SKDPDate, SKDPExpiryDate, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy, TDPNIBName, SIUPYear, TDPNIBYear) " + 
+						"VALUES(                               '%s',            '%s',       '%s',     '%s',         '%s',       '%s',                 '%s',               '%s',                    '%s',                  '%s',                   '%s',                 '%s',           '%s',         '%s',                  '%s',       '%s',     '%s',       '%s',     '%s',     '%s',         '%s',       '%s',          '%s',       '%s',     '%s',           '%s',   %s,       '%s',         '%s',       '%s',        '%s',      '%s',       '%s',     '%s');", 
+						legalEntityCode, PTSKNumber, PTSKDate, PTBNRINumber, PTBNRIDate, CVRegistrationNumber, CVRegistrationDate, lastDeedAmendmentNumber, lastDeedAmendmentDate, ministryApprovalNumber, ministryApprovalDate, lastDeedNumber, lastDeedDate, establishmentDeedDate, NPWPNumber, NPWPName, SIUPNumber, SIUPName, SIUPDate, TDPNIBNumber, TDPNIBDate, TDPExpiryDate, SKDPNumber, SKDPDate, SKDPExpiryDate, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy, TDPNIBName, SIUPYear, TDPNIBYear);
+			}
+		};
+		specRows.add(SpecRow.get(insertDlosAppLegal).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4")
+				.xls("establishmentDeedDate", "C91")
+				.xls("lastDeedDate", "C90")
+				.xls("lastDeedNumber", "C89")
+				.xls("legalEntityCode", "C88")
+				.xls("NPWPName", "G92")				
+				.xls("NPWPNumber", "C92")
+				.xls("SIUPYear", "K93")
+				.xls("SIUPName", "G93")
+				.xls("SIUPNumber", "C93")
+				.xls("TDPNIBYear", "K94")
+				.xls("TDPNIBName", "G94")
+				.xls("TDPNIBNumber", "C94"));
 	}
 
 	@Override

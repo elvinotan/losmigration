@@ -22,7 +22,7 @@ public class DateTool {
 	}
 	
 	public static String getYMD(String data) throws ParseException {
-		return data.trim().split(" ")[0];
+		return (StringTool.isEmpty(data)) ? null : data.trim().split(" ")[0];
 	}
 	
 }
