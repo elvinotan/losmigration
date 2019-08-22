@@ -1,11 +1,11 @@
 package com.btpn.migration.los.bean;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-
-import com.btpn.migration.los.AbstractMain;
 
 public class Store {
 	final static Logger log = Logger.getLogger(Store.class);
@@ -17,17 +17,17 @@ public class Store {
 	private Map<String, Region> branchMap = new HashMap<String, Region>();
 	
 	public void add(Region region) {
-		this.regionMap.put(region.getRegion(), region);
-		this.branchMap.put(region.getBranch(), region);
+		this.regionMap.put(clear(region.getRegion()), region);
+		this.branchMap.put(clear(region.getBranch()), region);
 	}
 	
 	public void add(Lookup lookup) {
-		this.lookupMap.put(lookup.getGroup()+"~"+lookup.getKey(), lookup);
-		this.lookupMap.put(lookup.getGroup()+"~"+lookup.getDescription(), lookup);
+		this.lookupMap.put(lookup.getGroup()+"~"+clear(lookup.getKey()), lookup);
+		this.lookupMap.put(lookup.getGroup()+"~"+clear(lookup.getDescription()), lookup);
 	}
 	
 	public void add(CommonService commonService) {
-		this.commonServiceMap.put(commonService.getGroup()+"~"+commonService.getDescription(), commonService);
+		this.commonServiceMap.put(commonService.getGroup()+"~"+clear(commonService.getDescription()), commonService);
 	}
 	
 	public Lookup getLookupByKey(String group, String key) {
@@ -35,7 +35,7 @@ public class Store {
 	}
 	
 	public Lookup getLookupByKey(String group, String key, boolean throwErr) {
-		Lookup lookup = this.lookupMap.get(group+"~"+key);		
+		Lookup lookup = this.lookupMap.get(group+"~"+clear(key));		
 	
 		if (lookup == null) {
 			log.error("[MAPPING PROBLEM] Data Lookup Not found for ("+group+") with key ("+key+")");
@@ -52,7 +52,7 @@ public class Store {
 	}
 	
 	public Lookup getLookupByDescription(String group, String description, boolean throwErr) {
-		Lookup lookup = this.lookupMap.get(group+"~"+description);
+		Lookup lookup = this.lookupMap.get(group+"~"+clear(description));
 		
 		if (lookup == null) {
 			log.error("[MAPPING PROBLEM] Data Lookup Not found for ("+group+") with description ("+description+")");
@@ -69,7 +69,7 @@ public class Store {
 	}
 	
 	public CommonService getCommonByDescription(String group, String description, boolean throwErr) {
-		CommonService cs = this.commonServiceMap.get(group+"~"+description);
+		CommonService cs = this.commonServiceMap.get(group+"~"+clear(description));
 		
 		if (cs == null) {
 			log.error("[MAPPING PROBLEM] Data CommonService Not found for ("+group+") with description ("+description+")");
@@ -86,7 +86,8 @@ public class Store {
 	}
 	
 	public Region getRegionByDescription(String description, boolean throwErr) {
-		Region region = this.regionMap.get(description);
+		Region region = this.regionMap.get(clear(description));
+		region = (region == null) ? getTolerateRegion(clear(description)) : region;
 		
 		if (region == null) {
 			log.error("[MAPPING PROBLEM] Data Region Not found for description ("+description+")");
@@ -98,12 +99,24 @@ public class Store {
 		}
 	}
 	
+	private Region getTolerateRegion(String description) {
+		List<String> matchParts = new ArrayList<String>();
+		
+		for (String key : this.regionMap.keySet()) {
+			if (key.contains(description)) { matchParts.add(key); }
+		}
+		
+		if (matchParts.size() != 1) return null;
+		return this.regionMap.get(matchParts.get(0));
+	}
+	
 	public Region getBranchByDescription(String description) {
 		return getBranchByDescription(description, false);
 	}
 	
 	public Region getBranchByDescription(String description, boolean throwErr) {
-		Region branch = this.branchMap.get(description);
+		Region branch = this.branchMap.get(clear(description));
+		branch = (branch == null) ? getTolerateBranch(clear(description)) : branch;
 		
 		if (branch == null) {
 			log.error("[MAPPING PROBLEM] Data Branch Not found for description ("+description+")");
@@ -113,6 +126,17 @@ public class Store {
 		}else {
 			return branch;
 		}
+	}
+	
+	private Region getTolerateBranch(String description) {
+		List<String> matchParts = new ArrayList<String>();
+		
+		for (String key : this.branchMap.keySet()) {
+			if (key.contains(description)) { matchParts.add(key); }
+		}
+		
+		if (matchParts.size() != 1) return null;
+		return this.branchMap.get(matchParts.get(0));
 	}
 	
 //	Jgn Pake WildCard, berbahaya
@@ -151,6 +175,15 @@ public class Store {
 		if ("".equals(rvalue.trim())) return defaultVal;
 		
 		return rvalue;
+	}
+	
+	private String clear(String data) {
+		String clearData = data.replaceAll(" ", "") // Hapus space
+							.replaceAll("-", "") 	// Hapus -
+							.replaceAll(",", "") 	// Hapus ,
+							.toUpperCase();			// Buat jadi huruf besar
+//		log.debug("Clear ('"+clearData+"','"+data+"')");
+		return clearData;
 	}
 	
 	public void clear() {

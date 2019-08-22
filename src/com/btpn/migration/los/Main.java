@@ -8,6 +8,7 @@ import org.apache.log4j.BasicConfigurator;
 
 import com.btpn.migration.los.mapping.InformasiDebitur;
 import com.btpn.migration.los.mapping.Mapping;
+import com.btpn.migration.los.mapping.TujuanDanFasilitas;
 
 public class Main extends AbstractMain {
 	
@@ -15,6 +16,7 @@ public class Main extends AbstractMain {
 		// Define all mapping
 		List<Mapping> mapping = new ArrayList<Mapping>();
 		mapping.add(new InformasiDebitur());
+		mapping.add(new TujuanDanFasilitas());
 		
 		// Clear All Data with createdBy = 'MIGRATION' and load data refrence		
 		initilize(mapping);
