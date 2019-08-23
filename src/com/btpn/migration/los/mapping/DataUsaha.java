@@ -62,11 +62,10 @@ public class DataUsaha implements Mapping {
 	}
 	
 	private void migrasiDlosAppBusiness(String lobType) {
-		
 		IActions insertDlosAppBusiness = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {				
-				String dataId = null; 
+				String dataId = store.getString("dataId"); 
 				String business_code = null; 
 				String business_name = null;
 				String business_sts = null;
@@ -121,7 +120,7 @@ public class DataUsaha implements Mapping {
 				String modified_date = null;
 				String modified_by = null;
 				String created_date = null;
-				String created_by = null;
+				String created_by = MIGRATION;
 				
 				return String.format(
 						"INSERT INTO dlos_core.dlos_app_business (dataId, business_code, business_name, business_sts, company_name, ind_sec_code, business_type_code, economy_sector_code, business_desc, company_history, company_risk, stock_rotation, annual_cycle, account_receivable_policy, business_manager_admin, competitor_analysis, other_company_party, business_scale_code, business_main_founder_code, marketing_area_code, market_share_cnt, employee_cnt, operate_since_cnt, business_experience_cnt, registered_company_period_cnt, source_of_info_code, key_person_code, business_strategy_code, business_strategy_desc, empty_store_last_6mo_code, has_other_business, other_business_type_code, other_business_pct, main_competitor, business_activity, business_detail, project_plan_list, nik_match_code, name_match_code, income_monthly_omzet_amt, income_financial_rec_based_omzet_amt, income_last_3mo_amt, income_last_2mo_amt, income_last_1mo_amt, income_omzet_source_desc, doc_financial_rec_based_omzet_amt, doc_last_3mo_amt, doc_last_2mo_amt, doc_last_1mo_amt, doc_omzet_source_desc, notes, is_active, modified_date, modified_by, created_date, created_by) " + 
@@ -136,9 +135,8 @@ public class DataUsaha implements Mapping {
 	private void migrasiDlosAppBusinessOth(String lobType) {
 		IActions insertDlosAppBusinessOth = new IActions() {
 			
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				
-				String dataId = null; 
+			public String insert(Mapper mapper, Store store, String lobType) throws Exception {				
+				String dataId = store.getString("dataId");
 				String business_id = null; 
 				String business_oth_code = null;
 				String business_oth_sts = null;
@@ -149,7 +147,7 @@ public class DataUsaha implements Mapping {
 				String modified_date = null;
 				String modified_by = null;
 				String created_date = null;
-				String created_by = null;
+				String created_by = MIGRATION;
 				
 				return String.format( 
 						"INSERT INTO dlos_core.dlos_app_business_oth (dataId, business_id, business_oth_code, business_oth_sts, other_business_type_code, other_business_pct, company_period_cnt, is_active, modified_date, modified_by, created_date, created_by) " + 
@@ -164,8 +162,7 @@ public class DataUsaha implements Mapping {
 		IActions insertDlosAppBusinessNeighbour = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-
-				String dataId = null; 
+				String dataId = store.getString("dataId");
 				String business_id = null; 
 				String business_neighbour_code = null; 
 				String business_neighbour_sts = null;
@@ -182,7 +179,7 @@ public class DataUsaha implements Mapping {
 				String modified_date = null;
 				String modified_by = null;
 				String created_date = null;
-				String created_by = null;				
+				String created_by = MIGRATION;				
 				
 				return String.format( 
 						"INSERT INTO dlos_core.dlos_app_business_neighbour (dataId, business_id, business_neighbour_code, business_neighbour_sts, verification_method_code, neighbour_name, neighbour_category_code, phone_no, well_known_pros_debtor_code, often_talking_pros_debtor_code, marriage_sts_pros_debtor_code, business_loc_pros_debtor_code, neg_info_pros_debtor_code, is_active, modified_date, modified_by, created_date, created_by) " + 
@@ -197,7 +194,7 @@ public class DataUsaha implements Mapping {
 		IActions insertDlosAppSupChecking = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				String dataId = null; 
+				String dataId = store.getString("dataId");
 				String business_id = null; 
 				String supplier_checking_code = null; 
 				String supplier_checking_sts = null; 
@@ -221,7 +218,7 @@ public class DataUsaha implements Mapping {
 				String modified_date = null; 
 				String modified_by = null; 
 				String created_date = null; 
-				String created_by = null;
+				String created_by = MIGRATION;
 				
 				return String.format( 
 						"INSERT INTO dlos_core.dlos_app_sup_checking (dataId, business_id, supplier_checking_code, supplier_checking_sts, check_date, verification_method, supplier_name, business_type, info_provider_name, info_provider_title, supplier_address, supplier_phone_no, is_owner_pros_debtor, business_relation_yr_cnt, goods_services_sold, is_supplier_verified_code, avg_mo_sales_amt, sales_pct, sales_freq_code, payment_freq_code, is_active, modified_date, modified_by, created_date, created_by) " + 
@@ -235,29 +232,29 @@ public class DataUsaha implements Mapping {
 	private void migrasiDlosAppSupPayments(String lobType) {
 		IActions insertDlosAppSupPayments = new IActions() {
 			
-			String dataId = null; 
-			String business_id = null; 
-			String supplier_payment_code = null; 
-			String supplier_payment_sts = null; 
-			String cash_pymt_pct = null; 
-			String credit_pymt_pct = null; 
-			String pymt_dur_day_cnt = null; 
-			String timely_pymt_code = null; 
-			String is_cont_relation_code = null; 
-			String is_neg_info_code = null; 
-			String neg_info_desc = null; 
-			String pymt_freq_majority_cnt = null; 
-			String top3_sup_sales_pct = null; 
-			String main_sup_dependency_code = null; 
-			String is_single_sup_code = null; 
-			String additional_info = null; 
-			String is_active = "1"; 
-			String modified_date = null; 
-			String modified_by = null; 
-			String created_date = null; 
-			String created_by = null;
-			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+				String dataId = store.getString("dataId");
+				String business_id = null; 
+				String supplier_payment_code = null; 
+				String supplier_payment_sts = null; 
+				String cash_pymt_pct = null; 
+				String credit_pymt_pct = null; 
+				String pymt_dur_day_cnt = null; 
+				String timely_pymt_code = null; 
+				String is_cont_relation_code = null; 
+				String is_neg_info_code = null; 
+				String neg_info_desc = null; 
+				String pymt_freq_majority_cnt = null; 
+				String top3_sup_sales_pct = null; 
+				String main_sup_dependency_code = null; 
+				String is_single_sup_code = null; 
+				String additional_info = null; 
+				String is_active = "1"; 
+				String modified_date = null; 
+				String modified_by = null; 
+				String created_date = null; 
+				String created_by = MIGRATION;
+				
 				return String.format(  
 						"INSERT INTO dlos_core.dlos_app_sup_payments (dataId, business_id, supplier_payment_code, supplier_payment_sts, cash_pymt_pct, credit_pymt_pct, pymt_dur_day_cnt, timely_pymt_code, is_cont_relation_code, is_neg_info_code, neg_info_desc, pymt_freq_majority_cnt, top3_sup_sales_pct, main_sup_dependency_code, is_single_sup_code, additional_info, is_active, modified_date, modified_by, created_date, created_by) " + 
 						"VALUES(                                      '%s',   '%s',        '%s',                  '%s',                 '%s',          '%s',            '%s',             '%s',             '%s',                  '%s',             '%s',          '%s',                   '%s',               '%s',                     '%s',               '%s',            %s,      '%s',          '%s',        '%s',         '%s');",
@@ -271,63 +268,208 @@ public class DataUsaha implements Mapping {
 		IActions insertDlosAppBuyChecking = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				return null;
+				String dataId = store.getString("dataId");
+				String business_id = null; 
+				String buyer_checking_code = null; 
+				String buyer_checking_desc = null; 
+				String buyer_checking_sts = null; 
+				String check_date = null; 
+				String verification_method = null; 
+				String buyer_name = null; 
+				String buyer_type_code = null; 
+				String business_type_code = null; 
+				String info_provider_name = null; 
+				String info_provider_title = null; 
+				String buyer_address = null; 
+				String buyer_phone_no = null; 
+				String is_owner_pros_debtor = null; 
+				String business_relation_yr_cnt = null; 
+				String goods_services_sold = null; 
+				String goods_services_quality_code = null; 
+				String is_buyer_verified_code = null; 
+				String avg_mo_purchase_amt = null; 
+				String purch_pct = null; 
+				String goods_services_purch_freq_cnt = null; 
+				String is_active = "1"; 
+				String modified_date = null; 
+				String modified_by = null; 
+				String created_date = null; 
+				String created_by = MIGRATION;
+				
+				return String.format( 
+						"INSERT INTO dlos_core.dlos_app_buy_checking (dataId, business_id, buyer_checking_code, buyer_checking_desc, buyer_checking_sts, check_date, verification_method, buyer_name, buyer_type_code, business_type_code, info_provider_name, info_provider_title, buyer_address, buyer_phone_no, is_owner_pros_debtor, business_relation_yr_cnt, goods_services_sold, goods_services_quality_code, is_buyer_verified_code, avg_mo_purchase_amt, purch_pct, goods_services_purch_freq_cnt, is_active, modified_date, modified_by, created_date, created_by) " + 
+						"VALUES(                                      '%s',   '%s',        '%s',                '%s',                '%s',               '%s',       '%s',                '%s',       '%s',            '%s',               '%s',               '%s',                '%s',          '%s',           '%s',                 '%s',                     '%s',                '%s',                        '%s',                   '%s',                '%s',      '%s',                          %s,        '%s',          '%s',        '%s',         '%s');", 
+						dataId, business_id, buyer_checking_code, buyer_checking_desc, buyer_checking_sts, check_date, verification_method, buyer_name, buyer_type_code, business_type_code, info_provider_name, info_provider_title, buyer_address, buyer_phone_no, is_owner_pros_debtor, business_relation_yr_cnt, goods_services_sold, goods_services_quality_code, is_buyer_verified_code, avg_mo_purchase_amt, purch_pct, goods_services_purch_freq_cnt, is_active, modified_date, modified_by, created_date, created_by);
 			}
-		};		
+		}; //BELUM DI BUAT
+		specRows.add(SpecRow.get(insertDlosAppBuyChecking).setSheet(Sheet.InformasiDebitur));		
 	}
 	
-	private void migrasiDlosAppBuyPayment(String lobType) {
+	private void migrasiDlosAppBuyPayment(String lobType) {		
 		IActions insertDlosAppBuyPayment = new IActions() {
 			
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				return null;
+			public String insert(Mapper mapper, Store store, String lobType) throws Exception {				
+				String dataId = store.getString("dataId");
+				String business_id = null; 
+				String buyer_payment_code = null; 
+				String buyer_payment_desc = null; 
+				String buyer_payment_sts = null; 
+				String cash_pymt_pct = null; 
+				String credit_pymt_pct = null; 
+				String pymt_dur_day_cnt = null; 
+				String timely_pymt_code = null; 
+				String is_cont_relation_code = null; 
+				String is_neg_info_code = null; 
+				String neg_info_desc = null; 
+				String top3_sup_sales_pct = null; 
+				String main_buy_dependency_code = null;
+				String additional_info = null; 
+				String is_active = "1"; 
+				String modified_date = null; 
+				String modified_by = null; 
+				String created_date = null; 
+				String created_by = MIGRATION;
+				
+				return String.format( 
+						"INSERT INTO dlos_core.dlos_app_buy_payments (dataId, business_id, buyer_payment_code, buyer_payment_desc, buyer_payment_sts, cash_pymt_pct, credit_pymt_pct, pymt_dur_day_cnt, timely_pymt_code, is_cont_relation_code, is_neg_info_code, neg_info_desc, top3_sup_sales_pct, main_buy_dependency_code, additional_info, is_active, modified_date, modified_by, created_date, created_by) " + 
+						"VALUES(									  '%s',   '%s',        '%s',               '%s',               '%s',              '%s',          '%s',            '%s',             '%s',             '%s',                  '%s',             '%s',          '%s',               '%s',                     '%s',            %s,        '%s',          '%s',        '%s',         '%s');", 
+						dataId, business_id, buyer_payment_code, buyer_payment_desc, buyer_payment_sts, cash_pymt_pct, credit_pymt_pct, pymt_dur_day_cnt, timely_pymt_code, is_cont_relation_code, is_neg_info_code, neg_info_desc, top3_sup_sales_pct, main_buy_dependency_code, additional_info, is_active, modified_date, modified_by, created_date, created_by);
 			}
-		};		
+		}; //BELUM DI BUAT
+		specRows.add(SpecRow.get(insertDlosAppBuyPayment).setSheet(Sheet.InformasiDebitur));		
 	}
 	
 	private void migrasiDlosAppCovenantHeader(String lobType) {
 		IActions insertDlosAppCovenantHeader = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				return null;
+				String dataId = store.getString("dataId");
+				String business_id = null; 
+				String cov_header_code = null; 
+				String cov_header_sts = null; 
+				String cov_header_detail_code = null; 
+				String cov_header_monitored_by_code = null; 
+				String cov_header_freq_code = null; 
+				String cov_header_existing_condition_code = null; 
+				String cov_header_desc = null; 
+				String is_active = "1"; 
+				String modified_date = null; 
+				String modified_by = null; 
+				String created_date = null; 
+				String created_by = MIGRATION;
+				
+				return String.format(
+						"INSERT INTO dlos_core.dlos_app_covenant_header (dataId, business_id, cov_header_code, cov_header_sts, cov_header_detail_code, cov_header_monitored_by_code, cov_header_freq_code, cov_header_existing_condition_code, cov_header_desc, is_active, modified_date, modified_by, created_date, created_by) " + 
+						"VALUES(                                         '%s',   '%s',        '%s',            '%s',           '%s',                   '%s',                         '%s',                 '%s',                               '%s',            %s,        '%s',          '%s',        '%s',         '%s');", 
+						dataId, business_id, cov_header_code, cov_header_sts, cov_header_detail_code, cov_header_monitored_by_code, cov_header_freq_code, cov_header_existing_condition_code, cov_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
-		};		
+		}; //BELUM DI BUAT
+		specRows.add(SpecRow.get(insertDlosAppCovenantHeader).setSheet(Sheet.InformasiDebitur));
 	}
 	
 	private void migrasiDlosAppPrecedentHeader(String lobType) {
 		IActions insertDlosAppPrecedentHeader = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				return null;
+				String dataId = store.getString("dataId");
+				String business_id = null;
+				String precedent_header_code = null; 
+				String precedent_header_sts = null; 
+				String precedent_header_detail_code = null; 
+				String precedent_header_monitored_by_code = null; 
+				String precedent_header_existing_condition_code = null; 
+				String precedent_header_desc = null; String is_active = null; 
+				String modified_date = null; 
+				String modified_by = null; 
+				String created_date = null; 
+				String created_by = MIGRATION;
+				
+				return String.format( 
+						"INSERT INTO dlos_core.dlos_app_precedent_header(dataId, business_id, precedent_header_code, precedent_header_sts, precedent_header_detail_code, precedent_header_monitored_by_code, precedent_header_existing_condition_code, precedent_header_desc, is_active, modified_date, modified_by, created_date, created_by) "+ 
+						"VALUES(                                         '%s',   '%s',        '%s',                  '%s',                 '%s',                         '%s',                               '%s',                                     '%s',                  %s,        '%s',          '%s',        '%s',         '%s');", 
+						dataId, business_id, precedent_header_code, precedent_header_sts, precedent_header_detail_code, precedent_header_monitored_by_code, precedent_header_existing_condition_code, precedent_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
-		};		
+		}; //BELUM DI BUAT
+		specRows.add(SpecRow.get(insertDlosAppPrecedentHeader).setSheet(Sheet.InformasiDebitur));	
 	}
 	
 	private void migrasiDlosAppDrawdownConditionHeader(String lobType) {
 		IActions insertDlosAppDrawdownConditionHeader = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				return null;
+				String dataId = store.getString("dataId");
+				String business_id = null; 
+				String drawdown_header_code = null; 
+				String drawdown_header_sts = null; 
+				String drawdown_header_detail_code = null; 
+				String drawdown_header_monitored_by_code = null; 
+				String drawdown_header_existing_condition_code = null; 
+				String drawdown_header_desc = null;
+				String is_active = "1"; 
+				String modified_date = null; 
+				String modified_by = null; 
+				String created_date = null; 
+				String created_by = MIGRATION;
+				
+				return String.format( 
+						"INSERT INTO dlos_core.dlos_app_drawdown_condition_header(dataId, business_id, drawdown_header_code, drawdown_header_sts, drawdown_header_detail_code, drawdown_header_monitored_by_code, drawdown_header_existing_condition_code, drawdown_header_desc, is_active, modified_date, modified_by, created_date, created_by)" + 
+						"VALUES(                                                  '%s',   '%s',        '%s',                 '%s',                '%s',                        '%s',                             '%s',                                     '%s',                 %s,        '%s',          '%s',        '%s',         '%s');", 
+						dataId, business_id, drawdown_header_code, drawdown_header_sts, drawdown_header_detail_code, drawdown_header_monitored_by_code, drawdown_header_existing_condition_code, drawdown_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
-		};		
+		}; //BELUM DI BUAT
+		specRows.add(SpecRow.get(insertDlosAppDrawdownConditionHeader).setSheet(Sheet.InformasiDebitur));	
 	}
 	
 	private void migrasiDlosAppOtherConditionExtHeader(String lobType) {
 		IActions insertDlosAppOtherConditionExtHeader = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				return null;
+				String dataId = store.getString("dataId");
+				String business_id = null; 
+				String other_condition_ext_header_code = null;
+				String other_condition_ext_header_sts = null;
+				String other_condition_ext_header_detail_code = null; 
+				String other_condition_ext_header_existing_condition_code = null; 
+				String other_condition_ext_header_desc = null; 
+				String is_active = "1"; 
+				String modified_date = null;
+				String modified_by = null;
+				String created_date = null;
+				String created_by = MIGRATION;
+				
+				return String.format(  
+						"INSERT INTO dlos_core.dlos_app_other_condition_ext_header (dataId, business_id, other_condition_ext_header_code, other_condition_ext_header_sts, other_condition_ext_header_detail_code, other_condition_ext_header_existing_condition_code, other_condition_ext_header_desc, is_active, modified_date, modified_by, created_date, created_by) " + 
+						"VALUES(                                                    '%s',   '%s',        '%s',                            '%s',                           '%s',                                   '%s',                                               '%s',                            %s,        '%s',          '%s',        '%s',         '%s');", 
+						dataId, business_id, other_condition_ext_header_code, other_condition_ext_header_sts, other_condition_ext_header_detail_code, other_condition_ext_header_existing_condition_code, other_condition_ext_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
-		};		
+		}; //BELUM DI BUAT
+		specRows.add(SpecRow.get(insertDlosAppOtherConditionExtHeader).setSheet(Sheet.InformasiDebitur));		
 	}
 	
 	private void migrasiDlosAppOtherConditionIntHeader(String lobType) {
 		IActions insertDlosAppOtherConditionIntHeader = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
-				return null;
+				String dataId = store.getString("dataId");
+				String business_id = null; 
+				String other_condition_int_header_code = null; 
+				String other_condition_int_header_sts = null; 
+				String other_condition_int_header_detail_code = null; 
+				String other_condition_int_header_existing_condition_code = null; 
+				String other_condition_int_header_desc = null; 
+				String is_active = "1"; 
+				String modified_date = null; 
+				String modified_by = null; 
+				String created_date = null; 
+				String created_by = MIGRATION;
+				
+				return String.format( 
+						"INSERT INTO dlos_core.dlos_app_other_condition_int_header(dataId, business_id, other_condition_int_header_code, other_condition_int_header_sts, other_condition_int_header_detail_code, other_condition_int_header_existing_condition_code, other_condition_int_header_desc, is_active, modified_date, modified_by, created_date, created_by) " + 
+						"VALUES(                                                   '%s',   '%s',        '%s',                            '%s',                           '%s',                                   '%s',                                               '%s',                            %s,        '%s',          '%s',        '%s',         '%s');", 
+						dataId, business_id, other_condition_int_header_code, other_condition_int_header_sts, other_condition_int_header_detail_code, other_condition_int_header_existing_condition_code, other_condition_int_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
-		};
+		}; //BELUM DI BUAT
+		specRows.add(SpecRow.get(insertDlosAppOtherConditionIntHeader).setSheet(Sheet.InformasiDebitur));		
 	}
 
 
