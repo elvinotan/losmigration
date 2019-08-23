@@ -194,7 +194,7 @@ public class InformasiDebitur implements Mapping {
 						APPID, dataId, processStatus, processCode, stateCode, isActive, modifiedDate, modifiedBy, createdDate, createdBy);
 			}
 		};
-		specRows.add(SpecRow.get(insertDlosLoanProcess).setSheet(Sheet.InformasiDebitur).xls("appId", "J7").fix("processStatus", "1").fix("stateCode", "DRAFT").xls("createdDate", "J4"));
+		specRows.add(SpecRow.get(insertDlosLoanProcess).setSheet(Sheet.InformasiDebitur).xls("appId", "J7").fix("processStatus", "1").xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppContact(String lobType) {

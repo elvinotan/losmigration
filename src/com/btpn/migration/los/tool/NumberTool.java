@@ -12,11 +12,12 @@ public class NumberTool {
 	}
 	
 	public static String extractNumberOnly(String data) {
+		if (data == null) return null;
 		String digit = "";
 		
 		char[] chars = data.toCharArray();
 		for (Character c : chars) {
-			if (Character.isDigit(c)) {
+			if (Character.isDigit(c) || c == '.') {
 				digit += c;
 			}
 		}

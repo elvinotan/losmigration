@@ -178,6 +178,8 @@ public class Store {
 	}
 	
 	private String clear(String data) {
+		if (data == null) return null;
+		
 		String clearData = data.replaceAll(" ", "") // Hapus space
 							.replaceAll("-", "") 	// Hapus -
 							.replaceAll(",", "") 	// Hapus ,
