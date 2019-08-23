@@ -172,6 +172,7 @@ public class TujuanDanFasilitas implements Mapping {
 					.xls("ttl_subm_amt", "F108")
 					.xls("ttl_ul_cnt", "H190")
 					.xls("ttl_ul_gt_80pct_cnt", "H191")
+					.pk("fac_id")
 					);
 		}
 		
@@ -219,6 +220,7 @@ public class TujuanDanFasilitas implements Mapping {
 					.xls("ttl_subm_amt", "F108") //F108
 					.xls("ttl_ul_cnt", "G188") //H190
 					.xls("ttl_ul_gt_80pct_cnt", "G189") //H191
+					.pk("fac_id")
 					);
 		}
 				
@@ -232,7 +234,7 @@ public class TujuanDanFasilitas implements Mapping {
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				
 				String dataId = store.getString("dataId");
-				String fac_id = null; 
+				String fac_id = store.getString("fac_id");
 				String fac_dtl_code = null; 
 				String fac_dtl_desc = null;
 				String fac_dtl_sts = null;
@@ -323,7 +325,7 @@ public class TujuanDanFasilitas implements Mapping {
 			@Override
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId"); 
-				String fac_id = null; 
+				String fac_id = store.getString("fac_id");
 				String fac_oth_code = null;
 				String fac_oth_desc = null;
 				String fac_oth_sts = null;
@@ -342,7 +344,10 @@ public class TujuanDanFasilitas implements Mapping {
 				
 				String principal_amt = mapper.getString("principal_amt");
 				String os_amt = mapper.getString("os_amt");
+				
 				String start_date = DateTool.getYMD(mapper.getString("start_date"));
+				if (start_date != null && "-".equals(start_date.trim())) start_date = null;
+				
 				String customer_name = mapper.getString("customer_name");
 				
 				String coll_type = mapper.getString("coll_type");
