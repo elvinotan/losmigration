@@ -16,13 +16,21 @@ public class Store {
 	private Map<String, Region> regionMap = new HashMap<String, Region>();
 	private Map<String, Region> branchMap = new HashMap<String, Region>();
 	
+	public void print(String group) {
+		for (String key : this.lookupMap.keySet()) {
+			if (key.startsWith(group+"~")) {
+				System.out.println("- Key "+key);
+			}
+		}
+	}
+	
 	public void add(Region region) {
 		this.regionMap.put(clear(region.getRegion()), region);
 		this.branchMap.put(clear(region.getBranch()), region);
 	}
 	
 	public void add(Lookup lookup) {
-		this.lookupMap.put(lookup.getGroup()+"~"+clear(lookup.getKey()), lookup);
+//		this.lookupMap.put(lookup.getGroup()+"~"+clear(lookup.getKey()), lookup);
 		this.lookupMap.put(lookup.getGroup()+"~"+clear(lookup.getDescription()), lookup);
 	}
 	
@@ -180,7 +188,8 @@ public class Store {
 	private String clear(String data) {
 		if (data == null) return null;
 		
-		String clearData = data.replaceAll(" ", "") // Hapus space
+		String clearData = data.replaceAll(" and ", " & ") 	// Hapus -
+							.replaceAll(" ", "") // Hapus space
 							.replaceAll("-", "") 	// Hapus -
 							.replaceAll(",", "") 	// Hapus ,
 							.toUpperCase();			// Buat jadi huruf besar
