@@ -81,7 +81,7 @@ public class Main extends AbstractMain {
 		main.runMapping(new File("C:/Users/19057559/workspaces/java/losmigration/input"));
 		
 		// Run Untuk Migration
-//		main.runInitilize(new File("C:/Users/19057559/workspaces/java/losmigration/input/Proposal"));
+//		main.runInitilize(new File("C:/Users/19057559/workspaces/java/Proposal"));
 //		main.runMigration();
 	}
 }
