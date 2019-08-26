@@ -345,8 +345,15 @@ public class TujuanDanFasilitas implements Mapping {
 				String principal_amt = mapper.getString("principal_amt");
 				String os_amt = mapper.getString("os_amt");
 				
-				String start_date = DateTool.getYMD(mapper.getString("start_date"));
-				if (start_date != null && "-".equals(start_date.trim())) start_date = null;
+				String start_date = null;
+				if (LobType.isSmes(lobType)) {
+					// Cell Type bukan date jadi untuk sementara di set null saja, daripada data yang masuk rusak
+				}
+				
+				if (LobType.isSmel(lobType)) {
+					start_date = DateTool.getYMD(mapper.getString("start_date"));
+					if (start_date != null && "-".equals(start_date.trim())) start_date = null;
+				}
 				
 				String customer_name = mapper.getString("customer_name");
 				

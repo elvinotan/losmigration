@@ -267,7 +267,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {				
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id");
 				String business_oth_code = null;
 				String business_oth_sts = null;
 				String other_business_type_code = null; 
@@ -275,8 +275,8 @@ public class DataUsaha implements Mapping {
 				String company_period_cnt = null;
 				String is_active = "1";
 				String modified_date = null;
-				String modified_by = null;
-				String created_date = null;
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate"));
 				String created_by = MIGRATION;
 				
 				return String.format( 
@@ -285,7 +285,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, business_oth_code, business_oth_sts, other_business_type_code, other_business_pct, company_period_cnt, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppBusinessOth).setSheet(Sheet.InformasiDebitur));
+		specRows.add(SpecRow.get(insertDlosAppBusinessOth).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppBusinessNeighbour(String lobType) {
@@ -293,7 +295,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String business_neighbour_code = null; 
 				String business_neighbour_sts = null;
 				String verification_method_code = null;
@@ -307,8 +309,8 @@ public class DataUsaha implements Mapping {
 				String neg_info_pros_debtor_code = null;
 				String is_active = "1";
 				String modified_date = null;
-				String modified_by = null;
-				String created_date = null;
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate"));
 				String created_by = MIGRATION;				
 				
 				return String.format( 
@@ -317,37 +319,63 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, business_neighbour_code, business_neighbour_sts, verification_method_code, neighbour_name, neighbour_category_code, phone_no, well_known_pros_debtor_code, often_talking_pros_debtor_code, marriage_sts_pros_debtor_code, business_loc_pros_debtor_code, neg_info_pros_debtor_code, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppBusinessNeighbour).setSheet(Sheet.InformasiDebitur));
+		specRows.add(SpecRow.get(insertDlosAppBusinessNeighbour).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppSupChecking(String lobType) {
 		IActions insertDlosAppSupChecking = new IActions() {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+				String supplier_name = mapper.getString("supplier_name"); 
+				if (supplier_name == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
+				
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String supplier_checking_code = null; 
-				String supplier_checking_sts = null; 
-				String check_date = null; 
-				String verification_method = null; 
-				String supplier_name = null; 
-				String business_type = null; 
-				String info_provider_name = null; 
-				String info_provider_title = null; 
-				String supplier_address = null; 
-				String supplier_phone_no = null; 
+				String supplier_checking_sts = null;
+				String check_date = null;
+				
+				if (LobType.isSmes(lobType)) {
+					// Cell Type bukan date jadi untuk sementara di set null saja, daripada data yang masuk rusak
+				}
+				if (LobType.isSmel(lobType)) {
+					check_date = DateTool.getYMD(mapper.getString("check_date"));  // Untuk samall bermsalah krn dia hanya entry manual bukan cell date	
+				}
+				
+				String verification_method = null;				
+				String business_type = mapper.getString("business_type"); 
+				String info_provider_name = mapper.getString("info_provider_name"); 
+				String info_provider_title = mapper.getString("info_provider_title"); 
+				String supplier_address = mapper.getString("supplier_address"); 
+				String supplier_phone_no = mapper.getString("supplier_phone_no"); 
 				String is_owner_pros_debtor = null; 
-				String business_relation_yr_cnt = null; 
-				String goods_services_sold = null; 
-				String is_supplier_verified_code = null; 
-				String avg_mo_sales_amt = null; 
-				String sales_pct = null; 
-				String sales_freq_code = null; 
-				String payment_freq_code = null; 
+				String business_relation_yr_cnt = mapper.getString("business_relation_yr_cnt"); 
+				String goods_services_sold = mapper.getString("goods_services_sold"); 
+				
+				String is_supplier_verified_code = mapper.getString("is_supplier_verified_code");
+				Lookup lis_supplier_verified_code = store.getLookupByDescription(Lookup.YesNo, is_supplier_verified_code);
+				is_supplier_verified_code = (lis_supplier_verified_code == null) ? null : lis_supplier_verified_code.getKey();
+				
+				String avg_mo_sales_amt = mapper.getString("avg_mo_sales_amt"); 
+				String sales_pct = mapper.getString("sales_pct"); 
+				if (!StringTool.isEmpty(sales_pct)) {
+					sales_pct = NumberTool.format(Double.valueOf(sales_pct) * 100);
+				}
+				
+				String sales_freq_code = mapper.getString("sales_freq_code");
+				Lookup lsales_freq_code = store.getLookupByDescription(Lookup.SalesFreq, sales_freq_code);
+				sales_freq_code = (lsales_freq_code == null) ? null : lsales_freq_code.getKey();
+				
+				String payment_freq_code = mapper.getString("payment_freq_code");
+				Lookup lpayment_freq_code = store.getLookupByDescription(Lookup.PaymentFreq, payment_freq_code);
+				payment_freq_code = (lpayment_freq_code == null) ? null : lpayment_freq_code.getKey();
+				
 				String is_active = "1"; 
 				String modified_date = null; 
-				String modified_by = null; 
-				String created_date = null; 
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
 				String created_by = MIGRATION;
 				
 				return String.format( 
@@ -355,8 +383,71 @@ public class DataUsaha implements Mapping {
 						"VALUES(                                      '%s',   '%s',        '%s',                   '%s',                  '%s',       '%s',                '%s',          '%s',          '%s',               '%s',                '%s',             '%s',              '%s',                 '%s',                     '%s',                '%s',                      '%s',             '%s',      '%s',            '%s',              %s,        '%s',          '%s',        '%s',         '%s');", 
 						dataId, business_id, supplier_checking_code, supplier_checking_sts, check_date, verification_method, supplier_name, business_type, info_provider_name, info_provider_title, supplier_address, supplier_phone_no, is_owner_pros_debtor, business_relation_yr_cnt, goods_services_sold, is_supplier_verified_code, avg_mo_sales_amt, sales_pct, sales_freq_code, payment_freq_code, is_active, modified_date, modified_by, created_date, created_by);
 			}
-		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppSupChecking).setSheet(Sheet.InformasiDebitur));
+		}; 
+		
+		if (LobType.isSmes(lobType)) {
+			for (int i = 0; i < 5; i++) {
+				int ctr = 199+i;
+				int ctrBusinessType = 13 + (26*i);
+				int ctrInfoProviderTitle = 15 + (26*i);
+				int ctrIsSupplierVerifiedCode = 22 + (26*i);
+				int ctrPaymentFreqCode = 26 + (26*i);
+				int ctrSalesFreqCode = 25 + (26*i);
+				int ctrSalesPct = 24 + (26*i);
+				
+				specRows.add(SpecRow.get(insertDlosAppSupChecking).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("avg_mo_sales_amt", "J"+ctr)
+					.xls("business_relation_yr_cnt", "N"+ctr)
+					.xls("goods_services_sold", "E"+ctr)
+					.xls("info_provider_name", "G"+ctr)
+					.xls("supplier_address", "B"+ctr)
+					.xls("supplier_name", "A"+ctr)
+					.xls("supplier_phone_no", "I"+ctr)
+					.setSheet(Sheet.SupplierChecking)
+					.xls("business_type", "C"+ctrBusinessType)
+					.xls("check_date", "C5")
+					.xls("info_provider_title", "C"+ctrInfoProviderTitle)
+					.xls("is_supplier_verified_code", "C"+ctrIsSupplierVerifiedCode)
+					.xls("payment_freq_code", "C"+ctrPaymentFreqCode)
+					.xls("sales_freq_code", "C"+ctrSalesFreqCode)
+					.xls("sales_pct", "C"+ctrSalesPct)
+					);
+			}
+		}
+		
+		if (LobType.isSmel(lobType)) {
+			for (int i = 0; i < 5; i++) {
+				int ctr = 197+i;
+				int ctrBusinessType = 18+ (26*i);
+				int ctrInfoProviderTitle = 20+ (26*i);
+				int ctrIsSupplierVerifiedCode = 27+ (26*i);
+				int ctrPaymentFreqCode = 31+ (26*i);
+				int ctrSalesFreqCode = 30 + (26*i);
+				int ctrSalesPct = 29 + (26*i);
+				
+				specRows.add(SpecRow.get(insertDlosAppSupChecking).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("avg_mo_sales_amt", "J"+ctr)
+					.xls("business_relation_yr_cnt", "N"+ctr)
+					.xls("goods_services_sold", "E"+ctr)
+					.xls("info_provider_name", "G"+ctr)
+					.xls("supplier_address", "B"+ctr)
+					.xls("supplier_name", "A"+ctr)
+					.xls("supplier_phone_no", "I"+ctr)
+					.setSheet(Sheet.SupplierChecking)
+					.xls("business_type", "C"+ctrBusinessType)
+					.xls("check_date", "C5")
+					.xls("info_provider_title", "C"+ctrInfoProviderTitle)
+					.xls("is_supplier_verified_code", "C"+ctrIsSupplierVerifiedCode)
+					.xls("payment_freq_code", "C"+ctrPaymentFreqCode)
+					.xls("sales_freq_code", "C"+ctrSalesFreqCode)
+					.xls("sales_pct", "C"+ctrSalesPct)
+					);
+			}
+		}
 	} 
 	
 	private void migrasiDlosAppSupPayments(String lobType) {
@@ -364,7 +455,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String supplier_payment_code = null; 
 				String supplier_payment_sts = null; 
 				String cash_pymt_pct = null; 
@@ -381,8 +472,8 @@ public class DataUsaha implements Mapping {
 				String additional_info = null; 
 				String is_active = "1"; 
 				String modified_date = null; 
-				String modified_by = null; 
-				String created_date = null; 
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
 				String created_by = MIGRATION;
 				
 				return String.format(  
@@ -391,7 +482,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, supplier_payment_code, supplier_payment_sts, cash_pymt_pct, credit_pymt_pct, pymt_dur_day_cnt, timely_pymt_code, is_cont_relation_code, is_neg_info_code, neg_info_desc, pymt_freq_majority_cnt, top3_sup_sales_pct, main_sup_dependency_code, is_single_sup_code, additional_info, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppSupPayments).setSheet(Sheet.InformasiDebitur));
+		specRows.add(SpecRow.get(insertDlosAppSupPayments).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppBuyChecking(String lobType) {
@@ -399,7 +492,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String buyer_checking_code = null; 
 				String buyer_checking_desc = null; 
 				String buyer_checking_sts = null; 
@@ -422,8 +515,8 @@ public class DataUsaha implements Mapping {
 				String goods_services_purch_freq_cnt = null; 
 				String is_active = "1"; 
 				String modified_date = null; 
-				String modified_by = null; 
-				String created_date = null; 
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
 				String created_by = MIGRATION;
 				
 				return String.format( 
@@ -432,7 +525,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, buyer_checking_code, buyer_checking_desc, buyer_checking_sts, check_date, verification_method, buyer_name, buyer_type_code, business_type_code, info_provider_name, info_provider_title, buyer_address, buyer_phone_no, is_owner_pros_debtor, business_relation_yr_cnt, goods_services_sold, goods_services_quality_code, is_buyer_verified_code, avg_mo_purchase_amt, purch_pct, goods_services_purch_freq_cnt, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppBuyChecking).setSheet(Sheet.InformasiDebitur));		
+		specRows.add(SpecRow.get(insertDlosAppBuyChecking).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppBuyPayment(String lobType) {		
@@ -440,7 +535,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {				
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String buyer_payment_code = null; 
 				String buyer_payment_desc = null; 
 				String buyer_payment_sts = null; 
@@ -456,8 +551,8 @@ public class DataUsaha implements Mapping {
 				String additional_info = null; 
 				String is_active = "1"; 
 				String modified_date = null; 
-				String modified_by = null; 
-				String created_date = null; 
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
 				String created_by = MIGRATION;
 				
 				return String.format( 
@@ -466,7 +561,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, buyer_payment_code, buyer_payment_desc, buyer_payment_sts, cash_pymt_pct, credit_pymt_pct, pymt_dur_day_cnt, timely_pymt_code, is_cont_relation_code, is_neg_info_code, neg_info_desc, top3_sup_sales_pct, main_buy_dependency_code, additional_info, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppBuyPayment).setSheet(Sheet.InformasiDebitur));		
+		specRows.add(SpecRow.get(insertDlosAppBuyPayment).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppCovenantHeader(String lobType) {
@@ -474,7 +571,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String cov_header_code = null; 
 				String cov_header_sts = null; 
 				String cov_header_detail_code = null; 
@@ -484,8 +581,8 @@ public class DataUsaha implements Mapping {
 				String cov_header_desc = null; 
 				String is_active = "1"; 
 				String modified_date = null; 
-				String modified_by = null; 
-				String created_date = null; 
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
 				String created_by = MIGRATION;
 				
 				return String.format(
@@ -494,7 +591,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, cov_header_code, cov_header_sts, cov_header_detail_code, cov_header_monitored_by_code, cov_header_freq_code, cov_header_existing_condition_code, cov_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppCovenantHeader).setSheet(Sheet.InformasiDebitur));
+		specRows.add(SpecRow.get(insertDlosAppCovenantHeader).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppPrecedentHeader(String lobType) {
@@ -502,7 +601,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
-				String business_id = null;
+				String business_id = store.getString("business_id");
 				String precedent_header_code = null; 
 				String precedent_header_sts = null; 
 				String precedent_header_detail_code = null; 
@@ -510,8 +609,8 @@ public class DataUsaha implements Mapping {
 				String precedent_header_existing_condition_code = null; 
 				String precedent_header_desc = null; String is_active = null; 
 				String modified_date = null; 
-				String modified_by = null; 
-				String created_date = null; 
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
 				String created_by = MIGRATION;
 				
 				return String.format( 
@@ -520,7 +619,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, precedent_header_code, precedent_header_sts, precedent_header_detail_code, precedent_header_monitored_by_code, precedent_header_existing_condition_code, precedent_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppPrecedentHeader).setSheet(Sheet.InformasiDebitur));	
+		specRows.add(SpecRow.get(insertDlosAppPrecedentHeader).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppDrawdownConditionHeader(String lobType) {
@@ -528,7 +629,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String drawdown_header_code = null; 
 				String drawdown_header_sts = null; 
 				String drawdown_header_detail_code = null; 
@@ -537,8 +638,8 @@ public class DataUsaha implements Mapping {
 				String drawdown_header_desc = null;
 				String is_active = "1"; 
 				String modified_date = null; 
-				String modified_by = null; 
-				String created_date = null; 
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
 				String created_by = MIGRATION;
 				
 				return String.format( 
@@ -547,7 +648,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, drawdown_header_code, drawdown_header_sts, drawdown_header_detail_code, drawdown_header_monitored_by_code, drawdown_header_existing_condition_code, drawdown_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppDrawdownConditionHeader).setSheet(Sheet.InformasiDebitur));	
+		specRows.add(SpecRow.get(insertDlosAppDrawdownConditionHeader).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppOtherConditionExtHeader(String lobType) {
@@ -555,7 +658,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String other_condition_ext_header_code = null;
 				String other_condition_ext_header_sts = null;
 				String other_condition_ext_header_detail_code = null; 
@@ -563,8 +666,8 @@ public class DataUsaha implements Mapping {
 				String other_condition_ext_header_desc = null; 
 				String is_active = "1"; 
 				String modified_date = null;
-				String modified_by = null;
-				String created_date = null;
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate"));
 				String created_by = MIGRATION;
 				
 				return String.format(  
@@ -573,7 +676,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, other_condition_ext_header_code, other_condition_ext_header_sts, other_condition_ext_header_detail_code, other_condition_ext_header_existing_condition_code, other_condition_ext_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppOtherConditionExtHeader).setSheet(Sheet.InformasiDebitur));		
+		specRows.add(SpecRow.get(insertDlosAppOtherConditionExtHeader).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 	
 	private void migrasiDlosAppOtherConditionIntHeader(String lobType) {
@@ -581,7 +686,7 @@ public class DataUsaha implements Mapping {
 			
 			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
-				String business_id = null; 
+				String business_id = store.getString("business_id"); 
 				String other_condition_int_header_code = null; 
 				String other_condition_int_header_sts = null; 
 				String other_condition_int_header_detail_code = null; 
@@ -589,8 +694,8 @@ public class DataUsaha implements Mapping {
 				String other_condition_int_header_desc = null; 
 				String is_active = "1"; 
 				String modified_date = null; 
-				String modified_by = null; 
-				String created_date = null; 
+				String modified_by = mapper.getString("appId");
+				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
 				String created_by = MIGRATION;
 				
 				return String.format( 
@@ -599,7 +704,9 @@ public class DataUsaha implements Mapping {
 						dataId, business_id, other_condition_int_header_code, other_condition_int_header_sts, other_condition_int_header_detail_code, other_condition_int_header_existing_condition_code, other_condition_int_header_desc, is_active, modified_date, modified_by, created_date, created_by);
 			}
 		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppOtherConditionIntHeader).setSheet(Sheet.InformasiDebitur));		
+		specRows.add(SpecRow.get(insertDlosAppOtherConditionIntHeader).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4"));
 	}
 
 
