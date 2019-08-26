@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -47,13 +49,19 @@ public class AbstractMain {
 		PreparedStatement preStmt = null;
 		try {
 			Connection conn = DbConnection.get().getConnection();
-			for (Mapping m : mapping) {
+			List<Mapping> newMapping = new ArrayList<Mapping>();
+			newMapping.addAll(mapping);
+			
+			Collections.reverse(newMapping);
+			for (Mapping m : newMapping) {
 				for (String sql : m.clearTable()) {
 					log.debug(sql);
 					preStmt = conn.prepareStatement(sql);
 					preStmt.execute();
 				}
 			}
+			newMapping.clear();
+			newMapping = null;
 		}catch(Exception e) {
 			log.error(e.getMessage(), e);			
 		}finally {
@@ -124,7 +132,7 @@ public class AbstractMain {
 	}
 	
 	
-	private void execInsert(String insertStms, SpecRow specRow, Store store) {
+	private void execInsert(String filename, String mapping, String process, String insertStms, SpecRow specRow, Store store) {
 		PreparedStatement preStmt = null;
 		ResultSet rs = null;
 		
@@ -135,7 +143,7 @@ public class AbstractMain {
 			boolean execute = preStmt.execute();
 			preStmt.close();
 		}catch(Exception e) {
-			log.error(e.getMessage(), e);
+			log.error(filename+"."+mapping+"."+process+" "+e.getMessage());
 		}finally {
 			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
 		}
@@ -242,10 +250,18 @@ public class AbstractMain {
 		for (Mapping m : mapping) {
 			for (SpecRow specRow : m.getSpecRows(lobType)) {
 				mapper.setSpecCells(specRow.getSpecCells());
-				String sql = specRow.getAction().insert(mapper, store, lobType);
-				if (sql != null) {
-					sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
-					execInsert(sql, specRow, store);
+				try {
+					String[] arr = specRow.getAction().insert(mapper, store, lobType);
+					if (arr != null) { // arr null artinya datanya kosong,  
+						String process = arr[0];
+						String sql = arr[1];
+						
+						sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
+						execInsert(file.getName(), m.getClass().getSimpleName(), process, sql, specRow, store);
+					}
+				}catch(Exception e) {
+					e.printStackTrace();
+					log.error(e.getMessage(), e);
 				}
 			}
 		}

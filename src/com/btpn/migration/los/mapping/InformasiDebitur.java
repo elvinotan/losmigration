@@ -63,7 +63,7 @@ public class InformasiDebitur implements Mapping {
 		IActions insertDlosAppDetail = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String branchCode = mapper.getString("branchCode"); // Branch Code, berasal dari Region.java/ Hierarchy LOS.xlsx
 				Region rBranchCode = store.getBranchByDescription(branchCode);
 				branchCode = (rBranchCode == null) ?  null : rBranchCode.getBranchCode();
@@ -71,9 +71,12 @@ public class InformasiDebitur implements Mapping {
 				String salesSquadName = (rBranchCode == null) ? null : rBranchCode.getPmsCode(); // SalesSqualName berasal dari Region.java / Hierarchy LOS.xlsx
 				String areaName = null; // Belum
 				
-				String regionName = mapper.getString("regionName").toUpperCase(); // RegionName berasal dari Region.java / Hierarchy LOS.xlsx
-				Region region = store.getRegionByDescription(regionName);
-				regionName = (region == null) ? null : region.getRegion();
+				String regionName = mapper.getString("regionName");
+				if (regionName != null) {
+					regionName = regionName.toUpperCase(); // RegionName berasal dari Region.java / Hierarchy LOS.xlsx
+					Region region = store.getRegionByDescription(regionName);
+					regionName = (region == null) ? null : region.getRegion();
+				}
 				
 				String debiturName = mapper.getString("debiturName");
 				String aliasName = null; // Belum
@@ -105,9 +108,11 @@ public class InformasiDebitur implements Mapping {
 				sourceOfDebtor = (lsourceOfDebtor == null) ? null : lsourceOfDebtor.getKey();
 				
 				String debiturType = mapper.getString("debiturType"); // DebiturType berasal dari Lookup.DebiturType
-				String debiturTypeDesc = debiturType.split("_")[1].trim();
-				Lookup ldebiturType = store.getLookupByDescription(Lookup.DebiturType, debiturTypeDesc);
-				debiturType = (ldebiturType == null) ? null : ldebiturType.getKey();
+				if (debiturType != null) {
+					String debiturTypeDesc = debiturType.split("_")[1].trim();
+					Lookup ldebiturType = store.getLookupByDescription(Lookup.DebiturType, debiturTypeDesc);
+					debiturType = (ldebiturType == null) ? null : ldebiturType.getKey();
+				}
 				
 				String gender = null; // Belum
 				String maritalStatus = null; // Belum
@@ -148,14 +153,18 @@ public class InformasiDebitur implements Mapping {
 				String KTPRTRWCode = null; // Belum
 				String currentAddressRTRWCode = null; // Belum
 
-				return String.format(
+				return new String[] {
+						"migrasiDlosAppDetail",
+				        
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_detail (`branchCode`, `salesSquadName`, `areaName`, `regionName`, `debiturName`, `aliasName`, `KTPNumber`, `KTPExpDate`, `NPWPNumber`, `placeOfBirth`, `dateOfBirth`, `religionCode`, `nationalityCode`, `residenceStatus`, `educationStatus`, `mobileNumber`, email, `KTPAddress`, `KTPPostalCode`, `KTPCityCode`, `KTPSubDistrict`, `KTPDistrict`, `currentAddress`, `currentAddressPostalCode`, `currentAddressSubDistrict`, `currentAddressDistrict`, `motherMaidenName`, `btpnRelationCode`, `sourceOfDebtor`, `debiturType`, gender, `maritalStatus`, `spouseName`, `customerType`, `isActive`, `modifiedDate`, `modifiedBy`, `createdDate`, `createdBy`, `businessAddress`, `businessCityCode`, `businessProvinceCode`, `businessPostalCode`, `businessPhoneCode`, `currentAddressCityCode`, cif, `rmName`, `rmCode`, `acmName`, `acmNik`, `btpnRelationDate`, `programProduct`, information, `managementRelation`, `managementChange`, `KTPRTRWCode`, `currentAddressRTRWCode`) "
 								+ "VALUES(						'%s', 		  '%s',             '%s',       '%s',         '%s',          '%s',        '%s',        '%s',         '%s',         '%s',           '%s',          '%s',           '%s',              '%s',              '%s',              '%s',           '%s',  '%s',         '%s',            '%s',          '%s',             '%s',          '%s',             '%s',                       '%s',                        '%s',                     '%s',               '%s',               '%s',             '%s',          '%s',   '%s',            '%s',         '%s',           %s,         '%s',           '%s',         '%s',          '%s',        '%s',              '%s',               '%s',                   '%s',                 '%s',                '%s',                     '%s', '%s',    '%s',     '%s',      '%s',     '%s',               '%s',             '%s',        '%s',                 %s,                 '%s',          '%s');",
 						branchCode, salesSquadName, areaName, regionName, debiturName, aliasName, KTPNumber, KTPExpDate, NPWPNumber, placeOfBirth, dateOfBirth, religionCode, nationalityCode, residenceStatus,
 						educationStatus, mobileNumber, email, KTPAddress, KTPPostalCode, KTPCityCode, KTPSubDistrict, KTPDistrict, currentAddress, currentAddressPostalCode, currentAddressSubDistrict,
 						currentAddressDistrict, motherMaidenName, btpnRelationCode, sourceOfDebtor, debiturType, gender, maritalStatus, spouseName, customerType, isActive, modifiedDate, modifiedBy, createdDate,
 						createdBy, businessAddress, businessCityCode, businessProvinceCode, businessPostalCode, businessPhoneCode, currentAddressCityCode, cif, rmName, rmCode, acmName, acmNik,
-						btpnRelationDate, programProduct, information, managementRelation, managementChange, KTPRTRWCode, currentAddressRTRWCode);
+						btpnRelationDate, programProduct, information, managementRelation, managementChange, KTPRTRWCode, currentAddressRTRWCode)
+				};
 			}
 		};
 		specRows.add(SpecRow.get(insertDlosAppDetail).setSheet(Sheet.InformasiDebitur).xls("appId", "J7")
@@ -176,7 +185,7 @@ public class InformasiDebitur implements Mapping {
 		IActions insertDlosLoanProcess = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String APPID = mapper.getString("appId");
 				String dataId = store.getString("dataId");
 				String processStatus = mapper.getString("processStatus");
@@ -188,10 +197,14 @@ public class InformasiDebitur implements Mapping {
 				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
 				String createdBy = MIGRATION;
 
-				return String.format(
+				return new String[] {
+						"migrasiDlosLoanProcess",				
+						
+						String.format(
 						"INSERT INTO dlos_core.dlos_loan_process (`APPID`, `dataId`, `processStatus`, `processCode`, `stateCode`, `isActive`, `modifiedDate`, `modifiedBy`, `createdDate`, `createdBy`) "
 								+ "VALUES(						  '%s',     %s,      '%s',            '%s',          '%s',        %s,         '%s',           '%s',         '%s',            '%s');",
-						APPID, dataId, processStatus, processCode, stateCode, isActive, modifiedDate, modifiedBy, createdDate, createdBy);
+						APPID, dataId, processStatus, processCode, stateCode, isActive, modifiedDate, modifiedBy, createdDate, createdBy)
+				};
 			}
 		};
 		specRows.add(SpecRow.get(insertDlosLoanProcess).setSheet(Sheet.InformasiDebitur).xls("appId", "J7").fix("processStatus", "1").xls("createdDate", "J4"));
@@ -202,7 +215,7 @@ public class InformasiDebitur implements Mapping {
 		IActions insertDlosAppContact = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String contactName = mapper.getString("contactName");
 				if (contactName == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
 
@@ -224,11 +237,15 @@ public class InformasiDebitur implements Mapping {
 				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
 				String createdBy = MIGRATION;
 
-				return String.format(
+				return new String[] {
+						"migrasiDlosLoanProcess",
+						
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_contact (`contactName`, `genderCode`, `positionCode`, `fixedLineNumber`, `mobileNumber`, email, `dataId`, `isActive`, `modifiedDate`, `modifiedBy`, `createdDate`, `createdBy`) "
 								+ "VALUES(						 '%s',          '%s',         '%s',           '%s',              '%s',           '%s',   %s,       %s,        '%s',           '%s',         '%s',          '%s');",
 						contactName, genderCode, positionCode, fixedLineNumber, mobileNumber, email, dataId, isActive,
-						modifiedDate, modifiedBy, createdDate, createdBy);
+						modifiedDate, modifiedBy, createdDate, createdBy)
+				};
 			}
 		};
 		specRows.add(SpecRow.get(insertDlosAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A71").xls("genderCode", "K71").xls("positionCode", "C71").xls("fixedLineNumber", "E71").xls("mobileNumber", "G71").xls("email", "I71").xls("createdDate", "J4").xls("appId", "J7"));
@@ -247,7 +264,7 @@ public class InformasiDebitur implements Mapping {
 		IActions insertDlosAppGroupDebitur = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String groupDebiturName = mapper.getString("groupDebiturName");
 				if (groupDebiturName == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
 				
@@ -272,10 +289,14 @@ public class InformasiDebitur implements Mapping {
 				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
 				String createdBy = MIGRATION;
 
-				return String.format( 
+				return new String[] {
+						"migrasiDlosAppGroupDebitur",
+				
+						String.format( 
 						"INSERT INTO dlos_core.dlos_app_groupdebitur (groupDebiturName, groupOwnershipPercentage, industrySectorCode, yearsOfExperience, contactPersonName, groupDebiturAddress, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy) " + 
 						"VALUES(                                     '%s',              '%s',                     '%s',               '%s',              '%s',              '%s',                '%s',   %s,     '%s',         '%s',       '%s',        '%s');", 
-						groupDebiturName, groupOwnershipPercentage, industrySectorCode, yearsOfExperience, contactPersonName, groupDebiturAddress, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy);
+						groupDebiturName, groupOwnershipPercentage, industrySectorCode, yearsOfExperience, contactPersonName, groupDebiturAddress, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy)
+				};
 			}
 		};
 		
@@ -309,7 +330,7 @@ public class InformasiDebitur implements Mapping {
 		IActions insertDlosAppVerificationDebitur = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId");
 				
 				String is_bi_list = mapper.getString("is_bi_list");
@@ -341,10 +362,14 @@ public class InformasiDebitur implements Mapping {
 				String modified_date = null;
 				String modified_by = mapper.getString("appId");
 				
-				return String.format(
+				return new String[] {
+						"migrasiDlosAppVerificationDebitur",
+				
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_verification_debitur (dataId, is_bi_list, bi_check_last_3mos, is_business_nonIndustry, positive_check, notes, is_active, created_date, created_by, modified_date, modified_by, is_business_min_2years) "+
 						"VALUES(                                             '%s',    '%s',       '%s',               '%s',                    '%s',           '%s',  %s,        '%s',         '%s',       '%s',          '%s',        '%s') ",
-						dataId, is_bi_list, bi_check_last_3mos, is_business_nonIndustry, positive_check, notes, is_active, created_date, created_by, modified_date, modified_by, is_business_min_2years);
+						dataId, is_bi_list, bi_check_last_3mos, is_business_nonIndustry, positive_check, notes, is_active, created_date, created_by, modified_date, modified_by, is_business_min_2years)
+				};
 			}
 		};
 		
@@ -384,7 +409,7 @@ public class InformasiDebitur implements Mapping {
 		IActions insertDlosAppLegal = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String legalEntityCode = mapper.getString("legalEntityCode");
 				Lookup lLegalEntityCode = store.getLookupByDescription(Lookup.LegalEntity, legalEntityCode);
 				legalEntityCode = (lLegalEntityCode == null) ? null : lLegalEntityCode.getKey();
@@ -423,10 +448,14 @@ public class InformasiDebitur implements Mapping {
 				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
 				String createdBy = MIGRATION;
 				
-				return String.format( 
+				return new String[] {
+						"insertDlosAppLegal",
+				
+						String.format( 
 						"INSERT INTO dlos_core.dlos_app_legal (legalEntityCode, PTSKNumber, PTSKDate, PTBNRINumber, PTBNRIDate, CVRegistrationNumber, CVRegistrationDate, lastDeedAmendmentNumber, lastDeedAmendmentDate, ministryApprovalNumber, ministryApprovalDate, lastDeedNumber, lastDeedDate, establishmentDeedDate, NPWPNumber, NPWPName, SIUPNumber, SIUPName, SIUPDate, TDPNIBNumber, TDPNIBDate, TDPExpiryDate, SKDPNumber, SKDPDate, SKDPExpiryDate, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy, TDPNIBName, SIUPYear, TDPNIBYear) " + 
 						"VALUES(                               '%s',            '%s',       '%s',     '%s',         '%s',       '%s',                 '%s',               '%s',                    '%s',                  '%s',                   '%s',                 '%s',           '%s',         '%s',                  '%s',       '%s',     '%s',       '%s',     '%s',     '%s',         '%s',       '%s',          '%s',       '%s',     '%s',           '%s',   %s,       '%s',         '%s',       '%s',        '%s',      '%s',       '%s',     '%s');", 
-						legalEntityCode, PTSKNumber, PTSKDate, PTBNRINumber, PTBNRIDate, CVRegistrationNumber, CVRegistrationDate, lastDeedAmendmentNumber, lastDeedAmendmentDate, ministryApprovalNumber, ministryApprovalDate, lastDeedNumber, lastDeedDate, establishmentDeedDate, NPWPNumber, NPWPName, SIUPNumber, SIUPName, SIUPDate, TDPNIBNumber, TDPNIBDate, TDPExpiryDate, SKDPNumber, SKDPDate, SKDPExpiryDate, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy, TDPNIBName, SIUPYear, TDPNIBYear);
+						legalEntityCode, PTSKNumber, PTSKDate, PTBNRINumber, PTBNRIDate, CVRegistrationNumber, CVRegistrationDate, lastDeedAmendmentNumber, lastDeedAmendmentDate, ministryApprovalNumber, ministryApprovalDate, lastDeedNumber, lastDeedDate, establishmentDeedDate, NPWPNumber, NPWPName, SIUPNumber, SIUPName, SIUPDate, TDPNIBNumber, TDPNIBDate, TDPExpiryDate, SKDPNumber, SKDPDate, SKDPExpiryDate, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy, TDPNIBName, SIUPYear, TDPNIBYear)
+				};
 			}
 		};
 		specRows.add(SpecRow.get(insertDlosAppLegal).setSheet(Sheet.InformasiDebitur)
@@ -451,7 +480,7 @@ public class InformasiDebitur implements Mapping {
 		IActions insertDlosAppManagement = new IActions() {
 
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				
 				String managementName = mapper.getString("managementName");
 				if (managementName == null) return null; // ini artinya  datanya kosong dan jgn di process querynya
@@ -487,10 +516,14 @@ public class InformasiDebitur implements Mapping {
 				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
 				String createdBy = MIGRATION;
 				
-				return String.format( 
+				return new String[] {
+						"migrasiDlosAppManagement",
+				
+						String.format( 	
 						"INSERT INTO dlos_core.dlos_app_management (managementName, managementPosition, idCode, idNumber, sharePercentage, managementAddress, datiII, NPWPNumber, age, experienceInYears, joinedSinceYears, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy) " + 
 						"VALUES(                                    '%s',           '%s',               '%s',   '%s',     '%s',            '%s',              '%s',   '%s',       '%s','%s',              '%s',             '%s',   %s,     '%s',         '%s',       '%s',        '%s');", 
-						managementName, managementPosition, idCode, idNumber, sharePercentage, managementAddress, datiII, NPWPNumber, age, experienceInYears, joinedSinceYears, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy);
+						managementName, managementPosition, idCode, idNumber, sharePercentage, managementAddress, datiII, NPWPNumber, age, experienceInYears, joinedSinceYears, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy)
+				};
 			}			
 		};
 		
@@ -542,7 +575,7 @@ public class InformasiDebitur implements Mapping {
 		IActions insertDlosAppProperty = new IActions() {
 
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String homeOwnershipStatus = mapper.getString("homeOwnershipStatus");
 				Lookup lhomeOwnershipStatus = store.getLookupByDescription(Lookup.HomeOwnership, homeOwnershipStatus);
 				homeOwnershipStatus = (lhomeOwnershipStatus == null) ? null : lhomeOwnershipStatus.getKey();
@@ -559,11 +592,15 @@ public class InformasiDebitur implements Mapping {
 				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));;
 				String createdBy = MIGRATION;
 				
-				return String.format(
+				return new String[] {
+						"migrasiDlosAppProperty",
+				
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_property (homeOwnershipStatus, businessOwnershipStatus, ownershipDate, leaseDate, businessEntityType, businessName, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy) " + 
 						"VALUES(                                  '%s',                '%s',                    '%s',          '%s',      '%s',               '%s',         '%s',   %s,       '%s',         '%s',       '%s',        '%s'); ", 
 						homeOwnershipStatus, businessOwnershipStatus, ownershipDate, leaseDate, businessEntityType, businessName, dataId, isActive, modifiedDate, modifiedBy, createdDate, createdBy
-					);
+					)
+				};
 			}
 			
 		};

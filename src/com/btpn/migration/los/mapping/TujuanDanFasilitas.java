@@ -25,9 +25,9 @@ public class TujuanDanFasilitas implements Mapping {
 	@Override
 	public String[] clearTable() {
 		return new String[] { 
-			String.format("delete from dlos_app_facility where created_by ='%s';", MIGRATION),
-			String.format("delete from dlos_app_facility_dtl where created_by ='%s';", MIGRATION),
 			String.format("delete from dlos_app_facility_oth where created_by ='%s';", MIGRATION),
+			String.format("delete from dlos_app_facility_dtl where created_by ='%s';", MIGRATION),
+			String.format("delete from dlos_app_facility where created_by ='%s';", MIGRATION),
 		};
 	}
 
@@ -42,7 +42,7 @@ public class TujuanDanFasilitas implements Mapping {
 		
 		IActions insertDlosAppFacility = new IActions() {
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				
 				String dataId = store.getString("dataId"); 
 				String fac_code = null; 
@@ -121,10 +121,14 @@ public class TujuanDanFasilitas implements Mapping {
 				String created_date = DateTool.getYMD(mapper.getString("createdDate"));
 				String created_by = MIGRATION;
 
-				return String.format(
+				return new String[] {
+						"migrasiDlosAppFacility",
+						
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_facility (dataId, fac_code, fac_desc, fac_sts, submission_purpose, credit_purpose_code, submission_sts_code, program_type_code, ttl_subm_amt, ttl_cap_amt, ttl_invest_amt, ttl_etc_amt, ttl_oth_subm_amt, ttl_oth_cap_amt, ttl_oth_invest_amt, ttl_oth_etc_amt, dpd_lte_7d_insuf_bal_cnt, dpd_lte_7d_other_cnt, dpd_gt_7d_14d_cnt, dpd_gt_14d_cnt, overdue_gt_col1_reason, closed_loan_last_2y_cnt, topup_fac_last_yr_cnt, has_ul_fac_code, ttl_ul_cnt, ttl_ul_gt_80pct_cnt, ttl_limit_ul_amt, ttl_os_ul_amt, is_active, modified_date, modified_by, created_date, created_by, ttl_exist_subm_amt, ttl_exist_cap_amt, ttl_exist_invest_amt, ttl_exist_etc_amt, ttl_change_subm_amt, ttl_change_cap_amt, ttl_change_invest_amt, ttl_change_etc_amt, ttl_oth_principal_subm_amt, ttl_oth_principal_cap_amt, ttl_oth_principal_invest_amt, ttl_oth_principal_etc_amt, ttl_oth_os_subm_amt, ttl_oth_os_cap_amt, ttl_oth_os_invest_amt, ttl_oth_os_etc_amt, ttl_idr_subm_amt, ttl_idr_cap_amt, ttl_idr_invest_amt, ttl_idr_etc_amt, ttl_os_subm_amt, ttl_os_cap_amt, ttl_os_invest_amt, ttl_os_etc_amt) " + 
 						"VALUES(                                  '%s',   '%s',     '%s',     '%s',    '%s',               '%s',                '%s',                '%s',              '%s',         '%s',        '%s',           '%s',        '%s',             '%s',            '%s',               '%s',            '%s',                     '%s',                 '%s',              '%s',           '%s',                   '%s',                    '%s',                  '%s',            '%s',       '%s',                '%s',             '%s',          %s,        '%s',          '%s',        '%s',         '%s',       '%s',               '%s',              '%s',                 '%s',              '%s',                '%s',               '%s',                  '%s',               '%s',                       '%s',                      '%s',                         '%s',                      '%s',                '%s',               '%s',                  '%s',               '%s',             '%s',            '%s',               '%s',            '%s',            '%s',           '%s',              '%s'); ", 
-						dataId, fac_code, fac_desc, fac_sts, submission_purpose, credit_purpose_code, submission_sts_code, program_type_code, ttl_subm_amt, ttl_cap_amt, ttl_invest_amt, ttl_etc_amt, ttl_oth_subm_amt, ttl_oth_cap_amt, ttl_oth_invest_amt, ttl_oth_etc_amt, dpd_lte_7d_insuf_bal_cnt, dpd_lte_7d_other_cnt, dpd_gt_7d_14d_cnt, dpd_gt_14d_cnt, overdue_gt_col1_reason, closed_loan_last_2y_cnt, topup_fac_last_yr_cnt, has_ul_fac_code, ttl_ul_cnt, ttl_ul_gt_80pct_cnt, ttl_limit_ul_amt, ttl_os_ul_amt, is_active, modified_date, modified_by, created_date, created_by, ttl_exist_subm_amt, ttl_exist_cap_amt, ttl_exist_invest_amt, ttl_exist_etc_amt, ttl_change_subm_amt, ttl_change_cap_amt, ttl_change_invest_amt, ttl_change_etc_amt, ttl_oth_principal_subm_amt, ttl_oth_principal_cap_amt, ttl_oth_principal_invest_amt, ttl_oth_principal_etc_amt, ttl_oth_os_subm_amt, ttl_oth_os_cap_amt, ttl_oth_os_invest_amt, ttl_oth_os_etc_amt, ttl_idr_subm_amt, ttl_idr_cap_amt, ttl_idr_invest_amt, ttl_idr_etc_amt, ttl_os_subm_amt, ttl_os_cap_amt, ttl_os_invest_amt, ttl_os_etc_amt);
+						dataId, fac_code, fac_desc, fac_sts, submission_purpose, credit_purpose_code, submission_sts_code, program_type_code, ttl_subm_amt, ttl_cap_amt, ttl_invest_amt, ttl_etc_amt, ttl_oth_subm_amt, ttl_oth_cap_amt, ttl_oth_invest_amt, ttl_oth_etc_amt, dpd_lte_7d_insuf_bal_cnt, dpd_lte_7d_other_cnt, dpd_gt_7d_14d_cnt, dpd_gt_14d_cnt, overdue_gt_col1_reason, closed_loan_last_2y_cnt, topup_fac_last_yr_cnt, has_ul_fac_code, ttl_ul_cnt, ttl_ul_gt_80pct_cnt, ttl_limit_ul_amt, ttl_os_ul_amt, is_active, modified_date, modified_by, created_date, created_by, ttl_exist_subm_amt, ttl_exist_cap_amt, ttl_exist_invest_amt, ttl_exist_etc_amt, ttl_change_subm_amt, ttl_change_cap_amt, ttl_change_invest_amt, ttl_change_etc_amt, ttl_oth_principal_subm_amt, ttl_oth_principal_cap_amt, ttl_oth_principal_invest_amt, ttl_oth_principal_etc_amt, ttl_oth_os_subm_amt, ttl_oth_os_cap_amt, ttl_oth_os_invest_amt, ttl_oth_os_etc_amt, ttl_idr_subm_amt, ttl_idr_cap_amt, ttl_idr_invest_amt, ttl_idr_etc_amt, ttl_os_subm_amt, ttl_os_cap_amt, ttl_os_invest_amt, ttl_os_etc_amt)
+				};
 			}
 		}; 
 		
@@ -231,7 +235,7 @@ public class TujuanDanFasilitas implements Mapping {
 		IActions insertDlosAppFacilityDtl = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				
 				String dataId = store.getString("dataId");
 				String fac_id = store.getString("fac_id");
@@ -287,10 +291,14 @@ public class TujuanDanFasilitas implements Mapping {
 				String created_date = DateTool.getYMD(mapper.getString("createdDate"));
 				String created_by = MIGRATION;
 				
-				return String.format(
+				return new String[] {
+						"migrasiDlosAppFacilityDtl",
+						
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_facility_dtl(dataId, fac_id, fac_dtl_code, fac_dtl_desc, fac_dtl_sts, fac_name_code, fac_type_code, curr_code, existing_amt, change_amt, subm_amt, tenor, start_date, end_date, int_rate, prov_rate, inst_type_code, is_active, modified_date, modified_by, created_date, created_by, idr_subm_amt, os_amt) " + 
 						"VALUES(									 '%s',   '%s',   '%s',         '%s',         '%s',        '%s',          '%s',          '%s',      '%s',         '%s',       '%s',     '%s',  '%s',       '%s',     '%s',     '%s',      '%s',           %s,        '%s',          '%s',        '%s',         '%s',       '%s',         '%s');",
-						dataId, fac_id, fac_dtl_code, fac_dtl_desc, fac_dtl_sts, fac_name_code, fac_type_code, curr_code, existing_amt, change_amt, subm_amt, tenor, start_date, end_date, int_rate, prov_rate, inst_type_code, is_active, modified_date, modified_by, created_date, created_by, idr_subm_amt, os_amt);
+						dataId, fac_id, fac_dtl_code, fac_dtl_desc, fac_dtl_sts, fac_name_code, fac_type_code, curr_code, existing_amt, change_amt, subm_amt, tenor, start_date, end_date, int_rate, prov_rate, inst_type_code, is_active, modified_date, modified_by, created_date, created_by, idr_subm_amt, os_amt)
+				};
 			}
 		};
 		
@@ -323,7 +331,7 @@ public class TujuanDanFasilitas implements Mapping {
 		IActions insertDlosAppFacilityOth = new IActions() {			
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String lobType) throws Exception {
+			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String dataId = store.getString("dataId"); 
 				String fac_id = store.getString("fac_id");
 				String fac_oth_code = null;
@@ -384,10 +392,14 @@ public class TujuanDanFasilitas implements Mapping {
 				String created_date = DateTool.getYMD(mapper.getString("createdDate"));
 				String created_by = MIGRATION;
 				
-				return String.format( 
-						"INSERT INTO dlos_core.dlos_app_facility_oth (dataId, fac_id, fac_oth_code, fac_oth_desc, fac_oth_sts, bank_name, fac_name, fac_type_code, is_takeover, principal_amt, os_amt, start_date, customer_name, coll_type, coll_amt, bi_last_3mos_code, dpd_last_3_mos, is_active, modified_date, modified_by, created_date, created_by, tenor, bi_collect_last_2mos, bi_collect_last_1mos) " + 
-						"VALUES(                                      '%s',   '%s',   '%s',         '%s',         '%s',        '%s',      '%s',     '%s',          '%s',        '%s',          '%s',   '%s',       '%s',          '%s',      '%s',     '%s',              '%s',           %s,        '%s',          '%s',        '%s',         '%s',       '%s',  '%s',                 '%s'); ", 
-						dataId, fac_id, fac_oth_code, fac_oth_desc, fac_oth_sts, bank_name, fac_name, fac_type_code, is_takeover, principal_amt, os_amt, start_date, customer_name, coll_type, coll_amt, bi_last_3mos_code, dpd_last_3_mos, is_active, modified_date, modified_by, created_date, created_by, tenor, bi_collect_last_2mos, bi_collect_last_1mos);
+				return new String[] {
+						"migrasiDlosAppFacilityOth",
+						
+						String.format( 
+								"INSERT INTO dlos_core.dlos_app_facility_oth (dataId, fac_id, fac_oth_code, fac_oth_desc, fac_oth_sts, bank_name, fac_name, fac_type_code, is_takeover, principal_amt, os_amt, start_date, customer_name, coll_type, coll_amt, bi_last_3mos_code, dpd_last_3_mos, is_active, modified_date, modified_by, created_date, created_by, tenor, bi_collect_last_2mos, bi_collect_last_1mos) " + 
+								"VALUES(                                      '%s',   '%s',   '%s',         '%s',         '%s',        '%s',      '%s',     '%s',          '%s',        '%s',          '%s',   '%s',       '%s',          '%s',      '%s',     '%s',              '%s',           %s,        '%s',          '%s',        '%s',         '%s',       '%s',  '%s',                 '%s'); ", 
+								dataId, fac_id, fac_oth_code, fac_oth_desc, fac_oth_sts, bank_name, fac_name, fac_type_code, is_takeover, principal_amt, os_amt, start_date, customer_name, coll_type, coll_amt, bi_last_3mos_code, dpd_last_3_mos, is_active, modified_date, modified_by, created_date, created_by, tenor, bi_collect_last_2mos, bi_collect_last_1mos)
+				};
 			}
 		};
 		

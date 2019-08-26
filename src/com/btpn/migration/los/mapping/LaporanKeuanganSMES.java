@@ -17,10 +17,11 @@ public class LaporanKeuanganSMES implements Mapping {
 	@Override
 	public String[] clearTable() {
 		return new String[] { 
-			String.format("delete from dlos_app_pos where createdBy ='%s';", MIGRATION),
-			String.format("delete from dlos_app_pos_neraca where createdBy ='%s';", MIGRATION),
-			String.format("delete from dlos_app_pos_labarugi where createdBy ='%s';", MIGRATION),
-			String.format("delete from dlos_app_pos_laporan where createdBy ='%s';", MIGRATION), };
+				String.format("delete from dlos_app_pos_laporan where createdBy ='%s';", MIGRATION), 
+				String.format("delete from dlos_app_pos_labarugi where createdBy ='%s';", MIGRATION),
+				String.format("delete from dlos_app_pos_neraca where createdBy ='%s';", MIGRATION),
+				String.format("delete from dlos_app_pos where createdBy ='%s';", MIGRATION)
+		};
 	}
 	
 	@Override
@@ -30,7 +31,7 @@ public class LaporanKeuanganSMES implements Mapping {
 		IActions insertAppPos = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String plobType) throws Exception{				
+			public String[] insert(Mapper mapper, Store store, String plobType) throws Exception{				
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -62,18 +63,23 @@ public class LaporanKeuanganSMES implements Mapping {
 				if ("I9".equals(address)) { fyear = "-1"; }
 				else if ("O9".equals(address)) { fyear = "-2"; }
 				
-				return String.format(
+				return new String[] {
+						"insertAppPos",
+				
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_pos (dataId, fyear, lobCode, lobType, pos, amount, modifiedDate, modifiedBy, createdDate, createdBy, status, million) "+
 						"VALUES(%s, %s, '%s', '%s', '%s', %s, %s, '%s', %s, '%s', '%s', %s);", 
-						dataId, fyear, lobCode, lobType, pos, amount, modifiedDate, modifiedBy, createdDate, createdBy, status, million 
-				);
+						dataId, fyear, lobCode, lobType, pos, amount, modifiedDate, modifiedBy, createdDate, createdBy, status, million
+					
+					)
+				};
 			}
 		};
 		
 		IActions insertAppNeraca = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String plobType) throws Exception{
+			public String[] insert(Mapper mapper, Store store, String plobType) throws Exception{
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -97,18 +103,22 @@ public class LaporanKeuanganSMES implements Mapping {
 				if ("I9".equals(address)) { fyear = "-1"; }
 				else if ("O9".equals(address)) { fyear = "-2"; }
 				
-				return String.format(
+				return new String[] {
+						"insertAppNeraca",
+				
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_pos_neraca(dataId, fyear, lobCode, lobType, totAktivaLancar, totAktivaTetap, totAktiva, totHutangLancar, totHutangJangkaPanjang, totModal, totPassiva, modifiedDate, modifiedBy, createdDate, createdBy) "+
 						"VALUES(%s, %s, '%s', '%s', %s, %s, %s, %s, %s, %s, %s, '%s', '%s', %s, '%s');",
 						dataId, fyear, lobCode, lobType, totAktivaLancar, totAktivaTetap, totAktiva, totHutangLancar, totHutangJangkaPanjang, totModal, totPassiva, modifiedDate, modifiedBy, createdDate, createdBy
-				);
+					)
+				};
 			}
 		};
 		
 		IActions insertAppLabaRugi = new IActions() {
 			
 			@Override
-			public String insert(Mapper mapper, Store store, String pLobType) throws Exception{
+			public String[] insert(Mapper mapper, Store store, String pLobType) throws Exception{
 				String dataId = mapper.getString("dataId");
 				String fyear = DateTool.getYear(mapper.getString("fyear"));
 				String lobCode = mapper.getString("lobCode");
@@ -131,11 +141,15 @@ public class LaporanKeuanganSMES implements Mapping {
 				if ("I9".equals(address)) { fyear = "-1"; }
 				else if ("O9".equals(address)) { fyear = "-2"; }
 				
-				return String.format(
+				return new String[] {
+						"insertAppLabaRugi",
+				
+						String.format(
 						"INSERT INTO dlos_core.dlos_app_pos_labarugi (dataId, fyear, lobCode, lobType, labaKotor, totBiayaUsaha, labaRugiUsah, labaRugiSebelumPajak, labaBersih, reForPeriode, modifiedDate, modifiedBy, createdDate, createdBy) " + 
 						"VALUES(%s, %s, '%s', '%s', %s, %s, %s, %s, %s, %s, '%s', '%s', %s, '%s');", 
 						dataId, fyear, lobCode, lobType, labaKotor, totBiayaUsaha, labaRugiUsah, labaRugiSebelumPajak, labaBersih, reForPeriode, modifiedDate, modifiedBy, createdDate, createdBy
-				);
+					)
+				};
 			}
 		};
 		
@@ -210,7 +224,7 @@ public class LaporanKeuanganSMES implements Mapping {
 		IActions insertAppLaporan = new IActions() {
 
 			@Override
-			public String insert(Mapper mapper, Store store, String pLobType) {
+			public String[] insert(Mapper mapper, Store store, String pLobType) {
 				String dataId = mapper.getString("dataId");
 				String lobCode = mapper.getString("lobCode");
 				String lobType = mapper.getString("lobType");
@@ -229,11 +243,15 @@ public class LaporanKeuanganSMES implements Mapping {
 				String createdDate = mapper.getString("createdDate"); ;
 				String createdBy = mapper.getString("createdBy"); ;
 				
-				return String.format(
+				return new String [] {
+					"insertAppLaporan",
+				
+					String.format(
 						"INSERT INTO dlos_core.dlos_app_pos_laporan (dataId, lobCode, lobType, grossUp, cpltd, kebutuhanInvestasi, penjelasanKebutuhanModalKerja, penjelasanKebutuhanInvestasi, debiturAjukanKreditTepat, informasiKeuanganHistoris, asumsiProyeksiKeuangan, modifiedDate, modifiedBy, createdDate, createdBy) " + 
 						"VALUES(%s, '%s', '%s', %s, %s, %s, '%s', '%s', '%s', '%s', '%s', '%s', '%s', %s, '%s');",
 						dataId, lobCode, lobType, grossUp, cpltd, kebutuhanInvestasi, penjelasanKebutuhanModalKerja, penjelasanKebutuhanInvestasi, debiturAjukanKreditTepat, informasiKeuanganHistoris, asumsiProyeksiKeuangan, modifiedDate, modifiedBy, createdDate, createdBy
-				);
+					)
+				};
 			}
 		};
 		

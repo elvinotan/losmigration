@@ -43,6 +43,7 @@ public class Mapper {
 	}
 	
 	public String clearDecimal(String data) {
+		if (data == null) return null;
 		return data.split("\\.")[0];
 	}
 	
