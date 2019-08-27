@@ -866,14 +866,23 @@ public class DataUsaha implements Mapping {
 		IActions insertDlosAppCovenantHeader = new IActions() {
 			
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
+				String cov_header_detail_code = mapper.getString("cov_header_detail_code");
+				if (cov_header_detail_code == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
+				
 				String dataId = store.getString("dataId");
 				String business_id = store.getString("business_id"); 
 				String cov_header_code = null; 
-				String cov_header_sts = null; 
-				String cov_header_detail_code = null; 
-				String cov_header_monitored_by_code = null; 
-				String cov_header_freq_code = null; 
-				String cov_header_existing_condition_code = null; 
+				String cov_header_sts = null;				 
+				String cov_header_monitored_by_code = mapper.getString("cov_header_monitored_by_code");
+				
+				String cov_header_freq_code = mapper.getString("cov_header_freq_code"); 
+				Lookup lcov_header_freq_code = store.getLookupByDescription(Lookup.Frequency, cov_header_freq_code);
+				cov_header_freq_code = (lcov_header_freq_code == null) ? null : lcov_header_freq_code.getKey();
+				
+				String cov_header_existing_condition_code = mapper.getString("cov_header_existing_condition_code");
+				Lookup lcov_header_existing_condition_code = store.getLookupByDescription(Lookup.YesNo, cov_header_existing_condition_code);
+				cov_header_existing_condition_code = (lcov_header_existing_condition_code == null) ? null : lcov_header_existing_condition_code.getKey();
+				
 				String cov_header_desc = null; 
 				String is_active = "1"; 
 				String modified_date = null; 
@@ -890,24 +899,57 @@ public class DataUsaha implements Mapping {
 								dataId, business_id, cov_header_code, cov_header_sts, cov_header_detail_code, cov_header_monitored_by_code, cov_header_freq_code, cov_header_existing_condition_code, cov_header_desc, is_active, modified_date, modified_by, created_date, created_by)
 				};
 			}
-		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppCovenantHeader).setSheet(Sheet.InformasiDebitur)
-				.xls("appId", "J7")
-				.xls("createdDate", "J4"));
+		}; 
+		
+		if (LobType.isSmes(lobType)) {
+			for (int i = 0; i < 15; i++) {
+				int ctr = 266+i;
+				specRows.add(SpecRow.get(insertDlosAppCovenantHeader).setSheet(Sheet.InformasiDebitur)
+						.xls("appId", "J7")
+						.xls("createdDate", "J4")
+						.xls("cov_header_existing_condition_code", "P"+ctr)
+						.xls("cov_header_freq_code", "O"+ctr)
+						.xls("cov_header_detail_code", "A"+ctr)
+						.xls("cov_header_monitored_by_code", "L"+ctr)						
+						);
+			}
+		}
+		
+		if (LobType.isSmel(lobType)) {
+			for (int i = 0; i < 15; i++) {
+				int ctr = 264+i;
+				specRows.add(SpecRow.get(insertDlosAppCovenantHeader).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("cov_header_existing_condition_code", "N"+ctr)
+					.xls("cov_header_freq_code", "M"+ctr)
+					.xls("cov_header_detail_code", "A"+ctr)		
+					.xls("cov_header_monitored_by_code", "L"+ctr)
+					);
+			}
+		}
 	}
 	
 	private void migrasiDlosAppPrecedentHeader(String lobType) {
 		IActions insertDlosAppPrecedentHeader = new IActions() {
 			
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
+				String precedent_header_detail_code = mapper.getString("precedent_header_detail_code");
+				if (precedent_header_detail_code == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
+				
 				String dataId = store.getString("dataId");
 				String business_id = store.getString("business_id");
 				String precedent_header_code = null; 
 				String precedent_header_sts = null; 
-				String precedent_header_detail_code = null; 
-				String precedent_header_monitored_by_code = null; 
-				String precedent_header_existing_condition_code = null; 
-				String precedent_header_desc = null; String is_active = null; 
+				
+				String precedent_header_monitored_by_code = mapper.getString("precedent_header_monitored_by_code"); 
+				
+				String precedent_header_existing_condition_code = mapper.getString("precedent_header_existing_condition_code");
+				Lookup lprecedent_header_existing_condition_code = store.getLookupByDescription(Lookup.YesNo, precedent_header_existing_condition_code);
+				precedent_header_existing_condition_code = (lprecedent_header_existing_condition_code == null) ? null : lprecedent_header_existing_condition_code.getKey();
+				
+				String precedent_header_desc = null; 
+				String is_active = "1"; 
 				String modified_date = null; 
 				String modified_by = mapper.getString("appId");
 				String created_date = DateTool.getYMD(mapper.getString("createdDate")); 
@@ -923,10 +965,36 @@ public class DataUsaha implements Mapping {
 						
 				};
 			}
-		}; //BELUM DI BUAT
-		specRows.add(SpecRow.get(insertDlosAppPrecedentHeader).setSheet(Sheet.InformasiDebitur)
-				.xls("appId", "J7")
-				.xls("createdDate", "J4"));
+		}; 
+
+		if (LobType.isSmes(lobType)) {
+			for (int i = 0; i < 10; i++) {
+				int ctr = 286+i;
+				
+				specRows.add(SpecRow.get(insertDlosAppPrecedentHeader).setSheet(Sheet.InformasiDebitur)
+						.xls("appId", "J7")
+						.xls("createdDate", "J4")
+						.xls("precedent_header_detail_code", "A"+ctr)
+						.xls("precedent_header_existing_condition_code", "O"+ctr)
+						.xls("precedent_header_monitored_by_code", "L"+ctr)
+						
+						);
+			}
+		}
+		
+		if (LobType.isSmel(lobType)) {
+			for (int i = 0; i < 10; i++) {
+				int ctr = 284+i;
+				
+				specRows.add(SpecRow.get(insertDlosAppPrecedentHeader).setSheet(Sheet.InformasiDebitur)
+						.xls("appId", "J7")
+						.xls("createdDate", "J4")
+						.xls("precedent_header_detail_code", "A"+ctr)
+						.xls("precedent_header_existing_condition_code", "M"+ctr)
+						.xls("precedent_header_monitored_by_code", "L"+ctr)
+						);
+			}
+		}
 	}
 	
 	private void migrasiDlosAppDrawdownConditionHeader(String lobType) {
