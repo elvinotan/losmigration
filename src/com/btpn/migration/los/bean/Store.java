@@ -47,7 +47,7 @@ public class Store {
 		Lookup lookup = this.lookupMap.get(group+"~"+clear(key));		
 	
 		if (lookup == null) {
-			log.warn("[MAPPING PROBLEM] Data Lookup Not found for ("+group+") with key ("+key+")");
+			log.warn("[MAPPING PROBLEM MSG] Data Lookup Not found for ("+group+") with key ("+key+")");
 			
 			if (throwErr) throw new NullPointerException("Data Lookup Not found for ("+group+") with key ("+key+")");
 			return null;
@@ -65,7 +65,7 @@ public class Store {
 		Lookup lookup = this.lookupMap.get(group+"~"+clear(description));
 		
 		if (lookup == null) {
-			log.warn("[MAPPING PROBLEM] Data Lookup Not found for ("+group+") with description ("+description+")");
+			log.warn("[MAPPING PROBLEM MSG] Data Lookup Not found for ("+group+") with description ("+description+")");
 			
 			if (throwErr) throw new NullPointerException("Data Lookup Not found for ("+group+") with description ("+description+")");
 			return null;
@@ -83,7 +83,7 @@ public class Store {
 		CommonService cs = this.commonServiceMap.get(group+"~"+clear(description));
 		
 		if (cs == null) {
-			log.warn("[MAPPING PROBLEM] Data CommonService Not found for ("+group+") with description ("+description+")");
+			log.warn("[MAPPING PROBLEM MSG] Data CommonService Not found for ("+group+") with description ("+description+")");
 			
 			if (throwErr) throw new NullPointerException("Data CommonService Not found for ("+group+") with description ("+description+")");
 			return null;
@@ -102,7 +102,7 @@ public class Store {
 		region = (region == null) ? getTolerateRegion(clear(description)) : region;
 		
 		if (region == null) {
-			log.warn("[MAPPING PROBLEM] Data Region Not found for description ("+description+")");
+			log.warn("[MAPPING PROBLEM MSG] Data Region Not found for description ("+description+")");
 			
 			if (throwErr) throw new NullPointerException("Data Region Not found for description ("+description+")");
 			return null;
@@ -132,7 +132,7 @@ public class Store {
 		branch = (branch == null) ? getTolerateBranch(clear(description)) : branch;
 		
 		if (branch == null) {
-			log.warn("[MAPPING PROBLEM] Data Branch Not found for description ("+description+")");
+			log.warn("[MAPPING PROBLEM MSG] Data Branch Not found for description ("+description+")");
 			
 			if (throwErr) throw new NullPointerException("Data Branch Not found for  description ("+description+")");
 			return null;

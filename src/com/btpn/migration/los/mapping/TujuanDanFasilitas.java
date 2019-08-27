@@ -83,7 +83,7 @@ public class TujuanDanFasilitas implements Mapping {
 				
 				String has_ul_fac_code = mapper.getString("has_ul_fac_code");
 				Lookup lhas_ul_fac_code = store.getLookupByDescription(Lookup.YesNo, has_ul_fac_code);
-				has_ul_fac_code = (lhas_ul_fac_code == null) ? null : lhas_ul_fac_code.getKey();
+				has_ul_fac_code = (lhas_ul_fac_code == null) ? mapper.logMapperProblem("migrasiDlosAppFacility") : lhas_ul_fac_code.getKey();
 				
 				String ttl_ul_cnt = mapper.getString("ttl_ul_cnt");
 				String ttl_ul_gt_80pct_cnt = mapper.getString("ttl_ul_gt_80pct_cnt");
@@ -245,12 +245,12 @@ public class TujuanDanFasilitas implements Mapping {
 				
 				String fac_name_code = mapper.getString("fac_name_code");
 				Lookup lfac_name_code = store.getLookupByDescription(Lookup.FacilityName, fac_name_code);
-				fac_name_code = (lfac_name_code == null) ? null : lfac_name_code.getKey();
+				fac_name_code = (lfac_name_code == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityDtl") : lfac_name_code.getKey();
 				if (fac_name_code == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
 				
 				String fac_type_code = mapper.getString("fac_type_code");
 				Lookup lfac_type_code = store.getLookupByDescription(Lookup.FacilityType, fac_type_code);
-				fac_type_code = (lfac_type_code == null) ? null : lfac_type_code.getKey();
+				fac_type_code = (lfac_type_code == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityDtl") : lfac_type_code.getKey();
 				
 				String curr_code = mapper.getString("curr_code");
 				if ("Rp".equals(curr_code)) curr_code = "IDR"; // Untuk Currency di manipulasi, mestinya ini gax masalah khan currency udah standard
@@ -260,7 +260,7 @@ public class TujuanDanFasilitas implements Mapping {
 					curr_code = curr_code.substring(sIdx+1, eIdx);
 				}
 				Lookup lcurr_code = store.getLookupByDescription(Lookup.Currency, curr_code);
-				curr_code = (lcurr_code == null) ? null : lcurr_code.getKey();
+				curr_code = (lcurr_code == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityDtl") : lcurr_code.getKey();
 				
 				String existing_amt = mapper.getString("existing_amt");
 				String change_amt = mapper.getString("change_amt");
@@ -281,7 +281,7 @@ public class TujuanDanFasilitas implements Mapping {
 				
 				String inst_type_code = mapper.getString("inst_type_code");
 				Lookup linst_type_code = store.getLookupByDescription(Lookup.Instalment, inst_type_code);
-				inst_type_code = (linst_type_code == null) ? null : linst_type_code.getKey(); 
+				inst_type_code = (linst_type_code == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityDtl") : linst_type_code.getKey(); 
 						
 				String is_active = "1";
 				String idr_subm_amt = mapper.getString("idr_subm_amt");
@@ -344,11 +344,11 @@ public class TujuanDanFasilitas implements Mapping {
 				
 				String fac_type_code = mapper.getString("fac_type_code");
 				Lookup lfac_type_code = store.getLookupByDescription(Lookup.FacilityType, fac_type_code);
-				fac_type_code = (lfac_type_code == null) ? null : lfac_type_code.getKey();
+				fac_type_code = (lfac_type_code == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityOth") : lfac_type_code.getKey();
 				
 				String is_takeover = mapper.getString("is_takeover");
 				Lookup lis_takeover = store.getLookupByDescription(Lookup.YesNo, is_takeover);
-				is_takeover = (lis_takeover == null) ? null : lis_takeover.getKey();
+				is_takeover = (lis_takeover == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityOth") : lis_takeover.getKey();
 				
 				String principal_amt = mapper.getString("principal_amt");
 				String os_amt = mapper.getString("os_amt");
@@ -367,13 +367,13 @@ public class TujuanDanFasilitas implements Mapping {
 				
 				String coll_type = mapper.getString("coll_type");
 				Lookup lcoll_type = store.getLookupByDescription(Lookup.CollateralProperty, coll_type);
-				coll_type = (lcoll_type == null) ? null : lcoll_type.getKey();				
+				coll_type = (lcoll_type == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityOth") : lcoll_type.getKey();				
 				
 				String coll_amt = mapper.getString("coll_amt");
 				
 				String bi_last_3mos_code = mapper.getString("bi_last_3mos_code");
 				Lookup lbi_last_3mos_code = store.getLookupByDescription(Lookup.BIChecking, bi_last_3mos_code);
-				bi_last_3mos_code = (lbi_last_3mos_code == null) ? null : lbi_last_3mos_code.getKey();
+				bi_last_3mos_code = (lbi_last_3mos_code == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityOth") : lbi_last_3mos_code.getKey();
 				
 				String dpd_last_3_mos = mapper.getString("dpd_last_3_mos");
 				String is_active = "1";
@@ -381,11 +381,11 @@ public class TujuanDanFasilitas implements Mapping {
 				
 				String bi_collect_last_2mos = mapper.getString("bi_collect_last_2mos");
 				Lookup lbi_collect_last_2mos = store.getLookupByDescription(Lookup.BIChecking, bi_collect_last_2mos);
-				bi_collect_last_2mos = (lbi_collect_last_2mos == null) ? null : lbi_collect_last_2mos.getKey();
+				bi_collect_last_2mos = (lbi_collect_last_2mos == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityOth") : lbi_collect_last_2mos.getKey();
 				
 				String bi_collect_last_1mos = mapper.getString("bi_collect_last_1mos");
 				Lookup lbi_collect_last_1mos = store.getLookupByDescription(Lookup.BIChecking, bi_collect_last_1mos);
-				bi_collect_last_1mos = (lbi_collect_last_1mos == null) ? null : lbi_collect_last_1mos.getKey();
+				bi_collect_last_1mos = (lbi_collect_last_1mos == null) ? mapper.logMapperProblem("migrasiDlosAppFacilityOth") : lbi_collect_last_1mos.getKey();
 				
 				String modified_date = null;
 				String modified_by = mapper.getString("appId");;

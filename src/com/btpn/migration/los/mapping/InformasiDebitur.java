@@ -66,16 +66,16 @@ public class InformasiDebitur implements Mapping {
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String branchCode = mapper.getString("branchCode"); // Branch Code, berasal dari Region.java/ Hierarchy LOS.xlsx
 				Region rBranchCode = store.getBranchByDescription(branchCode);
-				branchCode = (rBranchCode == null) ?  null : rBranchCode.getBranchCode();
+				branchCode = (rBranchCode == null) ?  mapper.logMapperProblem("migrasiDlosAppDetail") : rBranchCode.getBranchCode();
 				
-				String salesSquadName = (rBranchCode == null) ? null : rBranchCode.getPmsCode(); // SalesSqualName berasal dari Region.java / Hierarchy LOS.xlsx
+				String salesSquadName = (rBranchCode == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : rBranchCode.getPmsCode(); // SalesSqualName berasal dari Region.java / Hierarchy LOS.xlsx
 				String areaName = null; // Belum
 				
 				String regionName = mapper.getString("regionName");
 				if (regionName != null) {
 					regionName = regionName.toUpperCase(); // RegionName berasal dari Region.java / Hierarchy LOS.xlsx
 					Region region = store.getRegionByDescription(regionName);
-					regionName = (region == null) ? null : region.getRegion();
+					regionName = (region == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : region.getRegion();
 				}
 				
 				String debiturName = mapper.getString("debiturName");
@@ -105,13 +105,13 @@ public class InformasiDebitur implements Mapping {
 				
 				String sourceOfDebtor = mapper.getString("sourceOfDebtor"); // SourceOfDebtor berasal dari Lookup.DebtorSource
 				Lookup lsourceOfDebtor = store.getLookupByDescription(Lookup.DebtorSource, sourceOfDebtor);
-				sourceOfDebtor = (lsourceOfDebtor == null) ? null : lsourceOfDebtor.getKey();
+				sourceOfDebtor = (lsourceOfDebtor == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : lsourceOfDebtor.getKey();
 				
 				String debiturType = mapper.getString("debiturType"); // DebiturType berasal dari Lookup.DebiturType
 				if (debiturType != null) {
 					String debiturTypeDesc = debiturType.split("_")[1].trim();
 					Lookup ldebiturType = store.getLookupByDescription(Lookup.DebiturType, debiturTypeDesc);
-					debiturType = (ldebiturType == null) ? null : ldebiturType.getKey();
+					debiturType = (ldebiturType == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : ldebiturType.getKey();
 				}
 				
 				String gender = null; // Belum
@@ -127,11 +127,11 @@ public class InformasiDebitur implements Mapping {
 				
 				String businessCityCode = mapper.getString("businessCityCode"); // BusinessCityCode berasal dari commonService TYPE_CITY
 				CommonService csbusinessCityCode = store.getCommonByDescription(CommonService.TYPE_CITY, businessCityCode);
-				businessCityCode = (csbusinessCityCode == null) ? null : csbusinessCityCode.getCode();
+				businessCityCode = (csbusinessCityCode == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : csbusinessCityCode.getCode();
 				
 				String businessProvinceCode = mapper.getString("businessProvinceCode");  // BusinessCityCode berasal dari commonService TYPE_PROVINCE
 				CommonService csbusinessProvinceCode = store.getCommonByDescription(CommonService.TYPE_PROVINCE, businessProvinceCode);
-				businessProvinceCode = (csbusinessProvinceCode == null) ? null : csbusinessProvinceCode.getCode();
+				businessProvinceCode = (csbusinessProvinceCode == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : csbusinessProvinceCode.getCode();
 				
 				String businessPostalCode = mapper.clearDecimal(mapper.getString("businessPostalCode"));
 				String businessPhoneCode = mapper.getString("businessPhoneCode");
@@ -145,7 +145,7 @@ public class InformasiDebitur implements Mapping {
 				
 				String programProduct = mapper.getString("programProduct"); //ProgramProduct berasal dari Lookup.ProductProgram
 				Lookup lProgramProduct = store.getLookupByDescription(Lookup.ProductProgram, programProduct);
-				programProduct = (lProgramProduct == null) ? null : lProgramProduct.getKey();
+				programProduct = (lProgramProduct == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : lProgramProduct.getKey();
 				
 				String information = mapper.getString("information");
 				String managementRelation = StringTool.combine(mapper.getString("managementRelation0"), mapper.getString("managementRelation1"));
@@ -221,11 +221,11 @@ public class InformasiDebitur implements Mapping {
 
 				String genderCode = mapper.getString("genderCode");
 				Lookup lgenderCode = store.getLookupByDescription(Lookup.Gender, genderCode);
-				genderCode = (lgenderCode == null) ? null : lgenderCode.getKey();
+				genderCode = (lgenderCode == null) ? mapper.logMapperProblem("migrasiDlosAppContact") : lgenderCode.getKey();
 
 				String positionCode = mapper.getString("positionCode");
 				Lookup lpositionCode = store.getLookupByDescription(Lookup.Position, positionCode);
-				positionCode = (lpositionCode == null) ? null : lpositionCode.getKey();
+				positionCode = (lpositionCode == null) ? mapper.logMapperProblem("migrasiDlosAppContact") : lpositionCode.getKey();
 				
 				String fixedLineNumber = mapper.getString("fixedLineNumber");
 				String mobileNumber = mapper.getString("mobileNumber");
@@ -275,7 +275,7 @@ public class InformasiDebitur implements Mapping {
 				 
 				String industrySectorCode = mapper.getString("industrySectorCode"); // data di ambil dari lookup.IndustrialSector
 				Lookup lindustrySectorCode = store.getLookupByDescription(Lookup.IndustrialSector, industrySectorCode);
-				industrySectorCode = (lindustrySectorCode == null) ? null : lindustrySectorCode.getKey();
+				industrySectorCode = (lindustrySectorCode == null) ? mapper.logMapperProblem("migrasiDlosAppGroupDebitur") : lindustrySectorCode.getKey();
 				
 				String yearsOfExperience = mapper.getString("yearsOfExperience"); // Data yang di input seperti '32 tahun' sehingga kita harus mengextract number saja
 				yearsOfExperience = NumberTool.extractNumberOnly(yearsOfExperience);
@@ -335,23 +335,23 @@ public class InformasiDebitur implements Mapping {
 				
 				String is_bi_list = mapper.getString("is_bi_list");
 				Lookup lis_bi_list = store.getLookupByDescription(Lookup.YesNo, is_bi_list);
-				is_bi_list = (lis_bi_list == null) ? null : lis_bi_list.getKey();
+				is_bi_list = (lis_bi_list == null) ? mapper.logMapperProblem("migrasiDlosAppVerificationDebitur") : lis_bi_list.getKey();
 						
 				String bi_check_last_3mos = mapper.getString("bi_check_last_3mos");
 				Lookup lbi_check_last_3mos = store.getLookupByDescription(Lookup.YesNo, bi_check_last_3mos);
-				bi_check_last_3mos = (lbi_check_last_3mos == null) ? null : lbi_check_last_3mos.getKey();
+				bi_check_last_3mos = (lbi_check_last_3mos == null) ? mapper.logMapperProblem("migrasiDlosAppVerificationDebitur") : lbi_check_last_3mos.getKey();
 				
 				String is_business_nonIndustry = mapper.getString("is_business_nonIndustry");
 				Lookup lis_business_nonIndustry = store.getLookupByDescription(Lookup.YesNo, is_business_nonIndustry);
-				is_business_nonIndustry = (lis_business_nonIndustry == null) ? null : lis_business_nonIndustry.getKey();
+				is_business_nonIndustry = (lis_business_nonIndustry == null) ? mapper.logMapperProblem("migrasiDlosAppVerificationDebitur") : lis_business_nonIndustry.getKey();
 				
 				String positive_check = mapper.getString("positive_check");
 				Lookup lpositive_check = store.getLookupByDescription(Lookup.YesNo, positive_check);
-				positive_check = (lpositive_check == null) ? null : lpositive_check.getKey();
+				positive_check = (lpositive_check == null) ? mapper.logMapperProblem("migrasiDlosAppVerificationDebitur") : lpositive_check.getKey();
 				
 				String is_business_min_2years = mapper.getString("is_business_min_2years");
 				Lookup lis_business_min_2years = store.getLookupByDescription(Lookup.YesNo, is_business_min_2years);
-				is_business_min_2years = (lis_business_min_2years == null) ? null : lis_business_min_2years.getKey();
+				is_business_min_2years = (lis_business_min_2years == null) ? mapper.logMapperProblem("migrasiDlosAppVerificationDebitur") : lis_business_min_2years.getKey();
 				
 				String notes = StringTool.combine(mapper.getString("notes0"), mapper.getString("notes1"), mapper.getString("notes2"), mapper.getString("notes3"));
 				notes = notes.replaceAll("<< Berikan penjelasan, jika terdapat informasi tambahan terkait kredibilitas debitur>>", "").trim();
@@ -412,7 +412,7 @@ public class InformasiDebitur implements Mapping {
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String legalEntityCode = mapper.getString("legalEntityCode");
 				Lookup lLegalEntityCode = store.getLookupByDescription(Lookup.LegalEntity, legalEntityCode);
-				legalEntityCode = (lLegalEntityCode == null) ? null : lLegalEntityCode.getKey();
+				legalEntityCode = (lLegalEntityCode == null) ? mapper.logMapperProblem("migrasiDlosAppLegal") : lLegalEntityCode.getKey();
 						
 				String PTSKNumber = null;
 				String PTSKDate = null;
@@ -487,11 +487,11 @@ public class InformasiDebitur implements Mapping {
 				
 				String managementPosition = mapper.getString("managementPosition");
 				Lookup lmanagementPosition = store.getLookupByDescription(Lookup.Position, managementPosition);
-				managementPosition = (lmanagementPosition == null) ? null : lmanagementPosition.getKey();
+				managementPosition = (lmanagementPosition == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : lmanagementPosition.getKey();
 				
 				String idCode = mapper.getString("idCode");
 				Lookup lIdCode = store.getLookupByDescription(Lookup.IDCard, idCode); 
-				idCode = (lIdCode == null) ? null : lIdCode.getKey(); 
+				idCode = (lIdCode == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : lIdCode.getKey(); 
 						
 				String idNumber =  mapper.getString("idNumber");
 				String sharePercentage = mapper.getString("sharePercentage");
@@ -503,7 +503,7 @@ public class InformasiDebitur implements Mapping {
 				String managementAddress = mapper.getString("managementAddress");
 				String datiII = mapper.getString("datiII"); 
 				CommonService csDati2 = store.getCommonByDescription(CommonService.TYPE_CITY, datiII);
-				datiII = (csDati2 == null) ? null : csDati2.getCode();
+				datiII = (csDati2 == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : csDati2.getCode();
 				
 				String NPWPNumber = mapper.getString("NPWPNumber");
 				String age = mapper.getString("age");
@@ -578,7 +578,7 @@ public class InformasiDebitur implements Mapping {
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String homeOwnershipStatus = mapper.getString("homeOwnershipStatus");
 				Lookup lhomeOwnershipStatus = store.getLookupByDescription(Lookup.HomeOwnership, homeOwnershipStatus);
-				homeOwnershipStatus = (lhomeOwnershipStatus == null) ? null : lhomeOwnershipStatus.getKey();
+				homeOwnershipStatus = (lhomeOwnershipStatus == null) ? mapper.logMapperProblem("migrasiDlosAppProperty") : lhomeOwnershipStatus.getKey();
 				
 				String businessOwnershipStatus = null;
 				String ownershipDate = DateTool.getYMD(mapper.getString("ownershipDate"));

@@ -249,6 +249,7 @@ public class AbstractMain {
 		Mapper mapper = new Mapper();
 		for (Mapping m : mapping) {
 			for (SpecRow specRow : m.getSpecRows(lobType)) {
+				mapper.className = m.getClass().getSimpleName();
 				mapper.setSpecCells(specRow.getSpecCells());
 				try {
 					String[] arr = specRow.getAction().insert(mapper, store, lobType);

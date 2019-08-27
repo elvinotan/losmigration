@@ -85,11 +85,11 @@ public class DataUsaha implements Mapping {
 				String company_name = null;
 				String ind_sec_code = mapper.getString("ind_sec_code");
 				Lookup lind_sec_code = store.getLookupByDescription(Lookup.IndustrialSector, ind_sec_code);
-				ind_sec_code = (lind_sec_code == null) ? null : lind_sec_code.getKey();
+				ind_sec_code = (lind_sec_code == null) ? mapper.logMapperProblem("migrasiDlosAppBusiness") : lind_sec_code.getKey();
 				
 				String business_type_code = mapper.getString("business_type_code");
 				Lookup lbusiness_type_code = store.getLookupByDescription(Lookup.BusinessType, business_type_code);
-				business_type_code = (lbusiness_type_code == null) ? null : lbusiness_type_code.getKey();
+				business_type_code = (lbusiness_type_code == null) ? mapper.logMapperProblem("migrasiDlosAppBusiness") : lbusiness_type_code.getKey();
 				
 				String economy_sector_code = null;
 				String business_desc = mapper.getString("business_desc");
@@ -103,15 +103,15 @@ public class DataUsaha implements Mapping {
 				String other_company_party = null;
 				String business_scale_code = mapper.getString("business_scale_code");
 				Lookup lbusiness_scale_code = store.getLookupByDescription(Lookup.BusinessScale, business_scale_code);
-				business_scale_code = (lbusiness_scale_code == null) ? null : lbusiness_scale_code.getKey();
+				business_scale_code = (lbusiness_scale_code == null) ? mapper.logMapperProblem("migrasiDlosAppBusiness") : lbusiness_scale_code.getKey();
 				
 				String business_main_founder_code = mapper.getString("business_main_founder_code");
 				Lookup lbusiness_main_founder_code = store.getLookupByDescription(Lookup.BusinessFounderCorporate, business_main_founder_code);
-				business_main_founder_code = (lbusiness_main_founder_code == null) ? null : lbusiness_main_founder_code.getKey();
+				business_main_founder_code = (lbusiness_main_founder_code == null) ? mapper.logMapperProblem("migrasiDlosAppBusiness") : lbusiness_main_founder_code.getKey();
 				
 				String marketing_area_code = mapper.getString("marketing_area_code");
 				Lookup lmarketing_area_code = store.getLookupByDescription(Lookup.MarketingArea, marketing_area_code);
-				marketing_area_code = (lmarketing_area_code == null) ? null : lmarketing_area_code.getKey();
+				marketing_area_code = (lmarketing_area_code == null) ? mapper.logMapperProblem("migrasiDlosAppBusiness") : lmarketing_area_code.getKey();
 				
 				String market_share_cnt = mapper.getString("market_share_cnt");
 				String employee_cnt = mapper.getString("employee_cnt");
@@ -123,18 +123,18 @@ public class DataUsaha implements Mapping {
 				
 				String business_strategy_code = mapper.getString("business_strategy_code");
 				Lookup lbusiness_strategy_code = store.getLookupByDescription(Lookup.BusinessStrategy, business_strategy_code);
-				business_strategy_code = (lbusiness_strategy_code == null) ? null : lbusiness_strategy_code.getKey();
+				business_strategy_code = (lbusiness_strategy_code == null) ? mapper.logMapperProblem("migrasiDlosAppBusiness") : lbusiness_strategy_code.getKey();
 				
 				String business_strategy_desc = StringTool.combine(mapper.getString("business_strategy_desc0"), mapper.getString("business_strategy_desc1"), mapper.getString("business_strategy_desc2"));
 				String empty_store_last_6mo_code = mapper.getString("empty_store_last_6mo_code");
 				
 				String has_other_business = mapper.getString("has_other_business");
 				Lookup lhas_other_business = store.getLookupByDescription(Lookup.YesNo, has_other_business);
-				has_other_business = (lhas_other_business == null) ? null : lhas_other_business.getKey();
+				has_other_business = (lhas_other_business == null) ? mapper.logMapperProblem("migrasiDlosAppBusiness") : lhas_other_business.getKey();
 				
 				String other_business_type_code = mapper.getString("other_business_type_code");
 				Lookup lother_business_type_code = store.getLookupByDescription(Lookup.BusinessType, other_business_type_code);
-				other_business_type_code = (lother_business_type_code == null) ? null : lother_business_type_code.getKey();
+				other_business_type_code = (lother_business_type_code == null) ? mapper.logMapperProblem("migrasiDlosAppBusiness") : lother_business_type_code.getKey();
 				
 				String other_business_pct = mapper.getString("other_business_pct");
 				if (!StringTool.isEmpty(other_business_pct)) {
@@ -369,7 +369,7 @@ public class DataUsaha implements Mapping {
 				
 				String is_supplier_verified_code = mapper.getString("is_supplier_verified_code");
 				Lookup lis_supplier_verified_code = store.getLookupByDescription(Lookup.YesNo, is_supplier_verified_code);
-				is_supplier_verified_code = (lis_supplier_verified_code == null) ? null : lis_supplier_verified_code.getKey();
+				is_supplier_verified_code = (lis_supplier_verified_code == null) ? mapper.logMapperProblem("migrasiDlosAppSupChecking") : lis_supplier_verified_code.getKey();
 				
 				String avg_mo_sales_amt = mapper.getString("avg_mo_sales_amt"); 
 				String sales_pct = mapper.getString("sales_pct"); 
@@ -379,11 +379,11 @@ public class DataUsaha implements Mapping {
 				
 				String sales_freq_code = mapper.getString("sales_freq_code");
 				Lookup lsales_freq_code = store.getLookupByDescription(Lookup.SalesFreq, sales_freq_code);
-				sales_freq_code = (lsales_freq_code == null) ? null : lsales_freq_code.getKey();
+				sales_freq_code = (lsales_freq_code == null) ? mapper.logMapperProblem("migrasiDlosAppSupChecking") : lsales_freq_code.getKey();
 				
 				String payment_freq_code = mapper.getString("payment_freq_code");
 				Lookup lpayment_freq_code = store.getLookupByDescription(Lookup.PaymentFreq, payment_freq_code);
-				payment_freq_code = (lpayment_freq_code == null) ? null : lpayment_freq_code.getKey();
+				payment_freq_code = (lpayment_freq_code == null) ? mapper.logMapperProblem("migrasiDlosAppSupChecking") : lpayment_freq_code.getKey();
 				
 				String is_active = "1"; 
 				String modified_date = null; 
@@ -484,22 +484,22 @@ public class DataUsaha implements Mapping {
 				
 				String timely_pymt_code = mapper.getString("timely_pymt_code");
 				Lookup ltimely_pymt_code = store.getLookupByDescription(Lookup.TimelyPymt, timely_pymt_code);
-				timely_pymt_code = (ltimely_pymt_code == null) ? null : ltimely_pymt_code.getKey();
+				timely_pymt_code = (ltimely_pymt_code == null) ? mapper.logMapperProblem("migrasiDlosAppSupPayments") : ltimely_pymt_code.getKey();
 				
 				String is_cont_relation_code = mapper.getString("is_cont_relation_code");
 				Lookup lis_cont_relation_code = store.getLookupByDescription(Lookup.YesNo, is_cont_relation_code);
-				is_cont_relation_code = (lis_cont_relation_code == null) ? null : lis_cont_relation_code.getKey();
+				is_cont_relation_code = (lis_cont_relation_code == null) ? mapper.logMapperProblem("migrasiDlosAppSupPayments") : lis_cont_relation_code.getKey();
 				
 				String is_neg_info_code = mapper.getString("is_neg_info_code");
 				Lookup lis_neg_info_code = store.getLookupByDescription(Lookup.YesNo, is_neg_info_code);
-				is_neg_info_code = (lis_neg_info_code == null) ? null : lis_neg_info_code.getKey();
+				is_neg_info_code = (lis_neg_info_code == null) ? mapper.logMapperProblem("migrasiDlosAppSupPayments") : lis_neg_info_code.getKey();
 				
 				
 				String neg_info_desc = StringTool.combine(mapper.getString("neg_info_desc0"), mapper.getString("neg_info_desc1"));
 				
 				String pymt_freq_majority_cnt = mapper.getString("pymt_freq_majority_cnt");
 				Lookup lpymt_freq_majority_cnt = store.getLookupByDescription(Lookup.PaymentFreq, pymt_freq_majority_cnt);
-				pymt_freq_majority_cnt = (lpymt_freq_majority_cnt == null) ? null : lpymt_freq_majority_cnt.getKey();
+				pymt_freq_majority_cnt = (lpymt_freq_majority_cnt == null) ? mapper.logMapperProblem("migrasiDlosAppSupPayments") : lpymt_freq_majority_cnt.getKey();
 						
 				String top3_sup_sales_pct = mapper.getString("top3_sup_sales_pct"); 
 				if (!StringTool.isEmpty(top3_sup_sales_pct)) {
@@ -508,13 +508,13 @@ public class DataUsaha implements Mapping {
 				
 				String main_sup_dependency_code = mapper.getString("main_sup_dependency_code");
 				Lookup lmain_sup_dependency_code = store.getLookupByDescription(Lookup.SupDependency, main_sup_dependency_code);
-				main_sup_dependency_code = (lmain_sup_dependency_code == null) ? null : lmain_sup_dependency_code.getKey(); 
+				main_sup_dependency_code = (lmain_sup_dependency_code == null) ? mapper.logMapperProblem("migrasiDlosAppSupPayments") : lmain_sup_dependency_code.getKey(); 
 				
 				String is_single_sup_code = null; 
 				
 				String additional_info = mapper.getString("additional_info");
 				Lookup ladditional_info = store.getLookupByDescription(Lookup.AdditionalInfo, additional_info);
-				additional_info = (ladditional_info == null) ? null : ladditional_info.getKey();				
+				additional_info = (ladditional_info == null) ? mapper.logMapperProblem("migrasiDlosAppSupPayments") : ladditional_info.getKey();				
 				
 				String is_active = "1"; 
 				String modified_date = null; 
@@ -634,11 +634,11 @@ public class DataUsaha implements Mapping {
 				
 				String goods_services_quality_code = mapper.getString("goods_services_quality_code");
 				Lookup lgoods_services_quality_code = store.getLookupByDescription(Lookup.GoodsServicesQuality, goods_services_quality_code);
-				goods_services_quality_code = (lgoods_services_quality_code == null) ? null : lgoods_services_quality_code.getKey();
+				goods_services_quality_code = (lgoods_services_quality_code == null) ? mapper.logMapperProblem("migrasiDlosAppBuyChecking") : lgoods_services_quality_code.getKey();
 				
 				String is_buyer_verified_code = mapper.getString("is_buyer_verified_code");
 				Lookup lis_buyer_verified_code = store.getLookupByDescription(Lookup.YesNo, is_buyer_verified_code);
-				is_buyer_verified_code = (lis_buyer_verified_code == null) ? null : lis_buyer_verified_code.getKey();
+				is_buyer_verified_code = (lis_buyer_verified_code == null) ? mapper.logMapperProblem("migrasiDlosAppBuyChecking") : lis_buyer_verified_code.getKey();
 				
 				String avg_mo_purchase_amt = mapper.getString("avg_mo_purchase_amt"); 
 				String purch_pct = mapper.getString("purch_pct"); 
@@ -648,7 +648,7 @@ public class DataUsaha implements Mapping {
 				
 				String goods_services_purch_freq_cnt = mapper.getString("goods_services_purch_freq_cnt");
 				Lookup lgoods_services_purch_freq_cnt = store.getLookupByDescription(Lookup.GoodsServicesPurchFreq, goods_services_purch_freq_cnt);
-				goods_services_purch_freq_cnt = (lgoods_services_purch_freq_cnt == null) ? null : lgoods_services_purch_freq_cnt.getKey();
+				goods_services_purch_freq_cnt = (lgoods_services_purch_freq_cnt == null) ? mapper.logMapperProblem("migrasiDlosAppBuyChecking") : lgoods_services_purch_freq_cnt.getKey();
 				
 				String is_active = "1"; 
 				String modified_date = null; 
@@ -755,15 +755,15 @@ public class DataUsaha implements Mapping {
 				
 				String timely_pymt_code = mapper.getString("timely_pymt_code"); 
 				Lookup ltimely_pymt_code = store.getLookupByDescription(Lookup.TimelyPymt, timely_pymt_code);
-				timely_pymt_code = (ltimely_pymt_code == null) ? null : ltimely_pymt_code.getKey();
+				timely_pymt_code = (ltimely_pymt_code == null) ? mapper.logMapperProblem("migrasiDlosAppBuyPayment") : ltimely_pymt_code.getKey();
 				
 				String is_cont_relation_code = mapper.getString("is_cont_relation_code");
 				Lookup lis_cont_relation_code = store.getLookupByDescription(Lookup.YesNo, is_cont_relation_code);
-				is_cont_relation_code = (lis_cont_relation_code == null) ? null : lis_cont_relation_code.getKey();
+				is_cont_relation_code = (lis_cont_relation_code == null) ? mapper.logMapperProblem("migrasiDlosAppBuyPayment") : lis_cont_relation_code.getKey();
 				
 				String is_neg_info_code = mapper.getString("is_neg_info_code");
 				Lookup lis_neg_info_code = store.getLookupByDescription(Lookup.YesNo, is_neg_info_code);
-				is_neg_info_code = (lis_neg_info_code == null) ? null : lis_neg_info_code.getKey();
+				is_neg_info_code = (lis_neg_info_code == null) ? mapper.logMapperProblem("migrasiDlosAppBuyPayment") : lis_neg_info_code.getKey();
 				
 				String neg_info_desc = StringTool.combine(mapper.getString("neg_info_desc0"), mapper.getString("neg_info_desc1"));
 				
@@ -774,11 +774,11 @@ public class DataUsaha implements Mapping {
 				
 				String main_buy_dependency_code = mapper.getString("main_buy_dependency_code");
 				Lookup lmain_buy_dependency_code = store.getLookupByDescription(Lookup.BuyDependency, main_buy_dependency_code);
-				main_buy_dependency_code = (lmain_buy_dependency_code == null) ? null : lmain_buy_dependency_code.getKey();				
+				main_buy_dependency_code = (lmain_buy_dependency_code == null) ? mapper.logMapperProblem("migrasiDlosAppBuyPayment") : lmain_buy_dependency_code.getKey();				
 				
 				String additional_info = mapper.getString("additional_info");
 				Lookup ladditional_info = store.getLookupByDescription(Lookup.AdditionalInfo, additional_info);
-				additional_info = (ladditional_info == null) ? null : ladditional_info.getKey();
+				additional_info = (ladditional_info == null) ? mapper.logMapperProblem("migrasiDlosAppBuyPayment") : ladditional_info.getKey();
 				
 				String is_active = "1"; 
 				String modified_date = null; 
@@ -877,11 +877,11 @@ public class DataUsaha implements Mapping {
 				
 				String cov_header_freq_code = mapper.getString("cov_header_freq_code"); 
 				Lookup lcov_header_freq_code = store.getLookupByDescription(Lookup.Frequency, cov_header_freq_code);
-				cov_header_freq_code = (lcov_header_freq_code == null) ? null : lcov_header_freq_code.getKey();
+				cov_header_freq_code = (lcov_header_freq_code == null) ? mapper.logMapperProblem("migrasiDlosAppCovenantHeader") : lcov_header_freq_code.getKey();
 				
 				String cov_header_existing_condition_code = mapper.getString("cov_header_existing_condition_code");
 				Lookup lcov_header_existing_condition_code = store.getLookupByDescription(Lookup.YesNo, cov_header_existing_condition_code);
-				cov_header_existing_condition_code = (lcov_header_existing_condition_code == null) ? null : lcov_header_existing_condition_code.getKey();
+				cov_header_existing_condition_code = (lcov_header_existing_condition_code == null) ? mapper.logMapperProblem("migrasiDlosAppCovenantHeader") : lcov_header_existing_condition_code.getKey();
 				
 				String cov_header_desc = null; 
 				String is_active = "1"; 
@@ -946,7 +946,7 @@ public class DataUsaha implements Mapping {
 				
 				String precedent_header_existing_condition_code = mapper.getString("precedent_header_existing_condition_code");
 				Lookup lprecedent_header_existing_condition_code = store.getLookupByDescription(Lookup.YesNo, precedent_header_existing_condition_code);
-				precedent_header_existing_condition_code = (lprecedent_header_existing_condition_code == null) ? null : lprecedent_header_existing_condition_code.getKey();
+				precedent_header_existing_condition_code = (lprecedent_header_existing_condition_code == null) ? mapper.logMapperProblem("migrasiDlosAppPrecedentHeader") : lprecedent_header_existing_condition_code.getKey();
 				
 				String precedent_header_desc = null; 
 				String is_active = "1"; 
@@ -1012,7 +1012,7 @@ public class DataUsaha implements Mapping {
 				
 				String drawdown_header_existing_condition_code = mapper.getString("drawdown_header_existing_condition_code");
 				Lookup ldrawdown_header_existing_condition_code = store.getLookupByDescription(Lookup.YesNo, drawdown_header_existing_condition_code);
-				drawdown_header_existing_condition_code = (ldrawdown_header_existing_condition_code == null) ? null : ldrawdown_header_existing_condition_code.getKey();
+				drawdown_header_existing_condition_code = (ldrawdown_header_existing_condition_code == null) ? mapper.logMapperProblem("migrasiDlosAppDrawdownConditionHeader") : ldrawdown_header_existing_condition_code.getKey();
 				
 				String drawdown_header_desc = null;
 				String is_active = "1"; 
