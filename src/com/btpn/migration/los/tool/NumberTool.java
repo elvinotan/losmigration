@@ -24,4 +24,19 @@ public class NumberTool {
 		
 		return StringTool.isEmpty(digit.trim()) ? null : digit;
 	}
+	
+	public static String handlePercentage(String percentage) {
+		if (!StringTool.isEmptyTag(percentage)) {
+			percentage = percentage.replaceAll("%", "").replaceAll(",", ".").replaceAll("`", "");
+			double pct = Double.valueOf(percentage);
+			if (pct <= 1D) {
+				percentage = NumberTool.format(pct * 100);
+			}else {
+				percentage = NumberTool.format(pct);
+			}
+			return percentage;
+		}else {
+			return null;
+		}
+	}
 }

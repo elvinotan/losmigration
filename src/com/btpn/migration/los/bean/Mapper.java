@@ -10,6 +10,7 @@ public class Mapper {
 	final static Logger log = Logger.getLogger(Store.class);
 	
 	public String className = "";
+	public String filename = "";
 	private List<SpecCell> specCells;
 	private SpecCell lastCell;
 	
@@ -55,7 +56,7 @@ public class Mapper {
 	
 	public String logMapperProblem(String method) {
 		if (lastCell != null && !StringTool.isEmpty((String)lastCell.getValue())) {
-			log.warn("[MAPPING PROBLEM LOC] "+className+">"+method+">"+lastCell.getVariable()+ " on " +lastCell.getSheet()+"."+lastCell.getAddress()+", Value: ["+lastCell.getValue()+"]");
+			log.warn("[MAPPING PROBLEM LOC] ["+filename+">"+className+">"+method+">"+lastCell.getVariable()+">"+lastCell.getSheet()+">"+lastCell.getAddress()+">Value: "+lastCell.getValue()+"]");
 		}
 		
 		return null;

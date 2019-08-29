@@ -1,6 +1,7 @@
 package com.btpn.migration.los.bean;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,22 @@ public class Store {
 	public void add(Lookup lookup) {
 //		this.lookupMap.put(lookup.getGroup()+"~"+clear(lookup.getKey()), lookup);
 		this.lookupMap.put(lookup.getGroup()+"~"+clear(lookup.getDescription()), lookup);
+		toleransiData(lookup);
 	}
+	
+	private void toleransiData(Lookup lookup) {
+		if (lookup.getGroup().equals(Lookup.BusinessOwnership) && lookup.getKey().equals("Parents")) {
+			//Tempat usaha calon debitur adalah asset milik keluarga pemegang saham / manajemen
+			this.lookupMap.put(lookup.getGroup()+"~"+clear("Tempat usaha calon debitur adalah aset milik keluarga pemegang saham / manajemen"), lookup);	
+		}
+		if (lookup.getGroup().equals(Lookup.HomeOwnership) && lookup.getKey().equals("Parents")) {
+			//Calon debitur tinggal di rumah keluarga milik orang tua atau kakek neneknya (memiliki sebagian hak atas rumah tersebut di kemudian hari)
+			this.lookupMap.put(lookup.getGroup()+"~"+clear("Calon debitur tinggal di rumah keluarga milik orang tua atau kakek/neneknya (Calon debitur memiliki sebagian hak atas rumah tersebut di kemudian hari)"), lookup);
+		}
+	}
+	
+	
+	
 	
 	public void add(CommonService commonService) {
 		this.commonServiceMap.put(commonService.getGroup()+"~"+clear(commonService.getDescription()), commonService);
@@ -47,7 +63,7 @@ public class Store {
 		Lookup lookup = this.lookupMap.get(group+"~"+clear(key));		
 	
 		if (lookup == null) {
-			log.warn("[MAPPING PROBLEM MSG] Data Lookup Not found for ("+group+") with key ("+key+")");
+			//log.warn("[MAPPING PROBLEM MSG] Data Lookup Not found for ("+group+") with key ("+key+")");
 			
 			if (throwErr) throw new NullPointerException("Data Lookup Not found for ("+group+") with key ("+key+")");
 			return null;
@@ -57,17 +73,26 @@ public class Store {
 	}
 	
 	public Lookup getLookupByDescription(String group, String description) {
+		return getLookupByDescription(new String[] { group }, description, false);
+	}
+	
+	public Lookup getLookupByDescription(String[] group, String description) {
 		return getLookupByDescription(group, description, false);
 	}
 	
-	public Lookup getLookupByDescription(String group, String description, boolean throwErr) {
+	public Lookup getLookupByDescription(String[] groups, String description, boolean throwErr) {
 		if (description == null) return null;
-		Lookup lookup = this.lookupMap.get(group+"~"+clear(description));
+		
+		Lookup lookup = null;
+		for (String group : groups) {
+			lookup = this.lookupMap.get(group+"~"+clear(description));
+			if (lookup != null) break;
+		}
 		
 		if (lookup == null) {
-			log.warn("[MAPPING PROBLEM MSG] Data Lookup Not found for ("+group+") with description ("+description+")");
+			//log.warn("[MAPPING PROBLEM MSG] Data Lookup Not found for ("+Arrays.toString(groups)+") with description ("+description+")");
 			
-			if (throwErr) throw new NullPointerException("Data Lookup Not found for ("+group+") with description ("+description+")");
+			if (throwErr) throw new NullPointerException("Data Lookup Not found for ("+Arrays.toString(groups)+") with description ("+description+")");
 			return null;
 		}else {
 			return lookup;
@@ -83,7 +108,7 @@ public class Store {
 		CommonService cs = this.commonServiceMap.get(group+"~"+clear(description));
 		
 		if (cs == null) {
-			log.warn("[MAPPING PROBLEM MSG] Data CommonService Not found for ("+group+") with description ("+description+")");
+			//log.warn("[MAPPING PROBLEM MSG] Data CommonService Not found for ("+group+") with description ("+description+")");
 			
 			if (throwErr) throw new NullPointerException("Data CommonService Not found for ("+group+") with description ("+description+")");
 			return null;
@@ -102,7 +127,7 @@ public class Store {
 		region = (region == null) ? getTolerateRegion(clear(description)) : region;
 		
 		if (region == null) {
-			log.warn("[MAPPING PROBLEM MSG] Data Region Not found for description ("+description+")");
+			//log.warn("[MAPPING PROBLEM MSG] Data Region Not found for description ("+description+")");
 			
 			if (throwErr) throw new NullPointerException("Data Region Not found for description ("+description+")");
 			return null;
@@ -132,7 +157,7 @@ public class Store {
 		branch = (branch == null) ? getTolerateBranch(clear(description)) : branch;
 		
 		if (branch == null) {
-			log.warn("[MAPPING PROBLEM MSG] Data Branch Not found for description ("+description+")");
+			//log.warn("[MAPPING PROBLEM MSG] Data Branch Not found for description ("+description+")");
 			
 			if (throwErr) throw new NullPointerException("Data Branch Not found for  description ("+description+")");
 			return null;
@@ -208,5 +233,11 @@ public class Store {
 		commonServiceMap.clear();
 		regionMap.clear();
 		branchMap.clear();
+	}
+	
+	public static void main(String[] args) {
+		String aa = "5,350";
+		String oooo = aa.replaceAll(",", ".");
+		System.out.println("- oooo "+oooo);
 	}
 }

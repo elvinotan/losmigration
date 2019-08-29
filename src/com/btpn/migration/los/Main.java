@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
+import com.btpn.migration.los.constant.IgnoreFile;
 import com.btpn.migration.los.mapping.DataJaminan;
 import com.btpn.migration.los.mapping.DataUsaha;
 import com.btpn.migration.los.mapping.InformasiDebitur;
@@ -15,6 +16,8 @@ import com.btpn.migration.los.mapping.TujuanDanFasilitas;
 
 public class Main extends AbstractMain {
 	final static Logger log = Logger.getLogger(Main.class);
+	
+	public static boolean EXECUTE_INSERT = true;
 	
 	public void runMapping(File folder) throws Exception {
 		// Define all mapping
@@ -46,7 +49,10 @@ public class Main extends AbstractMain {
 			String absolutePath = file.getAbsolutePath();
 			if (file.isFile() && !file.getName().contains("lock")) {
 				if (absolutePath.toLowerCase().endsWith("xls") || absolutePath.toLowerCase().endsWith("xlsx")) {
-					files.add(file);	
+					if (!IgnoreFile.isIgnore(file.getName())) {
+//						if (file.getName().equals("163. PT Hesindo Karya Pratama.xls"))
+						files.add(file);
+					}
 				}
 			}
 		}
@@ -56,8 +62,8 @@ public class Main extends AbstractMain {
 		// Define all mapping
 		List<Mapping> mapping = new ArrayList<Mapping>();
 		mapping.add(new InformasiDebitur());
-		mapping.add(new TujuanDanFasilitas());
-		mapping.add(new DataUsaha());
+//		mapping.add(new TujuanDanFasilitas());
+//		mapping.add(new DataUsaha());
 		
 		// Clear All Data with createdBy = 'MIGRATION' and load data refrence		
 		initilize(mapping);
@@ -79,12 +85,12 @@ public class Main extends AbstractMain {
 		
 		Main main = new Main();
 		
-//		// Run Untuk Development
-		main.runMapping(new File("C:/Users/19057559/workspaces/java/losmigration/input"));
+		// Run Untuk Development
+//		main.runMapping(new File("C:/Users/19057559/workspaces/java/losmigration/input"));
 		
 		// Run Untuk Migration
-//		main.runInitilize(new File("C:/Users/19057559/workspaces/java/Proposal"));
-//		main.runMigration();
+		main.runInitilize(new File("C:/Users/19057559/workspaces/java/Proposal"));
+		main.runMigration();
 	}
 }
 

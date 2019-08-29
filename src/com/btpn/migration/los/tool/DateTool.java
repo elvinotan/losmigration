@@ -25,4 +25,8 @@ public class DateTool {
 		return (StringTool.isEmpty(data)) ? null : data.trim().split(" ")[0];
 	}
 	
+	public static String getYMDInformasiDebiturAppManagement(String data) throws ParseException {
+		if ("26 Juni 2018".equals(data)) return "2018-06-26";
+		return (StringTool.isEmpty(data)) ? null : data.trim().split(" ")[0];
+	}
 }

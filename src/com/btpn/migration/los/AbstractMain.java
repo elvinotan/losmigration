@@ -15,11 +15,13 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.openxml4j.exceptions.OLE2NotOfficeXmlFileException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.btpn.migration.los.bean.CommonService;
 import com.btpn.migration.los.bean.CommonServiceGroup;
@@ -129,8 +131,7 @@ public class AbstractMain {
 		loadCommonService(store);
 		loadLookup(store);
 		loadRegion(store);
-	}
-	
+	}	
 	
 	private void execInsert(String filename, String mapping, String process, String insertStms, SpecRow specRow, Store store) {
 		PreparedStatement preStmt = null;
@@ -143,7 +144,7 @@ public class AbstractMain {
 			boolean execute = preStmt.execute();
 			preStmt.close();
 		}catch(Exception e) {
-			log.error(filename+"."+mapping+"."+process+" "+e.getMessage());
+			log.error("["+filename+">"+mapping+">"+process+"] "+e.getMessage());
 		}finally {
 			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
 		}
@@ -174,17 +175,35 @@ public class AbstractMain {
 	protected void loadFile(File file, List<Mapping> mapping) throws Exception {
 		log.debug("loadFile "+file.getName());
 		
+		boolean isXls = file.getName().toLowerCase().endsWith(".xls") ? true : false;		
 		FileInputStream xlsFile = new FileInputStream(file);
-		Workbook workbook = new HSSFWorkbook(xlsFile);
+		Workbook workbook = null;
+		if (isXls) {
+			workbook = new HSSFWorkbook(xlsFile);
+		}else {
+			try {
+				workbook = new XSSFWorkbook(xlsFile);
+			}catch(OLE2NotOfficeXmlFileException e) {
+				workbook = new HSSFWorkbook(xlsFile);	
+			}
+		}
 
 		// So far masih cuma bedakan SMEL dan Other, untuk MUR masih blm bisa bedakan
 		String lobType = LobType.SMES;
+		boolean correctXls = false;
 		for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
 			String sheetname = workbook.getSheetAt(i).getSheetName();
+			if (com.btpn.migration.los.constant.Sheet.InformasiDebitur.equals(sheetname)) {
+				correctXls = true;
+			}
 			if (com.btpn.migration.los.constant.Sheet.Spreading.equals(sheetname)) {
 				lobType = LobType.SMEL;
 				break;
 			}
+		}
+		
+		if (!correctXls) {
+			log.error("Ignore file "+file.getName()+", not a migration file");
 		}
 		
 		// Initilize cell
@@ -250,10 +269,11 @@ public class AbstractMain {
 		for (Mapping m : mapping) {
 			for (SpecRow specRow : m.getSpecRows(lobType)) {
 				mapper.className = m.getClass().getSimpleName();
+				mapper.filename = file.getName();
 				mapper.setSpecCells(specRow.getSpecCells());
 				try {
 					String[] arr = specRow.getAction().insert(mapper, store, lobType);
-					if (arr != null) { // arr null artinya datanya kosong,  
+					if (Main.EXECUTE_INSERT &&  arr != null) { // arr null artinya datanya kosong,  
 						String process = arr[0];
 						String sql = arr[1];
 						
@@ -261,8 +281,7 @@ public class AbstractMain {
 						execInsert(file.getName(), m.getClass().getSimpleName(), process, sql, specRow, store);
 					}
 				}catch(Exception e) {
-					e.printStackTrace();
-					log.error(e.getMessage(), e);
+					log.error("["+mapper.filename+">"+mapper.className+"]"+e.getMessage(), e);
 				}
 			}
 		}

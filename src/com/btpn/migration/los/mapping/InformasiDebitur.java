@@ -19,6 +19,11 @@ import com.btpn.migration.los.tool.StringTool;
 public class InformasiDebitur implements Mapping {
 	private List<SpecRow> specRows = new ArrayList<SpecRow>();
 
+	//Script 
+	//ALTER TABLE dlos_core.dlos_app_management MODIFY COLUMN `managementName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_management MODIFY COLUMN `idNumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+
+	
 	// Mencakup
 	// dlos_app_detail (Master)
 	// dlos_loan_process (1)
@@ -47,15 +52,15 @@ public class InformasiDebitur implements Mapping {
 
 	@Override
 	public void initMapping(String lobType) {
-		migrasiDlosAppDetail(lobType);
-		migrasiDlosLoanProcess(lobType);
-		migrasiDlosAppContact(lobType);
-		migrasiDlosAppSocialMedia(lobType);
-		migrasiDlosAppGroupDebitur(lobType);
-		migrasiDlosAppVerificationDebitur(lobType);
-		migrasiDlosAppLegal(lobType);
+//		migrasiDlosAppDetail(lobType);
+//		migrasiDlosLoanProcess(lobType);
+//		migrasiDlosAppContact(lobType);
+//		migrasiDlosAppSocialMedia(lobType);
+//		migrasiDlosAppGroupDebitur(lobType);
+//		migrasiDlosAppVerificationDebitur(lobType);
+//		migrasiDlosAppLegal(lobType);
 		migrasiDlosAppManagement(lobType);
-		migrasiDlosAppProperty(lobType);
+//		migrasiDlosAppProperty(lobType);
 	}
 
 	private void migrasiDlosAppDetail(String lobType) {
@@ -495,10 +500,7 @@ public class InformasiDebitur implements Mapping {
 						
 				String idNumber =  mapper.getString("idNumber");
 				String sharePercentage = mapper.getString("sharePercentage");
-				if (sharePercentage != null && "-".equalsIgnoreCase(sharePercentage.trim())) sharePercentage = null;
-				if (!StringTool.isEmpty(sharePercentage)) {
-					sharePercentage = NumberTool.format(Double.valueOf(sharePercentage) * 100);
-				}
+				sharePercentage = NumberTool.handlePercentage(sharePercentage);
 				
 				String managementAddress = mapper.getString("managementAddress");
 				String datiII = mapper.getString("datiII"); 
@@ -506,14 +508,36 @@ public class InformasiDebitur implements Mapping {
 				datiII = (csDati2 == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : csDati2.getCode();
 				
 				String NPWPNumber = mapper.getString("NPWPNumber");
+				
 				String age = mapper.getString("age");
+				if (StringTool.isEmpty(age)) { 
+					age = null; 
+				}else {
+					age = age.toLowerCase();
+					age = age.replaceAll("tahun", "").trim();	
+				}
+				
 				String experienceInYears = mapper.getString("experienceInYears");
+				if (StringTool.isEmptyTag(experienceInYears)) { experienceInYears = null; }
+				
 				String joinedSinceYears = mapper.getString("joinedSinceYears");
+				if (StringTool.isEmptyTag(joinedSinceYears)) { 
+					joinedSinceYears = null; 
+				}else {
+					// untuk handle 1980 (CV Kutawaringin dan CV Fitaloka)
+					String[] array = joinedSinceYears.split(" ");
+					if (array.length > 0) {
+						joinedSinceYears = array[0];	
+					}else {
+						joinedSinceYears = null;
+					}
+				}
+				
 				String dataId = store.getString("dataId");
 				String isActive = "1";
 				String modifiedDate = null;
 				String modifiedBy = mapper.getString("appId");
-				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
+				String createdDate = DateTool.getYMDInformasiDebiturAppManagement(mapper.getString("createdDate"));
 				String createdBy = MIGRATION;
 				
 				return new String[] {
@@ -577,8 +601,8 @@ public class InformasiDebitur implements Mapping {
 			@Override
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String homeOwnershipStatus = mapper.getString("homeOwnershipStatus");
-				Lookup lhomeOwnershipStatus = store.getLookupByDescription(Lookup.HomeOwnership, homeOwnershipStatus);
-				homeOwnershipStatus = (lhomeOwnershipStatus == null) ? mapper.logMapperProblem("migrasiDlosAppProperty") : lhomeOwnershipStatus.getKey();
+				Lookup lhomeOwnershipStatus = store.getLookupByDescription(new String[] {Lookup.HomeOwnership, Lookup.BusinessOwnership}, homeOwnershipStatus);
+				homeOwnershipStatus = (lhomeOwnershipStatus == null) ? mapper.logMapperProblem("migrasiDlosAppProperty") :  lhomeOwnershipStatus.getKey();
 				
 				String businessOwnershipStatus = null;
 				String ownershipDate = DateTool.getYMD(mapper.getString("ownershipDate"));

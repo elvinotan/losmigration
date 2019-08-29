@@ -15,4 +15,12 @@ public class StringTool {
 	public static boolean isEmpty(String data) {
 		return (data == null || "".equals(data));
 	}
+	
+	public static boolean isEmptyTag(String data) {
+		if (isEmpty(data)) {
+			return true;
+		}else {
+			return "--".equals(data.trim()) || "-".equals(data.trim()) || "NA".equals(data.trim())  || "N/A".equals(data.trim());
+		}
+	}
 }
