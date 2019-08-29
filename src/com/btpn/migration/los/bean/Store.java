@@ -8,6 +8,8 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import com.btpn.migration.los.constant.DataMapping;
+
 public class Store {
 	final static Logger log = Logger.getLogger(Store.class);
 	
@@ -16,6 +18,7 @@ public class Store {
 	private Map<String, CommonService> commonServiceMap =  new HashMap<String, CommonService>();
 	private Map<String, Region> regionMap = new HashMap<String, Region>();
 	private Map<String, Region> branchMap = new HashMap<String, Region>();
+	private DataMapping dataMapping = DataMapping.get();
 	
 	public void print(String group) {
 		for (String key : this.lookupMap.keySet()) {
@@ -235,9 +238,11 @@ public class Store {
 		branchMap.clear();
 	}
 	
+	public String getDati2Mapping(String dati2) {
+		return dataMapping.getDati2Mapping(dati2);
+	}
+	
 	public static void main(String[] args) {
-		String aa = "5,350";
-		String oooo = aa.replaceAll(",", ".");
-		System.out.println("- oooo "+oooo);
+		System.out.println("- 10\\");
 	}
 }

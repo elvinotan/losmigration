@@ -1,6 +1,7 @@
 package com.btpn.migration.los;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,11 +14,12 @@ import com.btpn.migration.los.mapping.DataUsaha;
 import com.btpn.migration.los.mapping.InformasiDebitur;
 import com.btpn.migration.los.mapping.Mapping;
 import com.btpn.migration.los.mapping.TujuanDanFasilitas;
+import com.btpn.migration.los.tool.DateTool;
 
 public class Main extends AbstractMain {
 	final static Logger log = Logger.getLogger(Main.class);
 	
-	public static boolean EXECUTE_INSERT = true;
+	public static boolean EXECUTE_INSERT = false;
 	
 	public void runMapping(File folder) throws Exception {
 		// Define all mapping
@@ -50,7 +52,7 @@ public class Main extends AbstractMain {
 			if (file.isFile() && !file.getName().contains("lock")) {
 				if (absolutePath.toLowerCase().endsWith("xls") || absolutePath.toLowerCase().endsWith("xlsx")) {
 					if (!IgnoreFile.isIgnore(file.getName())) {
-//						if (file.getName().equals("163. PT Hesindo Karya Pratama.xls"))
+//						if (file.getName().equals("112. PT One Connect Indonesia.xls"))
 						files.add(file);
 					}
 				}
@@ -59,6 +61,10 @@ public class Main extends AbstractMain {
 	}
 	
 	public void runMigration() throws Exception{
+		File folder = new File("C:/Users/19057559/workspaces/java/losmigration/sql/"+DateTool.getCurrentYMDHS());
+		if (!folder.exists()) folder.mkdir();
+		super.fileWriter = new FileWriter(new File(folder, "script.sql"));
+		
 		// Define all mapping
 		List<Mapping> mapping = new ArrayList<Mapping>();
 		mapping.add(new InformasiDebitur());
@@ -78,9 +84,13 @@ public class Main extends AbstractMain {
 				log.error("Fail to process "+file.getAbsolutePath()+" "+ e.getMessage(), e);
 			}
 		}
+		
+		fileWriter.close();
 	}
 	
 	public static void main(String[] args) throws Exception{
+		log.error("---------- START MIGRATION ----------");
+		
 		BasicConfigurator.configure();
 		
 		Main main = new Main();
@@ -88,9 +98,11 @@ public class Main extends AbstractMain {
 		// Run Untuk Development
 //		main.runMapping(new File("C:/Users/19057559/workspaces/java/losmigration/input"));
 		
-		// Run Untuk Migration
+		// Run Untuk Migration		
 		main.runInitilize(new File("C:/Users/19057559/workspaces/java/Proposal"));
 		main.runMigration();
+		
+		log.error("---------- END MIGRATION ----------");
 	}
 }
 

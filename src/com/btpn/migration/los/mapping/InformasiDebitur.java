@@ -1,7 +1,11 @@
 package com.btpn.migration.los.mapping;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.log4j.Logger;
 
 import com.btpn.migration.los.bean.CommonService;
 import com.btpn.migration.los.bean.IActions;
@@ -17,6 +21,8 @@ import com.btpn.migration.los.tool.NumberTool;
 import com.btpn.migration.los.tool.StringTool;
 
 public class InformasiDebitur implements Mapping {
+	final static Logger log = Logger.getLogger(InformasiDebitur.class);
+	
 	private List<SpecRow> specRows = new ArrayList<SpecRow>();
 
 	//Script 
@@ -480,6 +486,8 @@ public class InformasiDebitur implements Mapping {
 				.xls("TDPNIBNumber", "C94"));
 	}
 	
+	private static Map<String, String> dati2 = new HashMap<String, String>();
+	
 	private void migrasiDlosAppManagement(String lobType) {
 		
 		IActions insertDlosAppManagement = new IActions() {
@@ -491,46 +499,71 @@ public class InformasiDebitur implements Mapping {
 				if (managementName == null) return null; // ini artinya  datanya kosong dan jgn di process querynya
 				
 				String managementPosition = mapper.getString("managementPosition");
-				Lookup lmanagementPosition = store.getLookupByDescription(Lookup.Position, managementPosition);
-				managementPosition = (lmanagementPosition == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : lmanagementPosition.getKey();
+				if (StringTool.isEmptyTag(managementPosition)) { return null; 
+				}else {
+					if ("70 - Lainnya (Bukan Pemilik)".equals(managementPosition)) managementPosition = "69 - Lainnya (Bukan Pemilik)";
+					if ("\\".equals(managementPosition)) managementPosition = null;
+					
+					Lookup lmanagementPosition = store.getLookupByDescription(Lookup.Position, managementPosition);
+					managementPosition = (lmanagementPosition == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : lmanagementPosition.getKey();
+				}
 				
 				String idCode = mapper.getString("idCode");
-				Lookup lIdCode = store.getLookupByDescription(Lookup.IDCard, idCode); 
-				idCode = (lIdCode == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : lIdCode.getKey(); 
+				if (StringTool.isEmptyTag(idCode)) { idCode = null;
+				}else {
+					if ("Paspor".equals(idCode)) idCode = "Passport"; //078. PT. Multi Karya Engineering.xls, 202. PT. Jaya Mega Mandiri Bangunan.xls
+					if ("PASPORT Republik Federal German".equals(idCode)) idCode = "Passport"; //091. PT Woodexindo.xls
+					
+					Lookup lIdCode = store.getLookupByDescription(Lookup.IDCard, idCode); 
+					idCode = (lIdCode == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : lIdCode.getKey();
+				}
 						
 				String idNumber =  mapper.getString("idNumber");
+				
 				String sharePercentage = mapper.getString("sharePercentage");
-				sharePercentage = NumberTool.handlePercentage(sharePercentage);
+				if (StringTool.isEmptyTag(sharePercentage)) { sharePercentage = null;
+				}else {
+					if ("96% Pemilik di PT Mitra Maju Perkasa".equals(sharePercentage)) { sharePercentage = "96"; }
+					if ("Jl. Babarsari TB XI/20-A Tambakbayan Rt/Rw. 013/004".equals(sharePercentage)) { sharePercentage = null; }
+					if ("Tidak tercantum di akta".equals(sharePercentage)) { sharePercentage = null; }
+					if ("10\\%".equals(sharePercentage)) { sharePercentage = "10"; }
+					
+					sharePercentage = NumberTool.handlePercentage(sharePercentage);	
+				}				
 				
 				String managementAddress = mapper.getString("managementAddress");
-				String datiII = mapper.getString("datiII"); 
+				
+				String datiII = store.getDati2Mapping(mapper.getString("datiII"));
 				CommonService csDati2 = store.getCommonByDescription(CommonService.TYPE_CITY, datiII);
 				datiII = (csDati2 == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : csDati2.getCode();
 				
 				String NPWPNumber = mapper.getString("NPWPNumber");
 				
 				String age = mapper.getString("age");
-				if (StringTool.isEmpty(age)) { 
-					age = null; 
+				if (StringTool.isEmptyTag(age)) { age = null; 
 				}else {
-					age = age.toLowerCase();
-					age = age.replaceAll("tahun", "").trim();	
+					if ("37 Tahun".equals(age)) age = "37";
+					if ("33 Tahun".equals(age)) age = "33";
 				}
 				
 				String experienceInYears = mapper.getString("experienceInYears");
-				if (StringTool.isEmptyTag(experienceInYears)) { experienceInYears = null; }
+				if (StringTool.isEmptyTag(experienceInYears)) { 
+					experienceInYears = null; 
+				}else {
+					if (">5".equals(experienceInYears)) experienceInYears = "5";
+					if ("> 10 thn".equals(experienceInYears)) experienceInYears = "10";
+					if ("28 thn".equals(experienceInYears)) experienceInYears = "28";
+					if ("26 thn".equals(experienceInYears)) experienceInYears = "26";
+				}
 				
 				String joinedSinceYears = mapper.getString("joinedSinceYears");
 				if (StringTool.isEmptyTag(joinedSinceYears)) { 
 					joinedSinceYears = null; 
 				}else {
-					// untuk handle 1980 (CV Kutawaringin dan CV Fitaloka)
-					String[] array = joinedSinceYears.split(" ");
-					if (array.length > 0) {
-						joinedSinceYears = array[0];	
-					}else {
-						joinedSinceYears = null;
-					}
+					joinedSinceYears = joinedSinceYears.replaceAll("-an", "");
+					if ("2011-07-14 00:00:00:0000".equals(joinedSinceYears)) { joinedSinceYears = "2011"; }
+					if ("1980 (CV Kutawaringin dan CV Fitaloka)".equals(joinedSinceYears)) { joinedSinceYears = "1980"; }
+					if ("2004 (CV Kutawaringin)".equals(joinedSinceYears)) { joinedSinceYears = "2004"; }
 				}
 				
 				String dataId = store.getString("dataId");

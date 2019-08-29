@@ -3,6 +3,7 @@ package com.btpn.migration.los;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,9 +42,10 @@ import com.google.gson.stream.JsonReader;
 
 public class AbstractMain {
 	final static Logger log = Logger.getLogger(AbstractMain.class);
-	
+
 	private Gson gson = new Gson();
 	private Store store = new Store();
+	protected FileWriter fileWriter = null;
 	
 	private void clearTables(List<Mapping> mapping) {
 		log.debug("clearTables");
@@ -58,6 +60,7 @@ public class AbstractMain {
 			for (Mapping m : newMapping) {
 				for (String sql : m.clearTable()) {
 					log.debug(sql);
+					fileWriter.write(sql+"\n");
 					preStmt = conn.prepareStatement(sql);
 					preStmt.execute();
 				}
@@ -126,7 +129,7 @@ public class AbstractMain {
 		}
 	}
 	
-	protected void initilize(List<Mapping> mapping) {
+	protected void initilize(List<Mapping> mapping) throws Exception{
 		clearTables(mapping);
 		loadCommonService(store);
 		loadLookup(store);
@@ -273,12 +276,17 @@ public class AbstractMain {
 				mapper.setSpecCells(specRow.getSpecCells());
 				try {
 					String[] arr = specRow.getAction().insert(mapper, store, lobType);
-					if (Main.EXECUTE_INSERT &&  arr != null) { // arr null artinya datanya kosong,  
+					if (arr != null) { // arr null artinya datanya kosong,  
 						String process = arr[0];
 						String sql = arr[1];
 						
 						sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
-						execInsert(file.getName(), m.getClass().getSimpleName(), process, sql, specRow, store);
+						if (Main.EXECUTE_INSERT) {
+							execInsert(file.getName(), m.getClass().getSimpleName(), process, sql, specRow, store);
+						}else {
+							sql = sql.replaceAll("\n\r", "");
+							fileWriter.write(sql+"\n");
+						}
 					}
 				}catch(Exception e) {
 					log.error("["+mapper.filename+">"+mapper.className+"]"+e.getMessage(), e);

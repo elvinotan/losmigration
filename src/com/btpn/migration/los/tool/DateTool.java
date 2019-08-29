@@ -29,4 +29,9 @@ public class DateTool {
 		if ("26 Juni 2018".equals(data)) return "2018-06-26";
 		return (StringTool.isEmpty(data)) ? null : data.trim().split(" ")[0];
 	}
+	
+	public static String getCurrentYMDHS() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+		return sdf.format(new Date());
+	}
 }
