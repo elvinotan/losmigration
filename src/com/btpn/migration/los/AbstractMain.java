@@ -2,13 +2,9 @@ package com.btpn.migration.los;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -24,11 +20,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.btpn.migration.los.bean.CommonService;
-import com.btpn.migration.los.bean.CommonServiceGroup;
-import com.btpn.migration.los.bean.Lookup;
 import com.btpn.migration.los.bean.Mapper;
-import com.btpn.migration.los.bean.Region;
 import com.btpn.migration.los.bean.SpecCell;
 import com.btpn.migration.los.bean.SpecRow;
 import com.btpn.migration.los.bean.Store;
@@ -36,151 +28,50 @@ import com.btpn.migration.los.constant.LobType;
 import com.btpn.migration.los.db.DbConnection;
 import com.btpn.migration.los.mapping.Mapping;
 import com.btpn.migration.los.tool.DateTool;
-import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
 
 
-public class AbstractMain {
+public class AbstractMain extends AbstractReference {
 	final static Logger log = Logger.getLogger(AbstractMain.class);
 
-	private Gson gson = new Gson();
-	private Store store = new Store();
-	protected FileWriter fileWriter = null;
-	
-	private void clearTables(List<Mapping> mapping) {
-		log.debug("clearTables");
-		
-		PreparedStatement preStmt = null;
-		try {
-			Connection conn = DbConnection.get().getConnection();
-			List<Mapping> newMapping = new ArrayList<Mapping>();
-			newMapping.addAll(mapping);
-			
-			Collections.reverse(newMapping);
-			for (Mapping m : newMapping) {
-				for (String sql : m.clearTable()) {
-					log.debug(sql);
-					fileWriter.write(sql+"\n");
-					preStmt = conn.prepareStatement(sql);
-					preStmt.execute();
-				}
-			}
-			newMapping.clear();
-			newMapping = null;
-		}catch(Exception e) {
-			log.error(e.getMessage(), e);			
-		}finally {
-			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
-		}
-	}
-	
-	private void loadCommonService(Store store) {
-		log.debug("Fetching CommonService from file");
-		
-		File folder = new File("C:/Users/19057559/workspaces/java/losmigration/json");
-		for (File f : folder.listFiles()) {
-			try {
-				JsonReader reader = new JsonReader(new FileReader(f));
-				CommonServiceGroup group = gson.fromJson(reader, CommonServiceGroup.class);
-				if (group != null) {
-					for (CommonService s : group.getResult()) {
-						s.setGroup(f.getName().replaceAll(".json", ""));
-						store.add(s);
-					}
-				}
-			}catch(Exception e) {
-				log.error(e.getMessage(), e);
-			}
-		}
-	}
-	
-	private void loadLookup(Store store) {
-		log.debug("Fetching lookup from database");
-		
-		PreparedStatement preStmt = null;
-		ResultSet rs = null;
-		try {
-			String query = "select * from dlos_lookup_detail";
-			Connection connection = DbConnection.get().getConnection();
-			preStmt = connection.prepareStatement(query);
-			log.debug(query);
-			rs = preStmt.executeQuery();
-			while (rs.next()) {
-				String lookupId = rs.getString("lookupId");
-				String key = rs.getString("key");
-				String group = rs.getString("group");
-				String description = rs.getString("description");
-				Boolean isActive = rs.getBoolean("isActive");
-				store.add(new Lookup(Long.valueOf(lookupId), key, group, description, isActive));
-			}
-		}catch(Exception e) {
-			log.error(e.getMessage(), e);
-		}finally {
-			if (rs != null)  try { rs.close(); }catch(Exception e) { e.printStackTrace(); }
-			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
-		}
-	}
-	
-	private void loadRegion(Store store) {
-		log.debug("Fetching Region from cache");
-		
-		for (Region r : Region.getRegions()) {
-			store.add(r);
-		}
-	}
-	
-	protected void initilize(List<Mapping> mapping) throws Exception{
-		clearTables(mapping);
-		loadCommonService(store);
-		loadLookup(store);
-		loadRegion(store);
-	}	
-	
 	private void execInsert(String filename, String mapping, String process, String insertStms, SpecRow specRow, Store store) {
 		PreparedStatement preStmt = null;
 		ResultSet rs = null;
 		
 		try {
-			Connection connection = DbConnection.get().getConnection();
-			preStmt = connection.prepareStatement(insertStms);
+			preStmt = DbConnection.get().getConnection().prepareStatement(insertStms);
 			log.debug(insertStms);
-			boolean execute = preStmt.execute();
-			preStmt.close();
+			preStmt.execute();
 		}catch(Exception e) {
-			log.error("["+filename+">"+mapping+">"+process+"] "+e.getMessage());
+			log.error("["+filename+">"+mapping+">"+process+"] "+e.getMessage(), e);
 		}finally {
-			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
+			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { }
 		}
 		
 		SpecCell pkCell = specRow.getPk();
 		if (pkCell != null) {
-			
 			try {
-				Connection connection = DbConnection.get().getConnection();
-				preStmt = connection.prepareStatement("SELECT LAST_INSERT_ID() as pk");
+				preStmt = DbConnection.get().getConnection().prepareStatement("SELECT LAST_INSERT_ID() as pk");
 				rs = preStmt.executeQuery();
 				if (rs.next()) {
 					String pk = rs.getString("pk");
 					store.put(pkCell.getVariable(), pk);
 				}
 				
-				boolean execute = preStmt.execute();
-				preStmt.close();
-				rs.close();
+				preStmt.execute();
 			}catch(Exception e) {
 				log.error(e.getMessage(), e);
 			}finally {
+				if (rs != null)  try { rs.close(); }catch(Exception e) { }
 				if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
 			}
 		}
 	}
 	
 	protected void loadFile(File file, List<Mapping> mapping) throws Exception {
-		log.debug("loadFile "+file.getName());
-		
-		boolean isXls = file.getName().toLowerCase().endsWith(".xls") ? true : false;		
 		FileInputStream xlsFile = new FileInputStream(file);
 		Workbook workbook = null;
+		
+		boolean isXls = file.getName().toLowerCase().endsWith(".xls") ? true : false;
 		if (isXls) {
 			workbook = new HSSFWorkbook(xlsFile);
 		}else {
@@ -193,11 +84,11 @@ public class AbstractMain {
 
 		// So far masih cuma bedakan SMEL dan Other, untuk MUR masih blm bisa bedakan
 		String lobType = LobType.SMES;
-		boolean correctXls = false;
+		boolean correctMigrationFile = false;
 		for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
 			String sheetname = workbook.getSheetAt(i).getSheetName();
 			if (com.btpn.migration.los.constant.Sheet.InformasiDebitur.equals(sheetname)) {
-				correctXls = true;
+				correctMigrationFile = true;
 			}
 			if (com.btpn.migration.los.constant.Sheet.Spreading.equals(sheetname)) {
 				lobType = LobType.SMEL;
@@ -205,8 +96,11 @@ public class AbstractMain {
 			}
 		}
 		
-		if (!correctXls) {
-			log.error("Ignore file "+file.getName()+", not a migration file");
+		if (!correctMigrationFile) {
+			log.error("Ignore file, "+file.getName()+", is not a migration file");
+			workbook.close();
+			xlsFile.close();
+			return;
 		}
 		
 		// Initilize cell
@@ -267,25 +161,27 @@ public class AbstractMain {
 				}
 			}
 		}
-		
+
 		Mapper mapper = new Mapper();
 		for (Mapping m : mapping) {
 			for (SpecRow specRow : m.getSpecRows(lobType)) {
 				mapper.className = m.getClass().getSimpleName();
 				mapper.filename = file.getName();
 				mapper.setSpecCells(specRow.getSpecCells());
+				
 				try {
-					String[] arr = specRow.getAction().insert(mapper, store, lobType);
-					if (arr != null) { // arr null artinya datanya kosong,  
+					String[] arr = specRow.getAction().insert(mapper, getStore(), lobType);
+					if (arr != null) { // arr null artinya datanya kosong,
 						String process = arr[0];
 						String sql = arr[1];
 						
 						sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
-						if (Main.EXECUTE_INSERT) {
-							execInsert(file.getName(), m.getClass().getSimpleName(), process, sql, specRow, store);
+						if (Main.EXECUTE_SQL_STATEMENT) {
+							
+							execInsert(file.getName(), m.getClass().getSimpleName(), process, sql, specRow, getStore());
 						}else {
 							sql = sql.replaceAll("\n\r", "");
-							fileWriter.write(sql+"\n");
+							writeSql(sql);
 						}
 					}
 				}catch(Exception e) {
@@ -298,8 +194,6 @@ public class AbstractMain {
 			for (SpecRow r : m.getSpecRows(lobType)) { r.clear(); }
 		}
 		
-		DbConnection.get().close();
-		mapping = null;
 		workbook.close();
 		xlsFile.close();
 	}
