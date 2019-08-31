@@ -39,14 +39,14 @@ public class Main extends AbstractMain {
 	}
 	
 	public static void main(String[] args) throws Exception{
-		log.error("---------- START MIGRATION ----------");
+		log.debug("---------- START MIGRATION ----------");
 		
 		Main main = new Main();
 //		main.initialize(new File("input")); // Development migration
 		main.initialize(new File("../Proposal")); // Real migration
 		main.migrate();
 		
-		log.error("---------- END MIGRATION ----------");
+		log.debug("---------- END MIGRATION ----------");
 	}
 }
 
