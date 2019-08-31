@@ -59,7 +59,7 @@ public class DataUsaha implements Mapping {
 	}
 	
 	@Override
-	public void initMapping(String lobType) {
+	public void initMapping(String filename, String lobType) {
 		migrasiDlosAppBusiness(lobType);
 //		migrasiDlosAppBusinessOth(lobType); Tidak ada di bagian mapping
 //		migrasiDlosAppBusinessNeighbour(lobType); Tidak ada di bagian mapping

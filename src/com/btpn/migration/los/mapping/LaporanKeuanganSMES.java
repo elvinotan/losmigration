@@ -25,7 +25,7 @@ public class LaporanKeuanganSMES implements Mapping {
 	}
 	
 	@Override
-	public void initMapping(String lobType) {
+	public void initMapping(String filename, String lobType) {
 		String[] columns = new String[] {"C", "E", "G", "I", "O"};
 		
 		IActions insertAppPos = new IActions() {

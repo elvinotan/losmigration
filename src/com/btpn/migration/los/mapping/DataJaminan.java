@@ -16,7 +16,7 @@ public class DataJaminan implements Mapping {
 	}
 
 	@Override
-	public void initMapping(String lobType) {
+	public void initMapping(String filename, String lobType) {
 		
 	}
 

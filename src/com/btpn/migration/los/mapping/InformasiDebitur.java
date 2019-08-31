@@ -57,7 +57,7 @@ public class InformasiDebitur implements Mapping {
 	}
 
 	@Override
-	public void initMapping(String lobType) {
+	public void initMapping(String filename, String lobType) {
 //		migrasiDlosAppDetail(lobType);
 //		migrasiDlosLoanProcess(lobType);
 //		migrasiDlosAppContact(lobType);
@@ -65,8 +65,8 @@ public class InformasiDebitur implements Mapping {
 //		migrasiDlosAppGroupDebitur(lobType);
 //		migrasiDlosAppVerificationDebitur(lobType);
 //		migrasiDlosAppLegal(lobType);
-		migrasiDlosAppManagement(lobType);
-//		migrasiDlosAppProperty(lobType);
+		migrasiDlosAppManagement(filename, lobType);
+		migrasiDlosAppProperty(filename, lobType);
 	}
 
 	private void migrasiDlosAppDetail(String lobType) {
@@ -488,7 +488,7 @@ public class InformasiDebitur implements Mapping {
 	
 	private static Map<String, String> dati2 = new HashMap<String, String>();
 	
-	private void migrasiDlosAppManagement(String lobType) {
+	private void migrasiDlosAppManagement(String filename, String lobType) {
 		
 		IActions insertDlosAppManagement = new IActions() {
 
@@ -627,7 +627,7 @@ public class InformasiDebitur implements Mapping {
 		}
 	}
 	
-	private void migrasiDlosAppProperty(String lobType) {
+	private void migrasiDlosAppProperty(String filename, String lobType) {
 		
 		IActions insertDlosAppProperty = new IActions() {
 
@@ -659,14 +659,23 @@ public class InformasiDebitur implements Mapping {
 					)
 				};
 			}
-			
 		};
-		specRows.add(SpecRow.get(insertDlosAppProperty).setSheet(Sheet.InformasiDebitur)
-				.xls("appId", "J7")
-				.xls("createdDate", "J4")
-				.xls("homeOwnershipStatus", "D27")
-				.xls("leaseDate", "H29")
-				.xls("ownershipDate", "H28"));
+		
+		if (StringTool.inArray(filename, "099. PT. BPR Utomo Manunggal Sejahtera.xls", "199 PT. BPR Nusamba Singaparna.xls")) {
+			specRows.add(SpecRow.get(insertDlosAppProperty).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("homeOwnershipStatus", "D30")
+					.xls("leaseDate", "H32")
+					.xls("ownershipDate", "H31"));
+		}else {		
+			specRows.add(SpecRow.get(insertDlosAppProperty).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("homeOwnershipStatus", "D27")
+					.xls("leaseDate", "H29")
+					.xls("ownershipDate", "H28"));
+		}
 				
 	}
 

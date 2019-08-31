@@ -12,7 +12,7 @@ import com.btpn.migration.los.mapping.Mapping;
 public class Main extends AbstractMain {
 	final static Logger log = Logger.getLogger(Main.class);
 	
-	public static boolean EXECUTE_SQL_STATEMENT = true;
+	public static boolean EXECUTE_SQL_STATEMENT = false;
 	
 	public void migrate() throws Exception{
 		List<Mapping> mapping = new ArrayList<Mapping>();

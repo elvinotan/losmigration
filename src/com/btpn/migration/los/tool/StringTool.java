@@ -23,4 +23,11 @@ public class StringTool {
 			return "--".equals(data.trim()) || "-".equals(data.trim()) || "NA".equals(data.trim())  || "N/A".equals(data.trim());
 		}
 	}
+	
+	public static boolean inArray(String data, String ...strings) {
+		for (String s : strings) {
+			if (s.equals(data)) return true;
+		}
+		return false;
+	}
 }

@@ -106,7 +106,7 @@ public class AbstractMain extends AbstractReference {
 		// Initilize cell
 		for (Mapping m : mapping) {
 			m.getSpecRows(lobType).clear();
-			m.initMapping(lobType); 
+			m.initMapping(file.getName(), lobType); 
 		}
 
 		for (int i = 0; i < workbook.getNumberOfSheets(); i++) {
