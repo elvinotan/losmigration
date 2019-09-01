@@ -35,7 +35,7 @@ public class AbstractPrepare {
 			if (file.isFile() && !file.getName().contains("lock") && !file.getName().startsWith(".")) {
 				if (absolutePath.toLowerCase().endsWith("xls") || absolutePath.toLowerCase().endsWith("xlsx")) {
 					if (!IgnoreFile.isIgnore(file.getName())) {
-//						if (file.getName().equals("099. PT. BPR Utomo Manunggal Sejahtera.xls"))
+						if (file.getName().equals("165. CV Central UV.xls"))
 							files.add(file);
 					}
 				}

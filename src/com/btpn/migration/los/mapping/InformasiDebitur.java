@@ -586,8 +586,21 @@ public class InformasiDebitur implements Mapping {
 		
 		if (LobType.isSmes(lobType)) {
 			for (int i = 0; i < 11; i++) {
-				int inc = 122 + i;
+				int inc = -1;
+
+				if (StringTool.inArray(filename, "033.I. Edy Laudy - Perpanjangan & Tambahan.xls", "033. Edy Laudy - Perpanjangan & Tambahan.xls", "098. PT. Palapa Energi Indonesia.xls", "136. PT Sumber Es Makmur.xls")) {
+					inc = 127;
+				}else if (StringTool.inArray(filename, "119. PT Karya Bukit Mandiri.xls", "234. Winyoto.xls", "069. I Wayan Jana.xls", "245. I Wayan Jana.xls")) {
+					inc = 132;
+				}else if (StringTool.inArray(filename, "132. PT. Mitra Mulia Bangun Putera.xls", "263. CV. Mulia Sejahtera - BG.xls", "263. Nathan Agus Soegiarto Group.xls", "040. Nathan Agus Soegiarto.xls", "165. CV Central UV.xls", "165. PT. Bintang Citra Kasih.xls")) {
+					inc = 123;
+				}else if (StringTool.inArray(filename, "037. Benyamin Sirapanji - Perpanjangan & Tambahan.xls")) {
+					inc = 125;
+				}else {
+					inc = 122;
+				}
 				
+				inc = inc + i;
 				specRows.add(SpecRow.get(insertDlosAppManagement).setSheet(Sheet.InformasiDebitur)
 						.xls("appId", "J7")
 						.xls("createdDate", "J4")
@@ -607,8 +620,29 @@ public class InformasiDebitur implements Mapping {
 		
 		if (LobType.isSmel(lobType)) {
 			for (int i = 0; i < 11; i++) {
-				int inc = 120 + i;
+				int inc = -1;
 				
+				if (StringTool.inArray(filename, "099. PT. BPR Utomo Manunggal Sejahtera.xls", "199 PT. BPR Nusamba Singaparna.xls")) {
+					inc = 110;		
+				}else if (StringTool.inArray(filename, "264. Aarti Jaya Group.xls")) {
+					inc = 133;				
+				}else if (StringTool.inArray(filename, "114. CV. Mega Jasa.xls", "114.I. CV. Mega Jasa.xls", "114.II CV. Mega Jasa.xls")) {
+					inc = 134;	
+				}else if (StringTool.inArray(filename, "053. PT. Neoplast Packaging - 2018.xls")) {
+					inc = 128;	
+				}else if (StringTool.inArray(filename, "271. Suwandi Group - 2.xls", "271.II. Suwandi Group.xls", "271.I. Suwandi Group.xls", "271. Suwandi Group.xls", "271. CV. Wijaya Bersaudara.xls", "271. CV. Trinity Karya Mandiri.xls", "271. CV. Tri Ratu Tekstil.xls", "271. CV. Tri Mega Jaya.xls", "271. CV. Subur Triratutex.xls", "271. CV. Andalan Wijaya.xls", "206.II. PT Lematang.xls", "206.III PT Lematang.xls", "206.IV PT Lematang.xls", "098. PT. Palapa Energi Indonesia.xls")) {
+					inc = 127;	
+				}else if (StringTool.inArray(filename, "262. Antonius Yogipranata Group - 2.xls", "113.II. PT. Bintang Nusantara Linda - Regularisasi 2.xls", "113.I. PT. Bintang Nusantara Linda.xls", "113. PT. Bintang Nusantara Linda.xls", "280.I. PT Cipta Aneka Pangan Prima.xls", "280. PT Cipta Aneka Pangan Prima.xls", "262. CV. Sinar Sejahtera.xls", "262. CV Sinar Gemilang.xls", "262. Antonius Yogipranata Group – 2.xls", "262. Antonius Yogipranata Group.xls", "0547-BDG Kopo 2- Ricky Group - Renewal Konsolidasi RAC.xls", "0547-BDG Kopo 2- Ricky Group - Konsolidasi (MKK).xls", "012. PT. Mewah Niagajaya.xls", "012. PT. Mewah Niagajaya - 2.xls", "0547-BDG Kopo 2- CV Bintang Terang - New.xls", "0547-BDG Kopo 2- CV Golden Indo Plastic - NEW.xls", "0547-BDG Kopo 2- PT Bintang Mas Indoplast - Renewal.xls", "0547-BDG Kopo 2- Ricky  - Renewal.xls")) {
+					inc = 125;	
+				}else if (StringTool.inArray(filename, "081. CV. Mega Jasa - Tukar Jaminan.xls", "054. CV. Mega Jasa.xls")) {
+					inc = 124;
+				}else if (StringTool.inArray(filename, "129. Go Ronny - Tambahan.xls", "227. Go Ronny - Perpanjangan.xls", "227. Go Ronny Group.xls")) {
+					inc = 122;
+				}else {
+					inc = 120;
+				}
+				
+				inc = inc + i;
 				specRows.add(SpecRow.get(insertDlosAppManagement).setSheet(Sheet.InformasiDebitur)
 						.xls("appId", "J7")
 						.xls("createdDate", "J4")

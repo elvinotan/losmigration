@@ -24,16 +24,6 @@ public class IgnoreFile {
 			"079. Ng Gim An - Perpanjangan & Tambahan.xlsx"
 	};
 	
-	public boolean isUnstandardFile(String filename) {
-		for (String s : unStandardFile) {
-			if (s.equals(filename)) { return true; }
-		}
-		
-		return false;
-	}
-	
-	
-	
 	private static String[] ignoredFile = new String[] {
 			"054. CV. Megah Surya Abadi - 2018 (RAC ABF).xlsx",
 			"RAC ABF rev 1.xlsx",
@@ -231,68 +221,66 @@ public class IgnoreFile {
 	};
 	
 	private static String[] unStandardFile = new String[] {
-			"099. PT. BPR Utomo Manunggal Sejahtera.xls",
-			"199 PT. BPR Nusamba Singaparna.xls",
-			
-			"264. Aarti Jaya Group.xls",
-			"114. CV. Mega Jasa.xls",
-			"053. PT. Neoplast Packaging - 2018.xls",
-			"136. PT Sumber Es Makmur.xls",
+			// Mapping management
+			"099. PT. BPR Utomo Manunggal Sejahtera.xls", 
+			"199 PT. BPR Nusamba Singaparna.xls", 
+			"264. Aarti Jaya Group.xls", 
+			"114. CV. Mega Jasa.xls", 
+			"114.I. CV. Mega Jasa.xls",
+			"114.II CV. Mega Jasa.xls",			
+			"053. PT. Neoplast Packaging - 2018.xls",			
+			"136. PT Sumber Es Makmur.xls",			
 			"206.II. PT Lematang.xls",			
 			"206.III PT Lematang.xls",			
+			"206.IV PT Lematang.xls",				
 			"098. PT. Palapa Energi Indonesia.xls",			
-			"206.III PT Lematang.xls",			
-			"206.IV PT Lematang.xls",			
-			"012. PT. Mewah Niagajaya - 2.xls",
 			"012. PT. Mewah Niagajaya.xls",			
-			"069. I Wayan Jana.xls",			
-			"165. CV Central UV.xls",			
-			"165. PT. Bintang Citra Kasih.xls",
-			"0547-BDG Kopo 2- CV Bintang Terang - New.xls",			
+			"012. PT. Mewah Niagajaya - 2.xls",			
+			"069. I Wayan Jana.xls",	
+			"245. I Wayan Jana.xls",				
+			"165. CV Central UV.xls",				
+			"165. PT. Bintang Citra Kasih.xls",			
+			"0547-BDG Kopo 2- CV Bintang Terang - New.xls",					
 			"0547-BDG Kopo 2- CV Golden Indo Plastic - NEW.xls",			
-			"0547-BDG Kopo 2- PT Bintang Mas Indoplast - Renewal.xls",
-			"0547-BDG Kopo 2- Ricky  - Renewal.xls",			
-			"0547-BDG Kopo 2- Ricky Group - Konsolidasi (MKK).xls",
+			"0547-BDG Kopo 2- PT Bintang Mas Indoplast - Renewal.xls",			
+			"0547-BDG Kopo 2- Ricky  - Renewal.xls",						
+			"0547-BDG Kopo 2- Ricky Group - Konsolidasi (MKK).xls",			
 			"0547-BDG Kopo 2- Ricky Group - Renewal Konsolidasi RAC.xls",			
-			"245. I Wayan Jana.xls",			
-			"262. Antonius Yogipranata Group – 2.xls",			
 			"262. Antonius Yogipranata Group.xls",			
+			"262. Antonius Yogipranata Group – 2.xls",			
 			"262. CV Sinar Gemilang.xls",			
-			"262. CV. Sinar Sejahtera.xls",
-			"271. CV. Andalan Wijaya.xls",			
+			"262. CV. Sinar Sejahtera.xls",			
+			"271. CV. Andalan Wijaya.xls",				
 			"271. CV. Subur Triratutex.xls",			
-			"271. CV. Tri Mega Jaya.xls",			
-			"271. CV. Tri Ratu Tekstil.xls",
+			"271. CV. Tri Mega Jaya.xls",	
+			"271. CV. Tri Ratu Tekstil.xls",			
 			"271. CV. Trinity Karya Mandiri.xls",			
-			"271. CV. Wijaya Bersaudara.xls",			
-			"271. Suwandi Group - 2.xls",			
+			"271. CV. Wijaya Bersaudara.xls",				
 			"271. Suwandi Group.xls",			
 			"271.I. Suwandi Group.xls",
-			"271.II. Suwandi Group.xls",			
+			"271.II. Suwandi Group.xls",	
+			"271. Suwandi Group - 2.xls",		
 			"280. PT Cipta Aneka Pangan Prima.xls",
-			"280.I. PT Cipta Aneka Pangan Prima.xls",
+			"280.I. PT Cipta Aneka Pangan Prima.xls",			
 			"040. Nathan Agus Soegiarto.xls",
-			"263. CV. Mulia Sejahtera - BG.xls",
-			"263. Nathan Agus Soegiarto Group.xls",
-			"132. PT. Mitra Mulia Bangun Putera.xls",
-			"234. Winyoto.xls",			
-			"054. CV. Mega Jasa.xls",
-			"081. CV. Mega Jasa - Tukar Jaminan.xls",
-			"098. PT. Palapa Energi Indonesia.xls",
-			"113. PT. Bintang Nusantara Linda.xls",
-			"113.I. PT. Bintang Nusantara Linda.xls",
-			"113.II. PT. Bintang Nusantara Linda - Regularisasi 2.xls",
-			"119. PT Karya Bukit Mandiri.xls",
-			"033. Edy Laudy - Perpanjangan & Tambahan.xls",
-			"033.I. Edy Laudy - Perpanjangan & Tambahan.xls",
-			"037. Benyamin Sirapanji - Perpanjangan & Tambahan.xls",
-			"129. Go Ronny - Tambahan.xls",
-			"227. Go Ronny - Perpanjangan.xls",
+			"263. Nathan Agus Soegiarto Group.xls",			
+			"263. CV. Mulia Sejahtera - BG.xls",			
+			"132. PT. Mitra Mulia Bangun Putera.xls",			
+			"234. Winyoto.xls",						
+			"054. CV. Mega Jasa.xls",			
+			"081. CV. Mega Jasa - Tukar Jaminan.xls",			
+			"098. PT. Palapa Energi Indonesia.xls",			
+			"113. PT. Bintang Nusantara Linda.xls",			
+			"113.I. PT. Bintang Nusantara Linda.xls",			
+			"113.II. PT. Bintang Nusantara Linda - Regularisasi 2.xls",			
+			"119. PT Karya Bukit Mandiri.xls",			
+			"033. Edy Laudy - Perpanjangan & Tambahan.xls",			
+			"033.I. Edy Laudy - Perpanjangan & Tambahan.xls",			
+			"037. Benyamin Sirapanji - Perpanjangan & Tambahan.xls",			
+			"129. Go Ronny - Tambahan.xls",			
+			"227. Go Ronny - Perpanjangan.xls",			
 			"227. Go Ronny Group.xls",
-			"262. Antonius Yogipranata Group - 2.xls",			
-			"114.I. CV. Mega Jasa.xls",
-			"114.II CV. Mega Jasa.xls"
-
+			"262. Antonius Yogipranata Group - 2.xls",
 	};
 	
 	private static List<String> ignoredlist = new ArrayList<String>();
@@ -305,5 +293,13 @@ public class IgnoreFile {
 		}
 		
 		return ignoredlist.contains(filename);
+	}
+	
+	public boolean isUnstandardFile(String filename) {
+		for (String s : unStandardFile) {
+			if (s.equals(filename)) { return true; }
+		}
+		
+		return false;
 	}
 }
