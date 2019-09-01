@@ -28,6 +28,14 @@ public class InformasiDebitur implements Mapping {
 	//Script 
 	//ALTER TABLE dlos_core.dlos_app_management MODIFY COLUMN `managementName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_management MODIFY COLUMN `idNumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `SIUPNumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `TDPNIBNumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `NPWPName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `SIUPName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `NPWPNumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `TDPNIBName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+
+
 
 	
 	// Mencakup
@@ -64,9 +72,9 @@ public class InformasiDebitur implements Mapping {
 //		migrasiDlosAppSocialMedia(lobType);
 //		migrasiDlosAppGroupDebitur(lobType);
 //		migrasiDlosAppVerificationDebitur(lobType);
-//		migrasiDlosAppLegal(lobType);
-		migrasiDlosAppManagement(filename, lobType);
-		migrasiDlosAppProperty(filename, lobType);
+		migrasiDlosAppLegal(lobType);
+//		migrasiDlosAppManagement(filename, lobType);
+//		migrasiDlosAppProperty(filename, lobType);
 	}
 
 	private void migrasiDlosAppDetail(String lobType) {
@@ -422,6 +430,7 @@ public class InformasiDebitur implements Mapping {
 			@Override
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String legalEntityCode = mapper.getString("legalEntityCode");
+				if ("Perseroan Terbatas (PERSERO)".equals(legalEntityCode)) legalEntityCode = "Perseroan Terbatas (PT/PERSEROAN)";
 				Lookup lLegalEntityCode = store.getLookupByDescription(Lookup.LegalEntity, legalEntityCode);
 				legalEntityCode = (lLegalEntityCode == null) ? mapper.logMapperProblem("migrasiDlosAppLegal") : lLegalEntityCode.getKey();
 						
@@ -436,8 +445,42 @@ public class InformasiDebitur implements Mapping {
 				String ministryApprovalNumber = null; 
 				String ministryApprovalDate = null;
 				String lastDeedNumber = mapper.getString("lastDeedNumber");
-				String lastDeedDate = DateTool.getYMD(mapper.getString("lastDeedDate"));
-				String establishmentDeedDate = DateTool.getYMD(mapper.getString("establishmentDeedDate")); 
+				
+				String lastDeedDate = mapper.getString("lastDeedDate");
+				if (StringTool.isEmptyTag(lastDeedDate)) {
+					lastDeedDate = null;
+				}else {
+					if ("04-03-2011".equals(lastDeedDate)) lastDeedDate = "2011-03-04 00:00:00";
+					if ("30-06-2015".equals(lastDeedDate)) lastDeedDate = "2015-06-30 00:00:00";
+					if ("25-02-2014".equals(lastDeedDate)) lastDeedDate = "2014-02-25 00:00:00";
+					if ("22 Januari 2015".equals(lastDeedDate)) lastDeedDate = "2015-01-22 00:00:00";
+					if ("26 Mei 2015".equals(lastDeedDate)) lastDeedDate = "2015-05-26 00:00:00";
+					if ("23 Desember 2014".equals(lastDeedDate)) lastDeedDate = "2014-12-23 00:00:00";
+					if ("09 Oktober 2014".equals(lastDeedDate)) lastDeedDate = "2014-10-09 00:00:00";
+					if ("07 Oktober 2013".equals(lastDeedDate)) lastDeedDate = "2013-10-07 00:00:00";
+					if ("18 Desember 2015".equals(lastDeedDate)) lastDeedDate = "2015-12-18 00:00:00";
+					if ("3.0".equals(lastDeedDate)) lastDeedDate = null;
+					
+					lastDeedDate = DateTool.getYMD(lastDeedDate);	
+				}
+				
+				String establishmentDeedDate = mapper.getString("establishmentDeedDate");
+				if (StringTool.isEmptyTag(establishmentDeedDate)) {
+					establishmentDeedDate = null;
+				}else {
+					if ("28-08-2000".equals(establishmentDeedDate)) establishmentDeedDate = "2000-08-28 00:00:00";
+					if ("16 Maret 2009".equals(establishmentDeedDate)) establishmentDeedDate = "2009-03-16 00:00:00";
+					if ("30 Desember 1991".equals(establishmentDeedDate)) establishmentDeedDate = "1991-12-30 00:00:00";
+					if ("04-03-2011".equals(establishmentDeedDate)) establishmentDeedDate = "2011-03-04 00:00:00";
+					if ("4 Februari 2010".equals(establishmentDeedDate)) establishmentDeedDate = "2010-02-04 00:00:00";
+					if ("20 Februari 2006".equals(establishmentDeedDate)) establishmentDeedDate = "2006-02-20 00:00:00";
+					if ("09 Oktober 2014".equals(establishmentDeedDate)) establishmentDeedDate = "2014-10-09 00:00:00";
+					if ("18 Juni 2009".equals(establishmentDeedDate)) establishmentDeedDate = "2009-06-18 00:00:00";
+					if ("18 Desember 2015".equals(establishmentDeedDate)) establishmentDeedDate = "2015-12-18 00:00:00";
+					if ("06".equals(establishmentDeedDate)) establishmentDeedDate = null;					
+					establishmentDeedDate = DateTool.getYMD(establishmentDeedDate);	
+				}
+				
 				String NPWPNumber = mapper.getString("NPWPNumber");
 				String NPWPName = mapper.getString("NPWPName");
 				String SIUPNumber = mapper.getString("SIUPNumber"); 
@@ -456,7 +499,11 @@ public class InformasiDebitur implements Mapping {
 				String isActive = "1";
 				String modifiedDate = null; 
 				String modifiedBy = mapper.getString("appId");
-				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
+				
+				String createdDate = mapper.getString("createdDate");
+				if ("26 Juni 2018".equals(createdDate)) createdDate = "2018-05-26 00:00:00";
+				createdDate = DateTool.getYMD(createdDate);
+				
 				String createdBy = MIGRATION;
 				
 				return new String[] {
@@ -485,8 +532,6 @@ public class InformasiDebitur implements Mapping {
 				.xls("TDPNIBName", "G94")
 				.xls("TDPNIBNumber", "C94"));
 	}
-	
-	private static Map<String, String> dati2 = new HashMap<String, String>();
 	
 	private void migrasiDlosAppManagement(String filename, String lobType) {
 		
@@ -570,7 +615,11 @@ public class InformasiDebitur implements Mapping {
 				String isActive = "1";
 				String modifiedDate = null;
 				String modifiedBy = mapper.getString("appId");
-				String createdDate = DateTool.getYMDInformasiDebiturAppManagement(mapper.getString("createdDate"));
+				
+				String createdDate = mapper.getString("createdDate");
+				if ("26 Juni 2018".equals(createdDate)) createdDate = "2018-05-26 00:00:00";
+				createdDate = DateTool.getYMD(createdDate);
+				
 				String createdBy = MIGRATION;
 				
 				return new String[] {
@@ -695,7 +744,6 @@ public class InformasiDebitur implements Mapping {
 				
 				String createdDate = mapper.getString("createdDate");
 				if ("26 Juni 2018".equals(createdDate)) createdDate = "2018-05-26 00:00:00";
-				
 				createdDate = DateTool.getYMD(createdDate);
 				
 				String createdBy = MIGRATION;

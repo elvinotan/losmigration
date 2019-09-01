@@ -22,7 +22,13 @@ public class DateTool {
 	}
 	
 	public static String getYMD(String data) throws ParseException {
-		return (StringTool.isEmpty(data)) ? null : data.trim().split(" ")[0];
+		if (StringTool.isEmpty(data)) {
+			return null;
+		}else {
+			String dateformat = data.trim();
+			String[] arr = dateformat.split(" ");
+			return arr[0].length() <= 2 ? dateformat : arr[0];
+		}
 	}
 	
 	public static String getYMDInformasiDebiturAppManagement(String data) throws ParseException {
