@@ -20,7 +20,7 @@ public class StringTool {
 		if (isEmpty(data)) {
 			return true;
 		}else {
-			return "--".equals(data.trim()) || "-".equals(data.trim()) || "NA".equals(data.trim())  || "N/A".equals(data.trim());
+			return "\\".equals(data.trim()) || "--".equals(data.trim()) || "-".equals(data.trim()) || "NA".equals(data.trim())  || "N/A".equals(data.trim());
 		}
 	}
 	

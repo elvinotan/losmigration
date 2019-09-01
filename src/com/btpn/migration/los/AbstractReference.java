@@ -111,7 +111,7 @@ public class AbstractReference extends AbstractPrepare{
 				}
 			}
 		}catch(Exception e) {
-			log.error(e.getMessage(), e);			
+			log.error("Fail to clear Tables "+e.getMessage(), e);			
 		}finally {
 			reverseMapping.clear();
 			reverseMapping = null;

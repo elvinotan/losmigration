@@ -501,9 +501,9 @@ public class InformasiDebitur implements Mapping {
 				String managementPosition = mapper.getString("managementPosition");
 				if (StringTool.isEmptyTag(managementPosition)) { return null; 
 				}else {
+					System.out.println("oooo["+managementPosition+"]");
 					if ("70 - Lainnya (Bukan Pemilik)".equals(managementPosition)) managementPosition = "69 - Lainnya (Bukan Pemilik)";
 					if ("\\".equals(managementPosition)) managementPosition = null;
-					
 					Lookup lmanagementPosition = store.getLookupByDescription(Lookup.Position, managementPosition);
 					managementPosition = (lmanagementPosition == null) ? mapper.logMapperProblem("migrasiDlosAppManagement") : lmanagementPosition.getKey();
 				}
@@ -596,6 +596,8 @@ public class InformasiDebitur implements Mapping {
 					inc = 123;
 				}else if (StringTool.inArray(filename, "037. Benyamin Sirapanji - Perpanjangan & Tambahan.xls")) {
 					inc = 125;
+				}else if (StringTool.inArray(filename, "053. PT. Neoplast Packaging - 2018.xls")) {
+					inc = 128;	
 				}else {
 					inc = 122;
 				}
@@ -628,8 +630,6 @@ public class InformasiDebitur implements Mapping {
 					inc = 133;				
 				}else if (StringTool.inArray(filename, "114. CV. Mega Jasa.xls", "114.I. CV. Mega Jasa.xls", "114.II CV. Mega Jasa.xls")) {
 					inc = 134;	
-				}else if (StringTool.inArray(filename, "053. PT. Neoplast Packaging - 2018.xls")) {
-					inc = 128;	
 				}else if (StringTool.inArray(filename, "271. Suwandi Group - 2.xls", "271.II. Suwandi Group.xls", "271.I. Suwandi Group.xls", "271. Suwandi Group.xls", "271. CV. Wijaya Bersaudara.xls", "271. CV. Trinity Karya Mandiri.xls", "271. CV. Tri Ratu Tekstil.xls", "271. CV. Tri Mega Jaya.xls", "271. CV. Subur Triratutex.xls", "271. CV. Andalan Wijaya.xls", "206.II. PT Lematang.xls", "206.III PT Lematang.xls", "206.IV PT Lematang.xls", "098. PT. Palapa Energi Indonesia.xls")) {
 					inc = 127;	
 				}else if (StringTool.inArray(filename, "262. Antonius Yogipranata Group - 2.xls", "113.II. PT. Bintang Nusantara Linda - Regularisasi 2.xls", "113.I. PT. Bintang Nusantara Linda.xls", "113. PT. Bintang Nusantara Linda.xls", "280.I. PT Cipta Aneka Pangan Prima.xls", "280. PT Cipta Aneka Pangan Prima.xls", "262. CV. Sinar Sejahtera.xls", "262. CV Sinar Gemilang.xls", "262. Antonius Yogipranata Group – 2.xls", "262. Antonius Yogipranata Group.xls", "0547-BDG Kopo 2- Ricky Group - Renewal Konsolidasi RAC.xls", "0547-BDG Kopo 2- Ricky Group - Konsolidasi (MKK).xls", "012. PT. Mewah Niagajaya.xls", "012. PT. Mewah Niagajaya - 2.xls", "0547-BDG Kopo 2- CV Bintang Terang - New.xls", "0547-BDG Kopo 2- CV Golden Indo Plastic - NEW.xls", "0547-BDG Kopo 2- PT Bintang Mas Indoplast - Renewal.xls", "0547-BDG Kopo 2- Ricky  - Renewal.xls")) {
@@ -671,17 +671,36 @@ public class InformasiDebitur implements Mapping {
 				Lookup lhomeOwnershipStatus = store.getLookupByDescription(new String[] {Lookup.HomeOwnership, Lookup.BusinessOwnership}, homeOwnershipStatus);
 				homeOwnershipStatus = (lhomeOwnershipStatus == null) ? mapper.logMapperProblem("migrasiDlosAppProperty") :  lhomeOwnershipStatus.getKey();
 				
+				
 				String businessOwnershipStatus = null;
-				String ownershipDate = DateTool.getYMD(mapper.getString("ownershipDate"));
+				
+				String ownershipDate = mapper.getString("ownershipDate");				
+				if ("2013.0".equals(ownershipDate)) ownershipDate = "2013-01-01 00:00:00";
+				if ("2003.0".equals(ownershipDate)) ownershipDate = "2003-01-01 00:00:00";
+				if ("2012.0".equals(ownershipDate)) ownershipDate = "2012-01-01 00:00:00";
+				if ("2012".equals(ownershipDate)) ownershipDate = "2012-01-01 00:00:00";
+				if ("2010.0".equals(ownershipDate)) ownershipDate = "2010-01-01 00:00:00";
+				if ("2010".equals(ownershipDate)) ownershipDate = "2010-01-01 00:00:00";
+				if ("2000.0".equals(ownershipDate)) ownershipDate = "2000-01-01 00:00:00";
+				if ("11 Januari 2011".equals(ownershipDate)) ownershipDate = "2011-01-11 00:00:00";
+				ownershipDate = DateTool.getYMD(ownershipDate);
+				
 				String leaseDate = DateTool.getYMD(mapper.getString("leaseDate"));
 				String businessEntityType = null;
 				String businessName = null;
 				String dataId = store.getString("dataId");
 				String isActive = "1";
 				String modifiedDate = null;
-				String modifiedBy = mapper.getString("appId");;
-				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));;
+				String modifiedBy = mapper.getString("appId");
+				
+				String createdDate = mapper.getString("createdDate");
+				if ("26 Juni 2018".equals(createdDate)) createdDate = "2018-05-26 00:00:00";
+				
+				createdDate = DateTool.getYMD(createdDate);
+				
 				String createdBy = MIGRATION;
+				
+				
 				
 				return new String[] {
 						"migrasiDlosAppProperty",

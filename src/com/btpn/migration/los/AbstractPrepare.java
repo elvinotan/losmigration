@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 
 import com.btpn.migration.los.constant.IgnoreFile;
 import com.btpn.migration.los.tool.DateTool;
+import com.btpn.migration.los.tool.StringTool;
 
 public class AbstractPrepare {
 	final static Logger log = Logger.getLogger(AbstractPrepare.class);
@@ -35,7 +36,8 @@ public class AbstractPrepare {
 			if (file.isFile() && !file.getName().contains("lock") && !file.getName().startsWith(".")) {
 				if (absolutePath.toLowerCase().endsWith("xls") || absolutePath.toLowerCase().endsWith("xlsx")) {
 					if (!IgnoreFile.isIgnore(file.getName())) {
-						if (file.getName().equals("165. CV Central UV.xls"))
+						if (file.getName().equals("198. Halim Hamdany - Baru.xlsx"))
+						//if (StringTool.inArray(file.getName(), "053. PT. Neoplast Packaging - 2018.xls","163. PT Hesindo Karya Pratama.xls","004. Indra Saputra - Banding.xls","004. Indra Saputra.xls","016. Lina Simon.xls","029. Niky Cahyadi.xls","064. Lina Simon.xls","085. CV. M&G.XLS","085. PT. Gamico Group.xls","091. Eddy Susanto.xls","094. Niky Cahyadi.xls","094.I. Niky Cahyadi.xls","151. Susanto.xls","193. Suherman.xls","212. CV Mega Mas Tekstil.xls","212. CV Panda Mas.xls","212.I. CV Panda Mas.xls","235. William Suryajaya.xls","211. CV. Sinar Rejeki.xls","211.I. CV. Sinar Rejeki.xls"))
 							files.add(file);
 					}
 				}

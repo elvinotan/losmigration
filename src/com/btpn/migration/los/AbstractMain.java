@@ -33,7 +33,7 @@ import com.btpn.migration.los.tool.DateTool;
 public class AbstractMain extends AbstractReference {
 	final static Logger log = Logger.getLogger(AbstractMain.class);
 
-	private void execInsert(String filename, String mapping, String process, String insertStms, SpecRow specRow, Store store) {
+	private void execInsert(String filename, String className, String method, String insertStms, SpecRow specRow, Store store) {
 		PreparedStatement preStmt = null;
 		ResultSet rs = null;
 		
@@ -42,7 +42,7 @@ public class AbstractMain extends AbstractReference {
 			log.debug(insertStms);
 			preStmt.execute();
 		}catch(Exception e) {
-			log.error("["+filename+">"+mapping+">"+process+"] "+e.getMessage(), e);
+			log.error("[INSERT PROBLEM]["+filename+">"+className+">"+method+"] "+e.getMessage(), e);
 		}finally {
 			if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { }
 		}
@@ -59,7 +59,7 @@ public class AbstractMain extends AbstractReference {
 				
 				preStmt.execute();
 			}catch(Exception e) {
-				log.error(e.getMessage(), e);
+				log.error("[LAST_INSERT_ID PROBLEM] "+e.getMessage(), e);
 			}finally {
 				if (rs != null)  try { rs.close(); }catch(Exception e) { }
 				if (preStmt != null)  try { preStmt.close(); }catch(Exception e) { e.printStackTrace(); }
@@ -97,7 +97,7 @@ public class AbstractMain extends AbstractReference {
 		}
 		
 		if (!correctMigrationFile) {
-			log.error("Ignore file, "+file.getName()+", is not a migration file");
+			log.error("Ignore file !!!. "+file.getName()+", is not a migration file");
 			workbook.close();
 			xlsFile.close();
 			return;
@@ -169,23 +169,25 @@ public class AbstractMain extends AbstractReference {
 				mapper.filename = file.getName();
 				mapper.setSpecCells(specRow.getSpecCells());
 				
+				String eMethod = "";
 				try {
 					String[] arr = specRow.getAction().insert(mapper, getStore(), lobType);
 					if (arr != null) { // arr null artinya datanya kosong,
-						String process = arr[0];
+						String method = arr[0];
 						String sql = arr[1];
+						eMethod = method;
 						
 						sql = sql.replaceAll("'null'", "null"); // Hapus null string insert
 						if (Main.EXECUTE_SQL_STATEMENT) {
 							
-							execInsert(file.getName(), m.getClass().getSimpleName(), process, sql, specRow, getStore());
+							execInsert(file.getName(), m.getClass().getSimpleName(), method, sql, specRow, getStore());
 						}else {
 							sql = sql.replaceAll("\n\r", "");
 							writeSql(sql);
 						}
 					}
 				}catch(Exception e) {
-					log.error("["+mapper.filename+">"+mapper.className+"]"+e.getMessage(), e);
+					log.error("[PARSE PROBLEM]["+mapper.filename+">"+mapper.className+">"+eMethod+"] "+e.getMessage(), e);
 				}
 			}
 		}

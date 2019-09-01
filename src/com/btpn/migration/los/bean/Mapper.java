@@ -56,7 +56,7 @@ public class Mapper {
 	
 	public String logMapperProblem(String method) {
 		if (lastCell != null && !StringTool.isEmpty((String)lastCell.getValue())) {
-			log.warn("[MAPPING PROBLEM LOC] ["+filename+">"+className+">"+method+">"+lastCell.getVariable()+">"+lastCell.getSheet()+">"+lastCell.getAddress()+">Value: "+lastCell.getValue()+"]");
+			log.error("[MAPPING PROBLEM LOC] ["+filename+">"+className+">"+method+">"+lastCell.getVariable()+">"+lastCell.getSheet()+">"+lastCell.getAddress()+">Value: "+lastCell.getValue()+"]");
 		}
 		
 		return null;
