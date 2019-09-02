@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.apache.poi.ddf.EscherColorRef.SysIndexProcedure;
 
 import com.btpn.migration.los.bean.CommonService;
 import com.btpn.migration.los.bean.IActions;
@@ -72,7 +73,7 @@ public class InformasiDebitur implements Mapping {
 //		migrasiDlosAppSocialMedia(lobType);
 //		migrasiDlosAppGroupDebitur(lobType);
 //		migrasiDlosAppVerificationDebitur(lobType);
-		migrasiDlosAppLegal(lobType);
+		migrasiDlosAppLegal(filename, lobType);
 //		migrasiDlosAppManagement(filename, lobType);
 //		migrasiDlosAppProperty(filename, lobType);
 	}
@@ -423,7 +424,7 @@ public class InformasiDebitur implements Mapping {
 		}
 	}
 	
-	private void migrasiDlosAppLegal(String lobType) {
+	private void migrasiDlosAppLegal(String filename, String lobType) {
 		
 		IActions insertDlosAppLegal = new IActions() {
 			
@@ -483,11 +484,23 @@ public class InformasiDebitur implements Mapping {
 				
 				String NPWPNumber = mapper.getString("NPWPNumber");
 				String NPWPName = mapper.getString("NPWPName");
-				String SIUPNumber = mapper.getString("SIUPNumber"); 
+				
+				String SIUPNumber = mapper.getString("SIUPNumber");
+				if (StringTool.isEmptyTag(SIUPNumber)) { SIUPNumber = null;
+				}else {
+					if (SIUPNumber.startsWith("00180/10-12/PK/III/2018 ")) SIUPNumber = "00180/10-12/PK/III/2018";
+				}
+				
 				String SIUPName =  mapper.getString("SIUPName");
 				String SIUPDate = null;
 				String SIUPYear = mapper.getString("SIUPYear");
+
 				String TDPNIBNumber = mapper.getString("TDPNIBNumber");
+				if (StringTool.isEmptyTag(TDPNIBNumber)) { TDPNIBNumber = null;
+				}else {
+					if (TDPNIBNumber.startsWith("10.24.5.47.23777 ")) TDPNIBNumber = "10.24.5.47.23777"; 
+				}
+				
 				String TDPNIBName = mapper.getString("TDPNIBName"); 
 				String TDPNIBDate = null;
 				String TDPNIBYear = mapper.getString("TDPNIBYear");
@@ -516,21 +529,57 @@ public class InformasiDebitur implements Mapping {
 				};
 			}
 		};
-		specRows.add(SpecRow.get(insertDlosAppLegal).setSheet(Sheet.InformasiDebitur)
-				.xls("appId", "J7")
-				.xls("createdDate", "J4")
-				.xls("establishmentDeedDate", "C91")
-				.xls("lastDeedDate", "C90")
-				.xls("lastDeedNumber", "C89")
-				.xls("legalEntityCode", "C88")
-				.xls("NPWPName", "G92")				
-				.xls("NPWPNumber", "C92")
-				.xls("SIUPYear", "K93")
-				.xls("SIUPName", "G93")
-				.xls("SIUPNumber", "C93")
-				.xls("TDPNIBYear", "K94")
-				.xls("TDPNIBName", "G94")
-				.xls("TDPNIBNumber", "C94"));
+		
+		if (StringTool.inArray(filename, "181. Nandang Hidayat.xls")) {
+			specRows.add(SpecRow.get(insertDlosAppLegal).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("establishmentDeedDate", "C91")//Tgl Akta Pendirian
+					.xls("lastDeedDate", "C90")// Tgl Akta Terakhir
+					.xls("lastDeedNumber", "C89") //Nomor Akta Terakhir
+					.xls("legalEntityCode", "C88") //Entitas Legal
+					.xls("NPWPName", "G92") //NPWP Atasname
+					.xls("NPWPNumber", "C92") //NPWP
+					.xls("SIUPYear", "K93") //SIUP Tahun
+					.xls("SIUPName", "G93") //SIUP Atasnama
+					.xls("SIUPNumber", "C93") //SIUP
+					.xls("TDPNIBYear", "K94") //TDP Tahun
+					.xls("TDPNIBName", "G94") //TDP Atasname
+					.xls("TDPNIBNumber", "C94")); //TDP
+			
+		}else if (StringTool.inArray(filename, "099. PT. BPR Utomo Manunggal Sejahtera.xls", "199 PT. BPR Nusamba Singaparna.xls")) {
+			specRows.add(SpecRow.get(insertDlosAppLegal).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("establishmentDeedDate", "C85")//Tgl Akta Pendirian
+					.xls("lastDeedDate", "C84")// Tgl Akta Terakhir
+					.xls("lastDeedNumber", "C83") //Nomor Akta Terakhir
+					.xls("legalEntityCode", "C82") //Entitas Legal
+					.xls("NPWPName", "G86") //NPWP Atasname
+					.xls("NPWPNumber", "C86") //NPWP
+					.xls("SIUPYear", "K87") //SIUP Tahun
+					.xls("SIUPName", "G87") //SIUP Atasnama
+					.xls("SIUPNumber", "C87") //SIUP
+					.xls("TDPNIBYear", "K88") //TDP Tahun
+					.xls("TDPNIBName", "G88") //TDP Atasname
+					.xls("TDPNIBNumber", "C88")); //TDP
+		}else {
+			specRows.add(SpecRow.get(insertDlosAppLegal).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("establishmentDeedDate", "C91") //Tgl Akta Pendirian
+					.xls("lastDeedDate", "C90") // Tgl Akta Terakhir
+					.xls("lastDeedNumber", "C89") //Nomor Akta Terakhir
+					.xls("legalEntityCode", "C88") //Entitas Legal
+					.xls("NPWPName", "G92") //NPWP Atasname
+					.xls("NPWPNumber", "C92") //NPWP
+					.xls("SIUPYear", "K93") //SIUP Tahun
+					.xls("SIUPName", "G93") //SIUP Atasnama
+					.xls("SIUPNumber", "C93") //SIUP
+					.xls("TDPNIBYear", "K94") //TDP Tahun
+					.xls("TDPNIBName", "G94") //TDP Atasname
+					.xls("TDPNIBNumber", "C94")); //TDP
+		}
 	}
 	
 	private void migrasiDlosAppManagement(String filename, String lobType) {
