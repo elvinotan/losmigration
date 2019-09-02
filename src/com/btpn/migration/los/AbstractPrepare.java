@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 
 import com.btpn.migration.los.constant.IgnoreFile;
 import com.btpn.migration.los.tool.DateTool;
-import com.btpn.migration.los.tool.StringTool;
 
 public class AbstractPrepare {
 	final static Logger log = Logger.getLogger(AbstractPrepare.class);
@@ -37,7 +36,7 @@ public class AbstractPrepare {
 				if (absolutePath.toLowerCase().endsWith("xls") || absolutePath.toLowerCase().endsWith("xlsx")) {
 					if (!IgnoreFile.isIgnore(file.getName())) {
 						//if (file.getName().equals("198. Halim Hamdany - Baru.xlsx"))
-						if (StringTool.inArray(file.getName(), "181. Nandang Hidayat.xls", "099. PT. BPR Utomo Manunggal Sejahtera.xls", "199 PT. BPR Nusamba Singaparna.xls"))
+						//if (StringTool.inArray(file.getName(), "181. Nandang Hidayat.xls", "099. PT. BPR Utomo Manunggal Sejahtera.xls", "199 PT. BPR Nusamba Singaparna.xls"))
 							files.add(file);
 					}
 				}

@@ -1,12 +1,9 @@
 package com.btpn.migration.los.mapping;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.apache.poi.ddf.EscherColorRef.SysIndexProcedure;
 
 import com.btpn.migration.los.bean.CommonService;
 import com.btpn.migration.los.bean.IActions;
@@ -35,6 +32,8 @@ public class InformasiDebitur implements Mapping {
 	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `SIUPName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `NPWPNumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `TDPNIBName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_verification_debitur MODIFY COLUMN notes TEXT NULL;
+
 
 
 
@@ -72,8 +71,8 @@ public class InformasiDebitur implements Mapping {
 //		migrasiDlosAppContact(lobType);
 //		migrasiDlosAppSocialMedia(lobType);
 //		migrasiDlosAppGroupDebitur(lobType);
-//		migrasiDlosAppVerificationDebitur(lobType);
-		migrasiDlosAppLegal(filename, lobType);
+		migrasiDlosAppVerificationDebitur(filename, lobType);
+//		migrasiDlosAppLegal(filename, lobType);
 //		migrasiDlosAppManagement(filename, lobType);
 //		migrasiDlosAppProperty(filename, lobType);
 	}
@@ -345,7 +344,7 @@ public class InformasiDebitur implements Mapping {
 		}
 	}
 	
-	private void migrasiDlosAppVerificationDebitur(String lobType) {
+	private void migrasiDlosAppVerificationDebitur(String filename, String lobType) {
 		
 		IActions insertDlosAppVerificationDebitur = new IActions() {
 			
@@ -377,7 +376,11 @@ public class InformasiDebitur implements Mapping {
 				notes = notes.replaceAll("<< Berikan penjelasan, jika terdapat informasi tambahan terkait kredibilitas debitur>>", "").trim();
 				
 				String is_active = "1";				
-				String created_date = DateTool.getYMD(mapper.getString("createdDate"));
+				
+				String created_date = mapper.getString("createdDate");
+				if ("26 Juni 2018".equals(created_date)) created_date = "2018-05-26 00:00:00";
+				created_date = DateTool.getYMD(created_date);
+				
 				String created_by = MIGRATION;
 				String modified_date = null;
 				String modified_by = mapper.getString("appId");
@@ -393,34 +396,51 @@ public class InformasiDebitur implements Mapping {
 			}
 		};
 		
+		// Masih blm untuk screening file yang mencurigakan
+		
 		if (LobType.isSmes(lobType)) {
 			specRows.add(SpecRow.get(insertDlosAppVerificationDebitur).setSheet(Sheet.InformasiDebitur)
 					.xls("appId", "J7")
 					.xls("createdDate", "J4")
-					.xls("is_bi_list", "H138")
-					.xls("bi_check_last_3mos", "H139")
-					.xls("is_business_nonIndustry", "H141")
-					.xls("positive_check", "H142")
-					.xls("is_business_min_2years", "H140")
-					.xls("notes0", "A144")
+					.xls("is_bi_list", "H138") //Debitur tidak termasuk dalam Daftar Hitam BI (DHBI) / BI Blacklist
+					.xls("bi_check_last_3mos", "H139") //BI Checking dengan kolektabilitas 1 dalam 3 bulan terakhir
+					.xls("is_business_nonIndustry", "H141") //Usaha debitur tidak termasuk dalam Non Target Industri
+					.xls("positive_check", "H142") //Hasil positif berdasarkan hasil checking
+					.xls("is_business_min_2years", "H140") //Usaha debitur (termasuk didalamnnya pengalaman key person) telah berjalan minimum 2 tahun, kecuali dapat dibuktikan bahwa usaha debitur yang baru dibentuk adalah pengembangan dari usaha sebelumnya
+					.xls("notes0", "A144") // Catatan
 					.xls("notes1", "A145")
 					.xls("notes2", "A146")
 					.xls("notes3", "A147"));
 		}
 		
 		if (LobType.isSmel(lobType)) {
-			specRows.add(SpecRow.get(insertDlosAppVerificationDebitur).setSheet(Sheet.InformasiDebitur)
-					.xls("appId", "J7")
-					.xls("createdDate", "J4")
-					.xls("is_bi_list", "G136")
-					.xls("bi_check_last_3mos", "G137")
-					.xls("is_business_nonIndustry", "G139")
-					.xls("positive_check", "G140")
-					.xls("is_business_min_2years", "G138")
-					.xls("notes0", "A142")
-					.xls("notes1", "A143")
-					.xls("notes2", "A144")
-					.xls("notes3", "A145"));
+			if (StringTool.inArray(filename, "099. PT. BPR Utomo Manunggal Sejahtera.xls", "199 PT. BPR Nusamba Singaparna.xls")) {
+				specRows.add(SpecRow.get(insertDlosAppVerificationDebitur).setSheet(Sheet.InformasiDebitur)
+						.xls("appId", "J7")
+						.xls("createdDate", "J4")
+						.xls("is_bi_list", "F128") //Debitur tidak termasuk dalam Daftar Hitam BI (DHBI) / BI Blacklist
+						.xls("bi_check_last_3mos", "") //BI Checking dengan kolektabilitas 1 dalam 3 bulan terakhir
+						.xls("is_business_nonIndustry", "F126") //Usaha debitur tidak termasuk dalam Non Target Industri
+						.xls("positive_check", "F129") //Hasil positif berdasarkan hasil checking
+						.xls("is_business_min_2years", "F127") //Usaha debitur (termasuk didalamnnya pengalaman key person) telah berjalan minimum 2 tahun, kecuali dapat dibuktikan bahwa usaha debitur yang baru dibentuk adalah pengembangan dari usaha sebelumnya
+						.xls("notes0", "A131") //Catatan
+						.xls("notes1", "A132")
+						.xls("notes2", "A133")
+						.xls("notes3", "A134"));
+			}else {
+				specRows.add(SpecRow.get(insertDlosAppVerificationDebitur).setSheet(Sheet.InformasiDebitur)
+						.xls("appId", "J7")
+						.xls("createdDate", "J4")
+						.xls("is_bi_list", "G136") //Debitur tidak termasuk dalam Daftar Hitam BI (DHBI) / BI Blacklist
+						.xls("bi_check_last_3mos", "G137") //BI Checking dengan kolektabilitas 1 dalam 3 bulan terakhir
+						.xls("is_business_nonIndustry", "G139") //Usaha debitur tidak termasuk dalam Non Target Industri
+						.xls("positive_check", "G140") //Hasil positif berdasarkan hasil checking
+						.xls("is_business_min_2years", "G138") //Usaha debitur (termasuk didalamnnya pengalaman key person) telah berjalan minimum 2 tahun, kecuali dapat dibuktikan bahwa usaha debitur yang baru dibentuk adalah pengembangan dari usaha sebelumnya
+						.xls("notes0", "A142") //Catatan
+						.xls("notes1", "A143")
+						.xls("notes2", "A144")
+						.xls("notes3", "A145"));
+			}
 		}
 	}
 	
