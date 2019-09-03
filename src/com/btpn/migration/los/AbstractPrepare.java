@@ -35,7 +35,7 @@ public class AbstractPrepare {
 			if (file.isFile() && !file.getName().contains("lock") && !file.getName().startsWith(".")) {
 				if (absolutePath.toLowerCase().endsWith("xls") || absolutePath.toLowerCase().endsWith("xlsx")) {
 					if (!IgnoreFile.isIgnore(file.getName())) {
-						//if (file.getName().equals("198. Halim Hamdany - Baru.xlsx"))
+						//if (file.getName().equals("118. Lai Lie Hung - Tarik Jaminan & Pelunasan Sebagian.xls"))
 						//if (StringTool.inArray(file.getName(), "181. Nandang Hidayat.xls", "099. PT. BPR Utomo Manunggal Sejahtera.xls", "199 PT. BPR Nusamba Singaparna.xls"))
 							files.add(file);
 					}
