@@ -24,6 +24,18 @@ public class StringTool {
 		}
 	}
 	
+	public static String cleanPhone(String phone) {
+		if (phone == null) return null;
+		
+		int idx = phone.indexOf("E");
+		int idxDot = phone.indexOf(".");
+		if (idx >= 0 && idxDot == 1) {
+			return phone.substring(0, idx).replaceAll("\\.", "");
+		}else {
+			return phone;
+		}
+	}
+	
 	public static boolean inArray(String data, String ...strings) {
 		for (String s : strings) {
 			if (s.equals(data)) return true;

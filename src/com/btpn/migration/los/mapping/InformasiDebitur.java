@@ -36,6 +36,12 @@ public class InformasiDebitur implements Mapping {
 	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN `groupDebiturName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN `contactPersonName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN groupDebiturAddress TEXT NULL;
+	//ALTER TABLE dlos_core.dlos_app_detail MODIFY COLUMN `businessPhoneCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_detail MODIFY COLUMN `businessAddress` TEXT NULL;
+	//ALTER TABLE dlos_core.dlos_app_detail MODIFY COLUMN `managementRelation` TEXT NULL;
+
+
+
 
 	
 	// Mencakup
@@ -66,18 +72,18 @@ public class InformasiDebitur implements Mapping {
 
 	@Override
 	public void initMapping(String filename, String lobType) {
-//		migrasiDlosAppDetail(lobType);
-//		migrasiDlosLoanProcess(lobType);
-//		migrasiDlosAppContact(lobType);
-//		migrasiDlosAppSocialMedia(lobType);
-		migrasiDlosAppGroupDebitur(filename, lobType);
+		migrasiDlosAppDetail(filename, lobType);
+//		migrasiDlosLoanProcess(filename, lobType);
+//		migrasiDlosAppContact(filename, lobType);
+//		migrasiDlosAppSocialMedia(filename, lobType);
+//		migrasiDlosAppGroupDebitur(filename, lobType);
 //		migrasiDlosAppVerificationDebitur(filename, lobType);
 //		migrasiDlosAppLegal(filename, lobType);
 //		migrasiDlosAppManagement(filename, lobType);
 //		migrasiDlosAppProperty(filename, lobType);
 	}
 
-	private void migrasiDlosAppDetail(String lobType) {
+	private void migrasiDlosAppDetail(String filename, String lobType) {
 		
 		IActions insertDlosAppDetail = new IActions() {
 			
@@ -88,7 +94,7 @@ public class InformasiDebitur implements Mapping {
 				branchCode = (rBranchCode == null) ?  mapper.logMapperProblem("migrasiDlosAppDetail") : rBranchCode.getBranchCode();
 				
 				String salesSquadName = (rBranchCode == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : rBranchCode.getPmsCode(); // SalesSqualName berasal dari Region.java / Hierarchy LOS.xlsx
-				String areaName = null; // Belum
+				String areaName = null; 
 				
 				String regionName = mapper.getString("regionName");
 				if (regionName != null) {
@@ -98,29 +104,29 @@ public class InformasiDebitur implements Mapping {
 				}
 				
 				String debiturName = mapper.getString("debiturName");
-				String aliasName = null; // Belum
-				String KTPNumber = null; // Belum
-				String KTPExpDate = null; // Belum
-				String NPWPNumber = null; // Belum
-				String placeOfBirth = null; // Belum
-				String dateOfBirth = null; // Belum
-				String religionCode = null; // Belum
-				String nationalityCode = null; // Belum
-				String residenceStatus = null; // Belum
-				String educationStatus = null; // Belum
-				String mobileNumber = null; // Belum
-				String email = null; // Belum
-				String KTPAddress = null; // Belum
-				String KTPPostalCode = null; // Belum
-				String KTPCityCode = null; // Belum
-				String KTPSubDistrict = null; // Belum
-				String KTPDistrict = null; // Belum
-				String currentAddress = null; // Belum
-				String currentAddressPostalCode = null; // Belum
-				String currentAddressSubDistrict = null; // Belum
-				String currentAddressDistrict = null; // Belum
-				String motherMaidenName = null; // Belum
-				String btpnRelationCode = null; // Belum
+				String aliasName = null; 
+				String KTPNumber = null; 
+				String KTPExpDate = null; 
+				String NPWPNumber = null; 
+				String placeOfBirth = null; 
+				String dateOfBirth = null; 
+				String religionCode = null; 
+				String nationalityCode = null; 
+				String residenceStatus = null; 
+				String educationStatus = null; 
+				String mobileNumber = null; 
+				String email = null; 
+				String KTPAddress = null; 
+				String KTPPostalCode = null; 
+				String KTPCityCode = null; 
+				String KTPSubDistrict = null; 
+				String KTPDistrict = null; 
+				String currentAddress = null; 
+				String currentAddressPostalCode = null; 
+				String currentAddressSubDistrict = null; 
+				String currentAddressDistrict = null; 
+				String motherMaidenName = null; 
+				String btpnRelationCode = null; 
 				
 				String sourceOfDebtor = mapper.getString("sourceOfDebtor"); // SourceOfDebtor berasal dari Lookup.DebtorSource
 				Lookup lsourceOfDebtor = store.getLookupByDescription(Lookup.DebtorSource, sourceOfDebtor);
@@ -133,14 +139,18 @@ public class InformasiDebitur implements Mapping {
 					debiturType = (ldebiturType == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : ldebiturType.getKey();
 				}
 				
-				String gender = null; // Belum
-				String maritalStatus = null; // Belum
+				String gender = null; 
+				String maritalStatus = null; 
 				String spouseName = mapper.getString("spouseName");
-				String customerType = null; // Belum
+				String customerType = null; 
 				String isActive = "1";
 				String modifiedDate = null;
 				String modifiedBy = mapper.getString("appId");
-				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
+				
+				String createdDate = mapper.getString("createdDate");
+				if ("26 Juni 2018".equals(createdDate)) createdDate = "2018-05-26 00:00:00";
+				createdDate = DateTool.getYMD(createdDate);
+				
 				String createdBy = MIGRATION;
 				String businessAddress = StringTool.combine(mapper.getString("businessAddress0"), mapper.getString("businessAddress1"));
 				
@@ -161,6 +171,7 @@ public class InformasiDebitur implements Mapping {
 				String acmName = mapper.getString("acmName");
 				String acmNik = mapper.getString("acmNik");
 				String btpnRelationDate = DateTool.getYMD(mapper.getString("btpnRelationDate"));
+				if ("Maret".equals(btpnRelationDate)) btpnRelationDate = null;
 				
 				String programProduct = mapper.getString("programProduct"); //ProgramProduct berasal dari Lookup.ProductProgram
 				Lookup lProgramProduct = store.getLookupByDescription(Lookup.ProductProgram, programProduct);
@@ -168,16 +179,25 @@ public class InformasiDebitur implements Mapping {
 				
 				String information = mapper.getString("information");
 				String managementRelation = StringTool.combine(mapper.getString("managementRelation0"), mapper.getString("managementRelation1"));
+				
 				String managementChange = mapper.getString("managementChange");
-				String KTPRTRWCode = null; // Belum
-				String currentAddressRTRWCode = null; // Belum
+				if (StringTool.isEmptyTag(managementChange)) { managementChange = null;
+				}else {
+					if ("tidak ada".equals(managementChange)) managementChange = null;
+					if ("Nihil".equals(managementChange)) managementChange = null;	
+				}
+				
+				
+					
+				String KTPRTRWCode = null; 
+				String currentAddressRTRWCode = null; 
 
 				return new String[] {
 						"migrasiDlosAppDetail",
 				        
 						String.format(
 						"INSERT INTO dlos_core.dlos_app_detail (`branchCode`, `salesSquadName`, `areaName`, `regionName`, `debiturName`, `aliasName`, `KTPNumber`, `KTPExpDate`, `NPWPNumber`, `placeOfBirth`, `dateOfBirth`, `religionCode`, `nationalityCode`, `residenceStatus`, `educationStatus`, `mobileNumber`, email, `KTPAddress`, `KTPPostalCode`, `KTPCityCode`, `KTPSubDistrict`, `KTPDistrict`, `currentAddress`, `currentAddressPostalCode`, `currentAddressSubDistrict`, `currentAddressDistrict`, `motherMaidenName`, `btpnRelationCode`, `sourceOfDebtor`, `debiturType`, gender, `maritalStatus`, `spouseName`, `customerType`, `isActive`, `modifiedDate`, `modifiedBy`, `createdDate`, `createdBy`, `businessAddress`, `businessCityCode`, `businessProvinceCode`, `businessPostalCode`, `businessPhoneCode`, `currentAddressCityCode`, cif, `rmName`, `rmCode`, `acmName`, `acmNik`, `btpnRelationDate`, `programProduct`, information, `managementRelation`, `managementChange`, `KTPRTRWCode`, `currentAddressRTRWCode`) "
-								+ "VALUES(						'%s', 		  '%s',             '%s',       '%s',         '%s',          '%s',        '%s',        '%s',         '%s',         '%s',           '%s',          '%s',           '%s',              '%s',              '%s',              '%s',           '%s',  '%s',         '%s',            '%s',          '%s',             '%s',          '%s',             '%s',                       '%s',                        '%s',                     '%s',               '%s',               '%s',             '%s',          '%s',   '%s',            '%s',         '%s',           %s,         '%s',           '%s',         '%s',          '%s',        '%s',              '%s',               '%s',                   '%s',                 '%s',                '%s',                     '%s', '%s',    '%s',     '%s',      '%s',     '%s',               '%s',             '%s',        '%s',                 %s,                 '%s',          '%s');",
+								+ "VALUES(						'%s', 		  '%s',             '%s',       '%s',         '%s',          '%s',        '%s',        '%s',         '%s',         '%s',           '%s',          '%s',           '%s',              '%s',              '%s',              '%s',           '%s',  '%s',         '%s',            '%s',          '%s',             '%s',          '%s',             '%s',                       '%s',                        '%s',                     '%s',               '%s',               '%s',             '%s',          '%s',   '%s',            '%s',         '%s',           %s,         '%s',           '%s',         '%s',          '%s',        '%s',              '%s',               '%s',                   '%s',                 '%s',                '%s',                     '%s', '%s',    '%s',     '%s',      '%s',     '%s',               '%s',             '%s',        '%s',                 '%s',                 '%s',          '%s');",
 						branchCode, salesSquadName, areaName, regionName, debiturName, aliasName, KTPNumber, KTPExpDate, NPWPNumber, placeOfBirth, dateOfBirth, religionCode, nationalityCode, residenceStatus,
 						educationStatus, mobileNumber, email, KTPAddress, KTPPostalCode, KTPCityCode, KTPSubDistrict, KTPDistrict, currentAddress, currentAddressPostalCode, currentAddressSubDistrict,
 						currentAddressDistrict, motherMaidenName, btpnRelationCode, sourceOfDebtor, debiturType, gender, maritalStatus, spouseName, customerType, isActive, modifiedDate, modifiedBy, createdDate,
@@ -186,20 +206,37 @@ public class InformasiDebitur implements Mapping {
 				};
 			}
 		};
-		specRows.add(SpecRow.get(insertDlosAppDetail).setSheet(Sheet.InformasiDebitur).xls("appId", "J7")
-				.xls("branchCode", "C9").xls("salesSquadName", "").xls("areaName", "").xls("regionName", "C8").xls("debiturName", "J5").xls("aliasName", "").xls("KTPNumber", "").xls("KTPExpDate", "")
-				.xls("NPWPNumber", "").xls("placeOfBirth", "").xls("dateOfBirth", "").xls("religionCode", "").xls("nationalityCode", "").xls("residenceStatus", "").xls("educationStatus", "")
-				.xls("mobileNumber", "").xls("email", "").xls("KTPAddress", "").xls("KTPPostalCode", "").xls("KTPCityCode", "").xls("KTPSubDistrict", "").xls("KTPDistrict", "").xls("currentAddress", "")
-				.xls("currentAddressPostalCode", "").xls("currentAddressSubDistrict", "").xls("currentAddressDistrict", "").xls("motherMaidenName", "").xls("btpnRelationCode", "")
-				.xls("sourceOfDebtor", "C77").xls("debiturType", "D26").xls("gender", "").xls("maritalStatus", "").xls("spouseName", "D36").xls("customerType", "").xls("isActive", "").xls("modifiedDate", "")
-				.xls("modifiedBy", "").xls("createdDate", "J4").xls("createdBy", "").xls("businessAddress0", "D20").xls("businessAddress1", "D21").xls("businessCityCode", "D22").xls("businessProvinceCode", "D23")
-				.xls("businessPostalCode", "D24").xls("businessPhoneCode", "D25").xls("currentAddressCityCode", "").xls("cif", "J6").xls("rmName", "C4").xls("rmCode", "C5").xls("acmName", "C6").xls("acmNik", "C7")
-				.xls("btpnRelationDate", "J8").xls("programProduct", "J9").xls("information", "A81").xls("managementRelation0", "A134").xls("managementRelation1", "A135").xls("managementChange", "D34")
-				.xls("KTPRTRWCode", "").xls("currentAddressRTRWCode", "")
+		
+		specRows.add(SpecRow.get(insertDlosAppDetail).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.xls("createdDate", "J4")
+				.xls("branchCode", "C9")
+				.xls("regionName", "C8")
+				.xls("debiturName", "J5")
+				.xls("sourceOfDebtor", "C77")
+				.xls("debiturType", "D26")
+				.xls("spouseName", "D36")
+				.xls("businessAddress0", "D20")
+				.xls("businessAddress1", "D21")
+				.xls("businessCityCode", "D22")
+				.xls("businessProvinceCode", "D23")
+				.xls("businessPostalCode", "D24")
+				.xls("businessPhoneCode", "D25")
+				.xls("cif", "J6")
+				.xls("rmName", "C4")
+				.xls("rmCode", "C5")
+				.xls("acmName", "C6")
+				.xls("acmNik", "C7")
+				.xls("btpnRelationDate", "J8")
+				.xls("programProduct", "J9")
+				.xls("information", "A81")
+				.xls("managementRelation0", "A134")
+				.xls("managementRelation1", "A135")
+				.xls("managementChange", "D34")
 				.pk("dataId"));
 	}
 
-	private void migrasiDlosLoanProcess(String lobType) {
+	private void migrasiDlosLoanProcess(String filename, String lobType) {
 		
 		IActions insertDlosLoanProcess = new IActions() {
 			
@@ -213,7 +250,11 @@ public class InformasiDebitur implements Mapping {
 				String isActive = "1";
 				String modifiedDate = null;
 				String modifiedBy = mapper.getString("appId");
-				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
+				
+				String createdDate = mapper.getString("createdDate");
+				if ("26 Juni 2018".equals(createdDate)) createdDate = "2018-05-26 00:00:00";
+				createdDate = DateTool.getYMD(createdDate);
+				
 				String createdBy = MIGRATION;
 
 				return new String[] {
@@ -226,34 +267,64 @@ public class InformasiDebitur implements Mapping {
 				};
 			}
 		};
-		specRows.add(SpecRow.get(insertDlosLoanProcess).setSheet(Sheet.InformasiDebitur).xls("appId", "J7").fix("processStatus", "1").xls("createdDate", "J4"));
+		specRows.add(SpecRow.get(insertDlosLoanProcess).setSheet(Sheet.InformasiDebitur)
+				.xls("appId", "J7")
+				.fix("processStatus", "1")
+				.xls("createdDate", "J4"));
 	}
 	
-	private void migrasiDlosAppContact(String lobType) {
+	private void migrasiDlosAppContact(String filename, String lobType) {
 		
 		IActions insertDlosAppContact = new IActions() {
 			
 			@Override
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				String contactName = mapper.getString("contactName");
-				if (contactName == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
+				if (StringTool.isEmptyTag(contactName)) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
 
 				String genderCode = mapper.getString("genderCode");
 				Lookup lgenderCode = store.getLookupByDescription(Lookup.Gender, genderCode);
 				genderCode = (lgenderCode == null) ? mapper.logMapperProblem("migrasiDlosAppContact") : lgenderCode.getKey();
 
 				String positionCode = mapper.getString("positionCode");
-				Lookup lpositionCode = store.getLookupByDescription(Lookup.Position, positionCode);
-				positionCode = (lpositionCode == null) ? mapper.logMapperProblem("migrasiDlosAppContact") : lpositionCode.getKey();
+				if (StringTool.isEmptyTag(positionCode)) { positionCode = null;
+				}else {
+					Lookup lpositionCode = store.getLookupByDescription(Lookup.Position, positionCode);
+					positionCode = (lpositionCode == null) ? mapper.logMapperProblem("migrasiDlosAppContact") : lpositionCode.getKey();	
+				}
 				
 				String fixedLineNumber = mapper.getString("fixedLineNumber");
+				if (StringTool.isEmptyTag(fixedLineNumber)) { fixedLineNumber = null; 
+				}else {
+					if ("Debitur_Perorangan".equals(fixedLineNumber)) fixedLineNumber = null;
+					if ("Direktur CV. Melana Motor".equals(fixedLineNumber)) fixedLineNumber = null;
+					if ("Nomor telepon (fixed line)".equals(fixedLineNumber)) fixedLineNumber = null;
+					if ("Persero Komanditer".equals(fixedLineNumber)) fixedLineNumber = null;
+					if ("idem".equals(fixedLineNumber)) fixedLineNumber = null;
+					
+					fixedLineNumber = StringTool.cleanPhone(fixedLineNumber); 
+				}
+				
 				String mobileNumber = mapper.getString("mobileNumber");
+				if (StringTool.isEmptyTag(mobileNumber)) { mobileNumber = null; 
+				}else {
+					if ("Nomor mobile phone".equals(mobileNumber)) mobileNumber = null;
+					
+					mobileNumber = StringTool.cleanPhone(mobileNumber); 
+				}
+				
 				String email = mapper.getString("email");
+				if (StringTool.isEmptyTag(email)) { email = null; }
+				
 				String dataId = store.getString("dataId");
 				String isActive = "1";
 				String modifiedDate = null;
 				String modifiedBy = mapper.getString("appId");
-				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
+				
+				String createdDate = mapper.getString("createdDate");
+				if ("26 Juni 2018".equals(createdDate)) createdDate = "2018-05-26 00:00:00";
+				createdDate = DateTool.getYMD(createdDate);
+				
 				String createdBy = MIGRATION;
 
 				return new String[] {
@@ -267,14 +338,30 @@ public class InformasiDebitur implements Mapping {
 				};
 			}
 		};
-		specRows.add(SpecRow.get(insertDlosAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A71").xls("genderCode", "K71").xls("positionCode", "C71").xls("fixedLineNumber", "E71").xls("mobileNumber", "G71").xls("email", "I71").xls("createdDate", "J4").xls("appId", "J7"));
-		specRows.add(SpecRow.get(insertDlosAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A72").xls("genderCode", "K72").xls("positionCode", "C72").xls("fixedLineNumber", "E72").xls("mobileNumber", "G72").xls("email", "I72").xls("createdDate", "J4").xls("appId", "J7"));
-		specRows.add(SpecRow.get(insertDlosAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A73").xls("genderCode", "K73").xls("positionCode", "C73").xls("fixedLineNumber", "E73").xls("mobileNumber", "G73").xls("email", "I73").xls("createdDate", "J4").xls("appId", "J7"));
-		specRows.add(SpecRow.get(insertDlosAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A74").xls("genderCode", "K74").xls("positionCode", "C74").xls("fixedLineNumber", "E74").xls("mobileNumber", "G74").xls("email", "I74").xls("createdDate", "J4").xls("appId", "J7"));
-		specRows.add(SpecRow.get(insertDlosAppContact).setSheet(Sheet.InformasiDebitur).xls("contactName", "A75").xls("genderCode", "K75").xls("positionCode", "C75").xls("fixedLineNumber", "E75").xls("mobileNumber", "G75").xls("email", "I75").xls("createdDate", "J4").xls("appId", "J7"));
+		
+		for (int i = 0; i < 5; i++) {
+			int ctr = 71;
+			
+			if (StringTool.inArray(filename, "099. PT. BPR Utomo Manunggal Sejahtera.xls", "199 PT. BPR Nusamba Singaparna.xls")) {
+				ctr = 75;
+			}
+			
+			ctr = ctr+i;
+			
+			specRows.add(SpecRow.get(insertDlosAppContact).setSheet(Sheet.InformasiDebitur)
+					.xls("appId", "J7")
+					.xls("createdDate", "J4")
+					.xls("contactName", "A"+ctr)
+					.xls("genderCode", "K"+ctr)
+					.xls("positionCode", "C"+ctr)
+					.xls("fixedLineNumber", "E"+ctr)
+					.xls("mobileNumber", "G"+ctr)
+					.xls("email", "I"+ctr)
+					);
+		}
 	}
 	
-	private void migrasiDlosAppSocialMedia(String lobType) {
+	private void migrasiDlosAppSocialMedia(String filename, String lobType) {
 		// Saat ini tidak ada data SocialMedia yang dapat di migrasi, right ?
 	}
 	

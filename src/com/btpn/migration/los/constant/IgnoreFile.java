@@ -223,8 +223,9 @@ public class IgnoreFile {
 	private static String[] unStandardFile = new String[] {
 			// Mapping dlos_app_legal C88
 			"099. PT. BPR Utomo Manunggal Sejahtera.xls", //Large
-			"199 PT. BPR Nusamba Singaparna.xls", //Large 			
-			"264. Aarti Jaya Group.xls", //Large			
+			"199 PT. BPR Nusamba Singaparna.xls", //Large			
+			"264. Aarti Jaya Group.xls", //Large		
+			
 			"114. CV. Mega Jasa.xls", //Large
 			"114.I. CV. Mega Jasa.xls", //Large
 			"114.II CV. Mega Jasa.xls", //Large			
@@ -308,6 +309,17 @@ public class IgnoreFile {
 		}
 		
 		return false;
+	}
+	
+	public static void main(String[] args) {
+		String aa = "8.1551969958E10";
+		if (aa.indexOf("E") >= 0) {
+			int idxDot = aa.indexOf(".");
+			int idx = aa.indexOf("E");
+			String phone = aa.substring(0, idx).replaceAll("\\.", "");
+			System.out.println("- phone "+phone);
+			System.out.println("- idxDot "+idxDot);
+		}
 	}
 }
 
@@ -2777,3 +2789,4 @@ public class IgnoreFile {
 //[0470E00010005[245. CV. Citra Mandiri - Perpanjangan & Restruktur.xls]
 //[0029N00011181[246. Suing - Perpanjangan Restrutur.xls]
 //[0562I00010640[247. Jongkey - Tambahan.xls]
+
