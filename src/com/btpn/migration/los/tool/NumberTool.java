@@ -26,7 +26,9 @@ public class NumberTool {
 	}
 	
 	public static String handlePercentage(String percentage) {
-		if (!StringTool.isEmptyTag(percentage)) {
+		if (StringTool.isEmptyTag(percentage)) {
+			return null;
+		}else {
 			percentage = percentage.replaceAll("%", "").replaceAll(",", ".").replaceAll("`", "");
 			double pct = Double.valueOf(percentage);
 			if (pct <= 1D) {
@@ -35,8 +37,6 @@ public class NumberTool {
 				percentage = NumberTool.format(pct);
 			}
 			return percentage;
-		}else {
-			return null;
 		}
 	}
 }

@@ -33,9 +33,9 @@ public class InformasiDebitur implements Mapping {
 	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `NPWPNumber` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_legal MODIFY COLUMN `TDPNIBName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_verification_debitur MODIFY COLUMN notes TEXT NULL;
-
-
-
+	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN `groupDebiturName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN `contactPersonName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN groupDebiturAddress TEXT NULL;
 
 	
 	// Mencakup
@@ -70,8 +70,8 @@ public class InformasiDebitur implements Mapping {
 //		migrasiDlosLoanProcess(lobType);
 //		migrasiDlosAppContact(lobType);
 //		migrasiDlosAppSocialMedia(lobType);
-//		migrasiDlosAppGroupDebitur(lobType);
-		migrasiDlosAppVerificationDebitur(filename, lobType);
+		migrasiDlosAppGroupDebitur(filename, lobType);
+//		migrasiDlosAppVerificationDebitur(filename, lobType);
 //		migrasiDlosAppLegal(filename, lobType);
 //		migrasiDlosAppManagement(filename, lobType);
 //		migrasiDlosAppProperty(filename, lobType);
@@ -278,34 +278,74 @@ public class InformasiDebitur implements Mapping {
 		// Saat ini tidak ada data SocialMedia yang dapat di migrasi, right ?
 	}
 	
-	private void migrasiDlosAppGroupDebitur(String lobtype) {
+	private void migrasiDlosAppGroupDebitur(String filename, String lobtype) {
 		
 		IActions insertDlosAppGroupDebitur = new IActions() {
 			
 			@Override
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
+				
 				String groupDebiturName = mapper.getString("groupDebiturName");
-				if (groupDebiturName == null) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
+				if (StringTool.isEmptyTag(groupDebiturName)) return null; // Artinya datanya tidak di isi maka return null menandakan query tidak di execute
 				
 				String groupOwnershipPercentage = mapper.getString("groupOwnershipPercentage"); // data yang masukan berupa range 0 s/d 1, sehingga harus di kali 100
-				if (!StringTool.isEmpty(groupOwnershipPercentage)) {
-					groupOwnershipPercentage = NumberTool.format(Double.valueOf(groupOwnershipPercentage) * 100);
-				}
+				if ("100% (Debitur belum berkenan memberikan Akta PT)".equals(groupOwnershipPercentage)) groupOwnershipPercentage = "100";
+				if ("100% dimiliki oleh Diky".equals(groupOwnershipPercentage)) groupOwnershipPercentage = "100";
+				if ("2 Tahun".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null;
+				if ("nill".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null;
+				if ("Bp. Norman sebagai pengurus pemilik 10% saham".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // nama debitur dan %saham tidak sama sehingga aku set null
+				if ("Bp. Sudjono Janto sebagai Persero Pengurus (Direktur)".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // tidak menjelaskan percentage kepemilikan
+				if ("Edie Tjandra (pemegang 54% saham PT MAS) merupakan pemilik PT EAL".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // nama debitur dan %saham tidak sama sehingga aku set null
+				if ("30%  ( atas nama Sudiardjo Hardi )".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // nama debitur dan %saham tidak sama sehingga aku set null
+				if ("40% a.n Safiah (isteri Suriadi)".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // nama debitur dan %saham tidak sama sehingga aku set null
+				if ("David kumala memiliki 10% di PT Ragam Baja Citrajaya".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // nama debitur dan %saham tidak sama sehingga aku set null
+				if ("40%, Njo Fuk Liang sebagai Direktur Utama di PT Sterindo Medika".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // nama debitur dan %saham tidak sama sehingga aku set null
+				if ("Bong Lina (Istri Cadeb) & Porsi sesuai anggaran dasar kepemilikan dalam group 29%".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // nama debitur dan %saham tidak sama sehingga aku set null
+				if ("Bpk. Protasius Siboro dan Bpk. Irzan Kesumaputra Thaib memiliki 35% saham PT Tirtanusa Persada".equals(groupOwnershipPercentage)) groupOwnershipPercentage = null; // nama debitur dan %saham tidak sama sehingga aku set null
+				if ("0% (keterkaitan dengan agunan saja)".equals(groupOwnershipPercentage)) groupOwnershipPercentage = "0"; 
+				groupOwnershipPercentage = NumberTool.handlePercentage(groupOwnershipPercentage);
 				 
 				String industrySectorCode = mapper.getString("industrySectorCode"); // data di ambil dari lookup.IndustrialSector
-				Lookup lindustrySectorCode = store.getLookupByDescription(Lookup.IndustrialSector, industrySectorCode);
-				industrySectorCode = (lindustrySectorCode == null) ? mapper.logMapperProblem("migrasiDlosAppGroupDebitur") : lindustrySectorCode.getKey();
+				if (StringTool.isEmptyTag(industrySectorCode)) { industrySectorCode = null;
+				}else {
+					if (industrySectorCode.toLowerCase().indexOf("manufacturing") >=0 ) industrySectorCode = "Manufacture";
+					if (industrySectorCode.toLowerCase().indexOf("manufacture") >=0 ) industrySectorCode = "Manufacture";
+					if (industrySectorCode.toLowerCase().indexOf("manufaktur") >=0 ) industrySectorCode = "Manufacture";
+					if (industrySectorCode.toLowerCase().indexOf("industri") >=0 ) industrySectorCode = "Manufacture";
+					if (industrySectorCode.toLowerCase().indexOf("pabrik") >=0 ) industrySectorCode = "Manufacture";
+					if (industrySectorCode.toLowerCase().indexOf("produksi") >=0 ) industrySectorCode = "Manufacture";
+					
+					
+					if (industrySectorCode.toLowerCase().indexOf("trading") >=0 ) industrySectorCode = "Trading";
+					if (industrySectorCode.toLowerCase().indexOf("perdagangan") >=0 ) industrySectorCode = "Trading";
+					if (industrySectorCode.toLowerCase().indexOf("pedagang") >=0 ) industrySectorCode = "Trading";
+					
+					if (industrySectorCode.toLowerCase().indexOf("jasa") >=0 ) industrySectorCode = "Service";
+					if (industrySectorCode.toLowerCase().indexOf("kontraktor") >=0 ) industrySectorCode = "Service";
+					if (industrySectorCode.toLowerCase().indexOf("transpotasi") >=0 ) industrySectorCode = "Service";
+					if (industrySectorCode.toLowerCase().indexOf("transportasi") >=0 ) industrySectorCode = "Service";
+					if (industrySectorCode.toLowerCase().indexOf("transportation") >=0 ) industrySectorCode = "Service";
+					
+					Lookup lindustrySectorCode = store.getLookupByDescription(Lookup.IndustrialSector, industrySectorCode);
+					industrySectorCode = (lindustrySectorCode == null) ? mapper.logMapperProblem("migrasiDlosAppGroupDebitur") : lindustrySectorCode.getKey();
+				}
 				
 				String yearsOfExperience = mapper.getString("yearsOfExperience"); // Data yang di input seperti '32 tahun' sehingga kita harus mengextract number saja
 				yearsOfExperience = NumberTool.extractNumberOnly(yearsOfExperience);
 				
 				String contactPersonName = mapper.getString("contactPersonName");
+				if (StringTool.isEmptyTag(contactPersonName)) contactPersonName = null;
+						
 				String groupDebiturAddress = mapper.getString("groupDebiturAddress");
 				String dataId = store.getString("dataId");
 				String isActive = "1";
 				String modifiedDate = null;
 				String modifiedBy = mapper.getString("appId");
-				String createdDate = DateTool.getYMD(mapper.getString("createdDate"));
+				
+				String createdDate = mapper.getString("createdDate");
+				if ("26 Juni 2018".equals(createdDate)) createdDate = "2018-05-26 00:00:00";
+				createdDate = DateTool.getYMD(createdDate);
+				
 				String createdBy = MIGRATION;
 
 				return new String[] {
@@ -320,27 +360,40 @@ public class InformasiDebitur implements Mapping {
 		};
 		
 		if (LobType.isSmes(lobtype)) {
+			int c258 = 258; int c259 = 259; int c260 = 260;
+			
+			if (StringTool.inArray(filename, "template file name")) {
+				
+			}
+			
 			specRows.add(SpecRow.get(insertDlosAppGroupDebitur).setSheet(Sheet.InformasiDebitur)
 					.xls("createdDate", "J4")
 					.xls("appId", "J7")
-					.xls("groupDebiturName", "B258")
-					.xls("groupOwnershipPercentage", "H258")
-					.xls("industrySectorCode", "B259")
-					.xls("yearsOfExperience", "H259")
-					.xls("contactPersonName", "B260")
-					.xls("groupDebiturAddress", "H260"));
+					.xls("groupDebiturName", "B"+c258)
+					.xls("groupOwnershipPercentage", "H"+c258)
+					.xls("industrySectorCode", "B"+c259)
+					.xls("yearsOfExperience", "H"+c259)
+					.xls("contactPersonName", "B"+c260)
+					.xls("groupDebiturAddress", "H"+c260));
+			
 		}
 		
 		if (LobType.isSmel(lobtype)) {
+			int c256 = 256; int c257 = 257; int c258 = 258;
+			
+			if (StringTool.inArray(filename, "113. PT. Bintang Nusantara Linda.xls", "113.I. PT. Bintang Nusantara Linda.xls", "113.II. PT. Bintang Nusantara Linda - Regularisasi 2.xls")) {
+				c256 = 296; c257 = 297; c258 = 298;
+			}
+				
 			specRows.add(SpecRow.get(insertDlosAppGroupDebitur).setSheet(Sheet.InformasiDebitur)
 					.xls("createdDate", "J4")
 					.xls("appId", "J7")
-					.xls("groupDebiturName", "B256")
-					.xls("groupOwnershipPercentage", "H256")
-					.xls("industrySectorCode", "B257")
-					.xls("yearsOfExperience", "H257")
-					.xls("contactPersonName", "B258")
-					.xls("groupDebiturAddress", "H258"));
+					.xls("groupDebiturName", "B"+c256)
+					.xls("groupOwnershipPercentage", "H"+c256)
+					.xls("industrySectorCode", "B"+c257)
+					.xls("yearsOfExperience", "H"+c257)
+					.xls("contactPersonName", "B"+c258)
+					.xls("groupDebiturAddress", "H"+c258));
 		}
 	}
 	
@@ -749,7 +802,7 @@ public class InformasiDebitur implements Mapping {
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
 				
 				String managementName = mapper.getString("managementName");
-				if (managementName == null) return null; // ini artinya  datanya kosong dan jgn di process querynya
+				if (StringTool.isEmptyTag(managementName)) return null; // ini artinya  datanya kosong dan jgn di process querynya
 				
 				String managementPosition = mapper.getString("managementPosition");
 				if (StringTool.isEmptyTag(managementPosition)) { return null; 
@@ -774,8 +827,7 @@ public class InformasiDebitur implements Mapping {
 				String idNumber =  mapper.getString("idNumber");
 				
 				String sharePercentage = mapper.getString("sharePercentage");
-				if (StringTool.isEmptyTag(sharePercentage)) { sharePercentage = null;
-				}else {
+				if (sharePercentage != null) {
 					if ("96% Pemilik di PT Mitra Maju Perkasa".equals(sharePercentage)) { sharePercentage = "96"; }
 					if ("Jl. Babarsari TB XI/20-A Tambakbayan Rt/Rw. 013/004".equals(sharePercentage)) { sharePercentage = null; }
 					if ("Tidak tercantum di akta".equals(sharePercentage)) { sharePercentage = null; }
