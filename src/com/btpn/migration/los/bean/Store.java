@@ -126,6 +126,7 @@ public class Store {
 	
 	public Region getRegionByDescription(String description, boolean throwErr) {
 		if (description == null) return null;
+		
 		Region region = this.regionMap.get(clear(description));
 		region = (region == null) ? getTolerateRegion(clear(description)) : region;
 		
@@ -224,6 +225,7 @@ public class Store {
 		String clearData = data.replaceAll(" and ", " & ") 	// Hapus -
 							.replaceAll(" ", "") // Hapus space
 							.replaceAll("-", "") 	// Hapus -
+							.replaceAll("–", "") 	// Hapus -
 							.replaceAll(",", "") 	// Hapus ,
 							.toUpperCase();			// Buat jadi huruf besar
 //		log.debug("Clear ('"+clearData+"','"+data+"')");

@@ -36,11 +36,10 @@ public class InformasiDebitur implements Mapping {
 	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN `groupDebiturName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN `contactPersonName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_groupdebitur MODIFY COLUMN groupDebiturAddress TEXT NULL;
-	//ALTER TABLE dlos_core.dlos_app_detail MODIFY COLUMN `businessPhoneCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
+	//ALTER TABLE dlos_core.dlos_app_detail MODIFY COLUMN `businessPhoneCode` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 	//ALTER TABLE dlos_core.dlos_app_detail MODIFY COLUMN `businessAddress` TEXT NULL;
 	//ALTER TABLE dlos_core.dlos_app_detail MODIFY COLUMN `managementRelation` TEXT NULL;
-
-
+	//ALTER TABLE dlos_core.dlos_app_detail MODIFY COLUMN `debiturName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL;
 
 
 	
@@ -89,19 +88,19 @@ public class InformasiDebitur implements Mapping {
 			
 			@Override
 			public String[] insert(Mapper mapper, Store store, String lobType) throws Exception {
-				String branchCode = mapper.getString("branchCode"); // Branch Code, berasal dari Region.java/ Hierarchy LOS.xlsx
-				Region rBranchCode = store.getBranchByDescription(branchCode);
-				branchCode = (rBranchCode == null) ?  mapper.logMapperProblem("migrasiDlosAppDetail") : rBranchCode.getBranchCode();
-				
-				String salesSquadName = (rBranchCode == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : rBranchCode.getPmsCode(); // SalesSqualName berasal dari Region.java / Hierarchy LOS.xlsx
-				String areaName = null; 
-				
 				String regionName = mapper.getString("regionName");
 				if (regionName != null) {
 					regionName = regionName.toUpperCase(); // RegionName berasal dari Region.java / Hierarchy LOS.xlsx
 					Region region = store.getRegionByDescription(regionName);
 					regionName = (region == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : region.getRegion();
 				}
+				
+				String branchCode = mapper.getString("branchCode"); // Branch Code, berasal dari Region.java/ Hierarchy LOS.xlsx
+				Region rBranchCode = store.getBranchByDescription(branchCode);
+				branchCode = (rBranchCode == null) ?  mapper.logMapperProblem("migrasiDlosAppDetail") : rBranchCode.getBranchCode();
+				
+				String salesSquadName = (rBranchCode == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : rBranchCode.getPmsCode(); // SalesSqualName berasal dari Region.java / Hierarchy LOS.xlsx
+				String areaName = null; 
 				
 				String debiturName = mapper.getString("debiturName");
 				String aliasName = null; 
@@ -163,15 +162,30 @@ public class InformasiDebitur implements Mapping {
 				businessProvinceCode = (csbusinessProvinceCode == null) ? mapper.logMapperProblem("migrasiDlosAppDetail") : csbusinessProvinceCode.getCode();
 				
 				String businessPostalCode = mapper.clearDecimal(mapper.getString("businessPostalCode"));
+				
 				String businessPhoneCode = mapper.getString("businessPhoneCode");
+				
 				String currentAddressCityCode = null;
 				String cif = mapper.getString("cif");
 				String rmName = mapper.getString("rmName");
 				String rmCode = mapper.getString("rmCode");
 				String acmName = mapper.getString("acmName");
 				String acmNik = mapper.getString("acmNik");
-				String btpnRelationDate = DateTool.getYMD(mapper.getString("btpnRelationDate"));
-				if ("Maret".equals(btpnRelationDate)) btpnRelationDate = null;
+				
+				String btpnRelationDate = mapper.getString("btpnRelationDate");
+				if (StringTool.isEmptyTag(btpnRelationDate)) { btpnRelationDate = null;
+				}else {
+					if ("Maret 2015".equals(btpnRelationDate)) btpnRelationDate = "2015-03-01 00:00:00";
+					if ("27 November 2014".equals(btpnRelationDate)) btpnRelationDate = "2014-11-27 00:00:00";
+					if ("6 Juli 2015".equals(btpnRelationDate)) btpnRelationDate = "2015-07-06 00:00:00";
+					if ("16 Des 2014".equals(btpnRelationDate)) btpnRelationDate = "2014-12-16 00:00:00";
+					if ("16 Januari 2015".equals(btpnRelationDate)) btpnRelationDate = "2015-01-16 00:00:00";
+					if ("19 Juni 2014".equals(btpnRelationDate)) btpnRelationDate = "2014-06-19 00:00:00";
+					if ("13 Juli 2015".equals(btpnRelationDate)) btpnRelationDate = "2015-07-13 00:00:00";
+					if ("16 May 2014".equals(btpnRelationDate)) btpnRelationDate = "2014-05-16 00:00:00";
+					
+					btpnRelationDate = DateTool.getYMD(btpnRelationDate);
+				}
 				
 				String programProduct = mapper.getString("programProduct"); //ProgramProduct berasal dari Lookup.ProductProgram
 				Lookup lProgramProduct = store.getLookupByDescription(Lookup.ProductProgram, programProduct);
@@ -183,11 +197,12 @@ public class InformasiDebitur implements Mapping {
 				String managementChange = mapper.getString("managementChange");
 				if (StringTool.isEmptyTag(managementChange)) { managementChange = null;
 				}else {
+					if (managementChange.startsWith("Tgl 23 Desember 2008 diangkat")) managementChange = null;
+					if ("2 bulan".equals(managementChange)) managementChange = null;
+					if ("2014-11-05 00:00:00:0000".equals(managementChange)) managementChange = null;
 					if ("tidak ada".equals(managementChange)) managementChange = null;
 					if ("Nihil".equals(managementChange)) managementChange = null;	
 				}
-				
-				
 					
 				String KTPRTRWCode = null; 
 				String currentAddressRTRWCode = null; 

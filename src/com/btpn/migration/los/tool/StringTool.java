@@ -20,7 +20,7 @@ public class StringTool {
 		if (isEmpty(data)) {
 			return true;
 		}else {
-			return "\\".equals(data.trim()) || "--".equals(data.trim()) || "-".equals(data.trim()) || "NA".toLowerCase().equals(data.trim().toLowerCase())  || "N/A".toLowerCase() .equals(data.trim().toLowerCase());
+			return "\\".equals(data.trim()) || "--".equals(data.trim()) || "-".equals(data.trim()) || "NA".toLowerCase().equals(data.trim().toLowerCase())  || "N/A".toLowerCase() .equals(data.trim().toLowerCase())  || "N / A".toLowerCase() .equals(data.trim().toLowerCase());   
 		}
 	}
 	

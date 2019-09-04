@@ -36,7 +36,7 @@ public class AbstractPrepare {
 			if (file.isFile() && !file.getName().contains("lock") && !file.getName().startsWith(".")) {
 				if (absolutePath.toLowerCase().endsWith("xls") || absolutePath.toLowerCase().endsWith("xlsx")) {
 					if (!IgnoreFile.isIgnore(file.getName())) {
-						//if (file.getName().equals("205. Suriadi.xls"))
+						//if (file.getName().equals("001. Djoni Kusnadi Group.xls"))
 						//if (StringTool.inArray(file.getName(), "075. PT Indonesia Global Medika.xls","165. PT Mega Anugrah Sukses.xls","235. CV Sukses Dinata Andil.xls"))
 							files.add(file);
 					}
