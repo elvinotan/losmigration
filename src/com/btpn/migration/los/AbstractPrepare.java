@@ -10,7 +10,6 @@ import org.apache.log4j.Logger;
 
 import com.btpn.migration.los.constant.IgnoreFile;
 import com.btpn.migration.los.tool.DateTool;
-import com.btpn.migration.los.tool.StringTool;
 
 public class AbstractPrepare {
 	final static Logger log = Logger.getLogger(AbstractPrepare.class);

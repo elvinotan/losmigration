@@ -3,8 +3,6 @@ package com.btpn.migration.los.mapping;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 import com.btpn.migration.los.bean.SpecRow;
 import com.btpn.migration.los.mapping.informasidebitur.DlosAppContact;
 import com.btpn.migration.los.mapping.informasidebitur.DlosAppDetail;
@@ -17,8 +15,6 @@ import com.btpn.migration.los.mapping.informasidebitur.DlosAppVerificationDebitu
 import com.btpn.migration.los.mapping.informasidebitur.DlosLoanProcess;
 
 public class InformasiDebitur implements Mapping {
-	final static Logger log = Logger.getLogger(InformasiDebitur.class);
-	
 	private List<SpecRow> specRows = new ArrayList<SpecRow>();
 
 	// Mencakup
