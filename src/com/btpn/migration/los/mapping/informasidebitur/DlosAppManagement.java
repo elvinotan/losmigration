@@ -31,7 +31,6 @@ public class DlosAppManagement {
 				String managementPosition = mapper.getString("managementPosition");
 				if (StringTool.isEmptyTag(managementPosition)) { return null; 
 				}else {
-					System.out.println("oooo["+managementPosition+"]");
 					if ("70 - Lainnya (Bukan Pemilik)".equals(managementPosition)) managementPosition = "69 - Lainnya (Bukan Pemilik)";
 					if ("\\".equals(managementPosition)) managementPosition = null;
 					Lookup lmanagementPosition = store.getLookupByDescription(Lookup.Position, managementPosition);
